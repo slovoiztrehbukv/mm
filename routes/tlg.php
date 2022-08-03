@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/users', function () {
-    dd(222);
+    dd(22);
 });
