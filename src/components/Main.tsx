@@ -1,11 +1,31 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { CSSTransition } from 'react-transition-group';
+import { RootState } from '../store';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
+import { Question, setQuestions } from '../store/features/questions';
 
 export const Main : React.FC = () => {
 
     const [ready, setReady] = useState(false)
+    
+    const questions = useSelector((state: RootState) => state.questions.items)
+    const dispatch = useDispatch()
+
+
     setTimeout(() => setReady(true), 500)
+
+
+    setTimeout(() => dispatch(setQuestions([
+        {
+            id: 1,
+            title: 'q1',
+            answers: [],
+            userAnswer: null
+        }
+    ])), 1500)
+
+
 
     return (
         <CSSTransition
@@ -14,6 +34,9 @@ export const Main : React.FC = () => {
             classNames={{...transitionClasses}}
         >
             <div className='opacity-0'>
+                {/* delme */}
+                {questions.map((q: Question) => (<h1>{q.title}</h1>))}
+                {/* ^ delme ^ */}
                 <main
                     className="bg-white text-secondary-600  max-w-lg mx-auto p-8 md:p-12 my-16 rounded-lg shadow-2xl">
                     <section>
