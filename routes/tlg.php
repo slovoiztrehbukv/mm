@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(TelegramMiddleware::class)->get('/', [TelegramController::class, 'index']);
+Route::middleware(TelegramMiddleware::class)->post('/', [TelegramController::class, 'index']);
