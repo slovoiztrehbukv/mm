@@ -44,9 +44,7 @@ class MessageService
     private function userCreate()
     {
         $user = User::firstOrCreate([
-            'name' => '',
-            'tlg_id' => $this->message['from']['id'],
-            'password' => \Hash::make('password')
+            'tlg_id' => $this->message['from']['id']
         ]);
         
         $user->name = trim($this->message['from']['first_name']);
