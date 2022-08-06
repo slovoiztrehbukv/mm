@@ -36,7 +36,7 @@ class MessageService
             $method = $methods[$method];
             $instance->$method();
         } else {
-            $instance->searchByName();
+            // $instance->searchByName();
         }
         
     }
