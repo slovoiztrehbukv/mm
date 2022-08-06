@@ -6,7 +6,7 @@ export const LogoContainer: React.FC = () => {
   // const nav = useNavigate()
 
   return (
-    <div className="w-1/2 m-auto text-center text-6xl">
+    <div className="w-1/2 m-auto text-center text-2xl">
       {/* <Logo /> */}
       мачмэч
     </div>
