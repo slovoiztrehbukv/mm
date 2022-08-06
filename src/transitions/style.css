@@ -1,0 +1,26 @@
+:root {
+    --time: 500ms;
+}
+/* positions */
+.app-transitions__left-behind {
+    opacity: 0;
+    transition: var(--time);
+    transform: translateX(-1200px);
+}
+.app-transitions__normal {
+    transition: var(--time);
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
+
+/* size */
+.app-transitions__double-size {
+    transition: var(--time);
+    transform: scale(2);
+}
+.app-transitions__normal-size {
+    transition: var(--time);
+    transform: scale(1);
+}
