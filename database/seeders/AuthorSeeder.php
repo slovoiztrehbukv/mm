@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Question;
+use App\Models\Author;
 use Illuminate\Database\Seeder;
 
-class QuestionSeeder extends Seeder
+class AuthorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,8 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
-        Question::factory()
-            ->count(30)
-            ->answers()
+        Author::factory()
+            ->count(5)
             ->create();
     }
 }

@@ -14,7 +14,24 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => ucfirst("{$this->faker->word} {$this->faker->word} {$this->faker->word}?"),
+            'is_published' => rand(0, 1),
+            'is_moderating' => rand(0, 1)
         ];
+    }
+
+    public function answers(int $count = 4)
+    {
+        return $this->state(function() use ($count){
+            $answers = [];
+
+            for ($i = 0; $i < $count; $i++) {
+                $answers[] = $this->faker->word;
+            }
+            
+            return [
+                'answers' => $answers
+            ];
+        });
     }
 }

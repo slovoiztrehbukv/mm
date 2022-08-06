@@ -27,6 +27,12 @@ class CreateQuestionsTable extends Migration
                 ->constrained()
                 ->nullOnDelete();
 
+            $table->foreignId('author_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+
+
             $table->json('answers')
                 ->comment('Possible question answers in format like [A, B, C, D]');
 
