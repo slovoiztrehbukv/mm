@@ -51,7 +51,7 @@ export const Main : React.FC = () => {
 
                 <div className="max-w-lg mx-auto text-center mt-12 mb-6">
                     <p className="text-white font-light">
-                        <span>у меня нет аккаунта.</span>
+                        <span>у меня нет аккаунта,</span>
                         <a href="#" className="font-bold hover:underline"> создайте мне</a>
                     </p>
                 </div>
