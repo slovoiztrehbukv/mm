@@ -4,7 +4,7 @@ namespace App\Services\Telegram;
 
 use App\Enum;
 use App\Models\Celebrity;
-use App\User;
+use App\Models\User;
 use App\Services\CelebrityService;
 use App\Services\QIWI\PaymentService;
 use Illuminate\Support\Facades\Log;

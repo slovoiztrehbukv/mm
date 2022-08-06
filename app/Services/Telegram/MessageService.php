@@ -3,7 +3,7 @@
 namespace App\Services\Telegram;
 
 use App\Enum;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Objects\Message;
