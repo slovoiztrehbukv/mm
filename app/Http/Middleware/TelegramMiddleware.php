@@ -16,6 +16,6 @@ class TelegramMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        return $request->headers->get('X-Telegram-Bot-Api-Secret-Token') === env('MM_TELEGRAM_WEBHOOK_SECRET_TOKEN') ? $next($request) : redirect('/');
     }
 }

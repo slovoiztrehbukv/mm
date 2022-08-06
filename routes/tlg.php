@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TelegramController;
+use App\Http\Middleware\TelegramMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +16,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    dd(1);
-});
-
-Route::get('/users', function () {
-    dd(22);
-});
+Route::middleware(TelegramMiddleware::class)->get('/', [TelegramController::class, 'index']);
