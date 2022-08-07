@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const HOST = process.env.REACT_APP_API_HOST
+
 export const API = {
-    getQuestions: (params = {}) => axios.get('http://mm.loc/api/getQuestions', {params})
+    getQuestions: (params = {}) => axios.get(`${HOST}/getQuestions`, {params})
 }

@@ -1,8 +1,11 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { QuestionsInitialActionPayload } from '../interfaces';
+import { Home } from '../pages/Home';
+import { PreStart } from '../pages/PreStart';
+import { Start } from '../pages/Start';
 import { initQuestions } from '../store/features/questions';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
 
@@ -36,46 +39,15 @@ export const Main : React.FC = () => {
         >
             <div className='opacity-0'>
                 <main
-                    className="bg-white text-secondary-600  max-w-lg mx-auto p-8 md:p-12 my-16 rounded-lg shadow-3xl">
-                    <section>
-                        <a className="text-gray-300" href="#">я только спросить</a>
-                        <h3 className="font-normal text-2xl">надо залогиниться</h3>
-                    </section>
-
-                    <section className="mt-16">
-                        <form className="flex flex-col" method="POST" action="#">
-                            <div className="mb-6 pt-3 rounded bg-gray-200">
-                                <label className="block text-sm font-light mb-2 ml-3" htmlFor="email">эл. почта</label>
-                                <input
-                                    type="text"
-                                    id="email"
-                                    className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-600 transition duration-500 px-3 pb-3"/>
-                            </div>
-                            <div className="mb-6 pt-3 rounded bg-gray-200">
-                                <label className="block text-sm font-light mb-2 ml-3" htmlFor="password">пароль</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-600 transition duration-500 px-3 pb-3"/>
-                            </div>
-                            <div className="flex justify-end">
-                                <a
-                                    href="#"
-                                    className="text-sm text-secondary-100 hover:text-secondary-700 hover:underline mb-6 font-light">я забыл пароль</a>
-                            </div>
-                            <button
-                                className="bg-primary-100 hover:bg-primary-500 text-white font-light py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
-                                type="submit">войти</button>
-                        </form>
-                    </section>
+                    className="bg-white text-secondary-600  max-w-4xl mx-auto p-8 md:p-12 my-16 rounded-lg shadow-3xl">
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="/" element={<Home />}></Route>
+                                <Route path="/prestart" element={<PreStart />}></Route>
+                                <Route path="/start" element={<Start />}></Route>
+                            </Routes>
+                        </BrowserRouter>
                 </main>
-
-                <div className="max-w-lg mx-auto text-center mt-12 mb-6">
-                    <p className="text-white font-light">
-                        <span>у меня нет аккаунта,</span>
-                        <a href="#" className="font-bold hover:underline"> создайте мне</a>
-                    </p>
-                </div>
             </div>
         </CSSTransition>
     )
