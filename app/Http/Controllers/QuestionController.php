@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
+use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 
 class QuestionController extends Controller
@@ -15,7 +16,12 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $answersPerQuestion = request()->get('answersQuantity') ?? config('questions.answersPerQuestion');
+        $questionsChunkSize = request()->get('questionsQuantity') ?? config('questions.questionsChunkSize');
+
+        $questions = Question::take($questionsChunkSize)->get();
+        
+        return QuestionResource::collection($questions);
     }
 
     /**

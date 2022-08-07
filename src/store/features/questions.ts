@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { Question, QuestionsInitialAction, Questions } from '../../interfaces'
 
-export interface Question {
-    id: number
-    title: string
-    answers: string[]
-    userAnswer: number | null
-}
 
-export interface Questions {
-  items: Question[]
+
+const SLICE_NAME = 'questions'
+const INITIAL_ACTION_NAME = 'initQuestions'
+
+const initialAction: QuestionsInitialAction = {
+  payload: {
+    questionsQuantity: 10,
+    answersQuantity: 4
+  },
+  type: `${SLICE_NAME}/${INITIAL_ACTION_NAME}`
 }
 
 const initialState: Questions = {
@@ -17,9 +20,14 @@ const initialState: Questions = {
 }
 
 export const questionsSlice = createSlice({
-  name: 'questions',
+  name: SLICE_NAME,
   initialState,
   reducers: {
+    [INITIAL_ACTION_NAME]: (state, action = initialAction) => {
+      action.payload = {...initialAction.payload, ...action.payload}
+      state.items = []
+    },
+    getQuestions() {},
     setQuestions: (state, action: PayloadAction<Question[]>) => {
       state.items = action.payload
     },
@@ -27,6 +35,6 @@ export const questionsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setQuestions } = questionsSlice.actions
+export const { getQuestions, initQuestions, setQuestions } = questionsSlice.actions
 
 export default questionsSlice.reducer
