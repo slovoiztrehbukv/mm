@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PreStart = () => {
+export const PreSurvey = () => {
 
     const possibleValues = {
         questions: [8, 10, 12, 14, 16],
@@ -75,7 +75,7 @@ export const PreStart = () => {
                         <div>
                             <Link
                                 className="bg-primary-100 hover:bg-primary-500 text-white font-light py-2 px-6 rounded shadow-lg hover:shadow-xl transition duration-200"
-                                to="/start"
+                                to="/survey"
                             >
                                 начали!
                             </Link>

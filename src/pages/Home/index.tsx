@@ -9,7 +9,7 @@ export const Home = () => {
 
                 <section className="mt-16 flex justify-between w-1/2 mx-auto">
                     <Link
-                        to="/prestart"
+                        to="/pre-survey"
                         className="w-1/3 bg-primary-100 hover:bg-primary-500 text-white font-light py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
                         type="submit"
                     >

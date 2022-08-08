@@ -7,14 +7,11 @@ export interface initQuestionsHandlerResponse {
     data: Question[]
 }
 
-export function* initQuestionsHandler(action: QuestionsInitialAction) {
+export function* setQuestionsHandler(action: QuestionsInitialAction) {
     try {
-        const response: initQuestionsHandlerResponse = yield call(API.getQuestions, action.payload)
-        const { data } = response
-
         yield put({
             type: setQuestions.type,
-            payload: data.map(q => ({...q, userAnswer: null}))
+            payload: action.payload
         })
     } catch (error) {
         console.error(error)
