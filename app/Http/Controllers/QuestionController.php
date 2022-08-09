@@ -21,8 +21,6 @@ class QuestionController extends Controller
 
         $questions = Question::take($questionsChunkSize)->get();
         
-        sleep(2); // TODO DELME
-
         return QuestionResource::collection($questions);
     }
 

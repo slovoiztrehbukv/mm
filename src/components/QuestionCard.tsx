@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { store } from '../store';
-import { setQuestions as commitSetQuestions, updateQuestions } from '../store/features/questions';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, store } from '../store';
+import { setQuestions } from '../store/features/questions';
 import { PreLoader } from "./PreLoader";
 import { Question } from '../interfaces'
 
@@ -12,42 +12,30 @@ export const QuestionCard: React.FC = () => {
 
     const dispatch = useDispatch()
 
-    const [loaded, setLoaded] = useState(false)
-    const [questions, setQuestions] = useState<Question[]>([])
-    const [answerSelected, setAnswerSelected] = useState<null|number>(null) // means index in answers: []
-    const [activeQuestion, setActiveQuestion] = useState<Question|undefined>(undefined)
+    const questions = useSelector( (store: RootState) : Question[] =>  store.questions.items)
+    const [answerSelected, setAnswerSelected] = useState<number|null>(null)
 
-    const processCurrentCard = () => {
-        let newQuestions = JSON.parse(JSON.stringify(questions));
+    const activeQuestion = questions.find(q => !q.userAnswer && q.userAnswer !== 0)
 
-        newQuestions.forEach((q: Question) => {
-            if (q.id === activeQuestion?.id) {
-                q.userAnswer = answerSelected
-            }
-        })
-
-        dispatch(updateQuestions(newQuestions))
+    const processCard = () => {
+        const newQuestions = questions.map(q => ({
+            ...q,
+            userAnswer: activeQuestion!.id === q.id ? answerSelected : q.userAnswer
+        }))
+        dispatch(setQuestions(newQuestions))
+        setAnswerSelected(null)
     }
-
-    
-    store.subscribe(() => {
-        setQuestions(store.getState().questions.items)
-        if (!questions.length) return
-
-        setLoaded(true)
-        setActiveQuestion(questions.find(q => typeof q.userAnswer === 'undefined' || q.userAnswer === null))
-    })
 
     return (
             <>
                 {
-                    loaded
+                    activeQuestion
                         ?
-                    <div className='text-center p-8 mx-auto'>
-                        <h2 className='mb-20'>{activeQuestion!.title}</h2>
+                        <div className='text-center p-8 mx-auto'>
+                        <h2 className='mb-20'>{activeQuestion.title}</h2>
 
                         <div className='grid grid-rows-2 grid-flow-col gap-8'>
-                            {activeQuestion!.answers.map((value, index) => (
+                            {activeQuestion.answers.map((value, index) => (
                                 <button
                                     key={index}
                                     className={answerSelected === index ? `${btnClasses} bg-emerald-500` : btnClasses}
@@ -62,7 +50,7 @@ export const QuestionCard: React.FC = () => {
                             <button
                                 disabled={answerSelected === null}
                                 className={`${btnClasses} py-2 px-14 bg-transparent rounded-xl text-emerald-500 disabled:text-slate-700 `}
-                                onClick={() => processCurrentCard()}
+                                onClick={() => processCard()}
                             >
                                 следующий
                             </button>
