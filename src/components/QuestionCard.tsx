@@ -31,7 +31,7 @@ export const QuestionCard: React.FC = () => {
                 {
                     activeQuestion
                         ?
-                        <div className='text-center p-8 mx-auto'>
+                    <div className='text-center p-8 mx-auto'>
                         <h2 className='mb-20'>{activeQuestion.title}</h2>
 
                         <div className='grid grid-rows-2 grid-flow-col gap-8'>

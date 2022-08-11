@@ -18,3 +18,8 @@ export interface QuestionsInitialAction {
   type: string
   payload: QuestionsInitialActionPayload
 }
+
+export interface IconProps {
+  fill?: string
+  px?: number
+}

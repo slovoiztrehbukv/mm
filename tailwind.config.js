@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
+// SYNC_TO: src/config/colors.ts
 const colors = {
   main: '#fff',
   primary: {},
@@ -27,4 +28,5 @@ module.exports = {
     },
   },
   plugins: [],
+  important: false,
 }

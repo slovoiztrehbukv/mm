@@ -19,6 +19,8 @@ class QuestionController extends Controller
         $answersPerQuestion = request()->get('answersQuantity') ?? config('questions.answersPerQuestion');
         $questionsChunkSize = request()->get('questionsQuantity') ?? config('questions.questionsChunkSize');
 
+        // $questionsChunkSize = 3;
+
         $questions = Question::take($questionsChunkSize)->get();
         
         return QuestionResource::collection($questions);

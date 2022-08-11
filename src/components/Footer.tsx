@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
-import { TelegramIcon } from '../images/icons/telegram';
+import { TelegramIcon } from '../images/icons/social/telegram';
 
 export const Footer: React.FC = () => {
 
