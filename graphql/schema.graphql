@@ -1,0 +1,15 @@
+"ROOT"
+type Query {
+  questions(questionsQuantity: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
+}
+
+type Mutation {
+    storeTempUserAnswers(input: StoreTempUserAnswersInput! @spread): TempUserAnswers! @create
+}
+
+
+
+"INPUTS"
+input StoreTempUserAnswersInput {
+  test: Int
+}

@@ -9,6 +9,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id'];
+
     protected $casts = [
         'answers' => 'array',
     ];

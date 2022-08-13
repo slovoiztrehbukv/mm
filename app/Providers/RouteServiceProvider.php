@@ -45,9 +45,14 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::prefix('tlg')
-                ->middleware(TelegramMiddleware::class)
+                ->middleware('tlg')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/tlg.php'));
+
+            Route::prefix('debug')
+                ->middleware('devOnly')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/debug.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)

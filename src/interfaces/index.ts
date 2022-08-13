@@ -1,3 +1,7 @@
+import { Action as ReduxAction } from "redux"
+
+
+
 export interface Question {
     id: number
     title: string
@@ -14,9 +18,18 @@ export interface QuestionsInitialActionPayload {
   answersQuantity?: number
 }
 
-export interface QuestionsInitialAction {
-  type: string
+export interface QuestionsInitialAction extends ReduxAction {
   payload: QuestionsInitialActionPayload
+}
+
+export interface SettingsState {
+  values: {
+    questions: QuestionsInitialActionPayload // ?TODO extend
+  }
+}
+
+export interface UpdateSettingsAction extends ReduxAction {
+  payload: SettingsState
 }
 
 export interface IconProps {

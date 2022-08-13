@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\DebugController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(TelegramController::class)->group(function() {
-    Route::post('/', 'index');
-
-    Route::any('/{any}', fn()=>redirect('/'))->where('any', '.*');
+Route::controller(DebugController::class)->group(function() {
+    Route::get('/', 'index');
 });

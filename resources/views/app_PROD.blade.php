@@ -18,6 +18,7 @@
     <div id="root"></div>
     <script>
         window.API_HOST = '{{$API_HOST}}'
+        window.GQL_HOST = '{{$GQL_HOST}}'
     </script>
     <script src="/js/main.js"></script>
 </body>

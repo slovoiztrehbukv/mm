@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{path?}', function () {
     return view(env('APP_ENV') === 'production' ? 'app_PROD' : 'app', [
-        'API_HOST' => env('REACT_APP_API_HOST')
+        'API_HOST' => env('REACT_APP_API_HOST'),
+        'GQL_HOST' => env('REACT_APP_GQL_HOST'),
     ]);
 })->where('path', '.*');

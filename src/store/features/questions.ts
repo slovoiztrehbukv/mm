@@ -27,11 +27,6 @@ export const questionsSlice = createSlice({
       action.payload = {...initialAction.payload, ...action.payload}
       state.items = []
     },
-    updateQuestions: (state, action = initialAction) => {
-      action.payload = {...initialAction.payload, ...action.payload}
-      state.items = []
-    },
-    getQuestions() {},
     setQuestions: (state, action: PayloadAction<Question[]>) => {
       state.items = action.payload
     },
@@ -39,6 +34,6 @@ export const questionsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getQuestions, initQuestions, setQuestions, updateQuestions } = questionsSlice.actions
+export const { initQuestions, setQuestions } = questionsSlice.actions
 
 export default questionsSlice.reducer

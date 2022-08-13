@@ -1,15 +1,20 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { setSettings } from "../../store/features/settings";
 
 export const PreSurvey = () => {
 
     const possibleValues = {
-        questions: [8, 10, 12, 14, 16],
+        questions: [2, 8, 10, 12, 14, 16],
         answers: [3, 4, 5, 6, 7, 8]
     }
 
     const questionsQuantityRef = useRef<HTMLInputElement|null>(null)
     const answersQuantityRef = useRef<HTMLInputElement|null>(null)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const questionsQuantityHandler = (e: any) => {
         if (!questionsQuantityRef.current) return
@@ -19,6 +24,20 @@ export const PreSurvey = () => {
     const answersQuantityHandler = (e: any) => {
         if (!answersQuantityRef.current) return
         answersQuantityRef.current.value = e.target.value
+    }
+
+    const goToSurvey = () => {
+        const settings = {
+            values: {
+                questions: {
+                    questionsQuantity: Number(questionsQuantityRef.current!.value),
+                    answersQuantity: Number(answersQuantityRef.current!.value),
+                }
+            }
+        }
+
+        dispatch(setSettings(settings))
+        navigate('/survey')
     }
 
     useEffect(() => {
@@ -73,12 +92,12 @@ export const PreSurvey = () => {
 
                     <section className="mt-16">
                         <div>
-                            <Link
+                            <button
                                 className="bg-primary-100 hover:bg-primary-500 text-white font-light py-2 px-6 rounded shadow-lg hover:shadow-xl transition duration-200"
-                                to="/survey"
+                                onClick={goToSurvey}
                             >
                                 начали!
-                            </Link>
+                            </button>
                         </div>
                     </section>
                 </div>

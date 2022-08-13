@@ -1,10 +1,12 @@
 import createSagaMiddleware from 'redux-saga';
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import questionsReducer from './features/questions'
+import settingsReducer from './features/settings'
 import { watcherSaga } from './sagas'
 
 const reducer = combineReducers({
   questions: questionsReducer,
+  settings: settingsReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()
