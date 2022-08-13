@@ -1,10 +1,16 @@
 import { QuestionsInitialActionPayload } from '../../interfaces';
 import queries from './queries';
-import client from './client';
+import awaitedClient from './client';
 import { gql } from '@apollo/client';
 
 export const GQL = {
 
-    getQuestions: async (params:QuestionsInitialActionPayload = {questionsQuantity: 10}) => (await client.get()).query({query: gql(queries.questions.get(params))})
+    getQuestions: async (params:QuestionsInitialActionPayload = {questionsQuantity: 10}) => {
+        const client = await awaitedClient.get()
+
+        client.query({
+            query: gql(queries.questions.get(params))
+        })
+    }
 
 }
