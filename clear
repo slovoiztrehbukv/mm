@@ -1,0 +1,1 @@
+sudo php artisan cache:clear && sudo php artisan config:clear && sudo php artisan lighthouse:clear-cache && sudo chown -R gandreev:www-data ./storage

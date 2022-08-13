@@ -5,12 +5,17 @@ import { Action as ReduxAction } from "redux"
 export interface Question {
     id: number
     title: string
-    answers: string[]
+    answers: Answer[]
     userAnswer: number | null
 }
 
 export interface Questions {
   items: Question[]
+}
+
+export interface Answer {
+  id: number
+  value: string
 }
 
 export interface QuestionsInitialActionPayload {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, store } from '../store';
 import { setQuestions } from '../store/features/questions';
 import { PreLoader } from "./PreLoader";
-import { Question } from '../interfaces'
+import { Answer, Question } from '../interfaces'
 
 
 export const QuestionCard: React.FC = () => {
@@ -35,13 +35,13 @@ export const QuestionCard: React.FC = () => {
                         <h2 className='mb-20'>{activeQuestion.title}</h2>
 
                         <div className='grid grid-rows-2 grid-flow-col gap-8'>
-                            {activeQuestion.answers.map((value, index) => (
+                            {activeQuestion.answers.map((answer: Answer) => (
                                 <button
-                                    key={index}
-                                    className={answerSelected === index ? `${btnClasses} bg-emerald-500` : btnClasses}
-                                    onClick={() => setAnswerSelected(index)}
+                                    key={answer.id}
+                                    className={answerSelected === answer.id ? `${btnClasses} bg-emerald-500` : btnClasses}
+                                    onClick={() => setAnswerSelected(answer.id)}
                                 >
-                                    {value}
+                                    {answer.value}
                                 </button>
                             ))}
                         </div>

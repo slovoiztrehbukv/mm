@@ -10,14 +10,16 @@ class DebugController extends Controller
 {
     public function index()
     {
-        $questions = Question::take(4)->get();
+        $args = [
+            'questionsQuantity' => 4,
+            'answersQuantity' => 2,
+        ];
+        $questions = Question::take($args['questionsQuantity'])->get();
+        $questions->each(function(Question &$question) use ($args) {
+            $question->answers = $question->answers->random($args['answersQuantity']);
+            return $question;
+        });
 
-        dd(
-            321,
-            QuestionResource::collection($questions),
-            get_class_methods(QuestionResource::collection($questions)),
-            QuestionResource::collection($questions)->resolve(),
-        );
 
         return QuestionResource::collection($questions);
     }

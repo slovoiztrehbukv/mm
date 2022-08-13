@@ -14,8 +14,11 @@ final class GetQuestionsResolver
     public function __invoke($_, array $args)
     {
         $questions = Question::take($args['questionsQuantity'])->get();
-        
-        return QuestionResource::collection($questions)
-            ->resolve();
+        $questions->each(function(Question &$question) use ($args) {
+            $question->answers = $question->answers->random($args['answersQuantity']);
+            return $question;
+        });
+
+        return QuestionResource::collection($questions);
     }
 }

@@ -17,7 +17,7 @@ class BatchSeeder extends Seeder
     {
         $questions = Question::all();
 
-        foreach([2, 8, 10, 12, 16, 16, 18, 20] as $quantity) {
+        foreach([2, 8, 10, 12, 14, 16, 18, 20] as $quantity) {
             Batch::create([
                 'title' => "Batch for $quantity questions",
                 'questions_quantity' => $quantity

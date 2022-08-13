@@ -1,6 +1,6 @@
 "ROOT"
 type Query {
-  questions(questionsQuantity: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
+  questions(questionsQuantity: Int!, answersQuantity: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
 }
 
 # type Mutation {
@@ -20,5 +20,10 @@ input StoreTempUserAnswersInput {
 type Question {
     id: ID!
     title: String
-    answers: [String]
+    answers: [Answer]
+}
+
+type Answer {
+    id: ID!
+    value: String
 }
