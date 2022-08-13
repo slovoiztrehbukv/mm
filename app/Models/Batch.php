@@ -5,14 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class Batch extends Model
 {
     use HasFactory;
 
 
-    
+
     protected $fillable = [
-        'question_id',
-        'value'
+        'title',
+        'questions_quantity'
     ];
+
+
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class);
+    }
 }

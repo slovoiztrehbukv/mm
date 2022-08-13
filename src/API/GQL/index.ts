@@ -8,7 +8,7 @@ export const GQL = {
     getQuestions: async (params:QuestionsInitialActionPayload = {questionsQuantity: 10}) => {
         const client = await awaitedClient.get()
 
-        client.query({
+        return client.query({
             query: gql(queries.questions.get(params))
         })
     }

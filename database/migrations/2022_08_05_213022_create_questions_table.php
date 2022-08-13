@@ -22,6 +22,7 @@ class CreateQuestionsTable extends Migration
                 'IMAGE'
             ]);
 
+            
             $table->foreignId('category_id')
                 ->nullable()
                 ->constrained()
@@ -32,9 +33,6 @@ class CreateQuestionsTable extends Migration
                 ->constrained()
                 ->nullOnDelete();
 
-
-            $table->json('answers')
-                ->comment('Possible question answers in format like [A, B, C, D]');
 
             $table->boolean('is_published')
                 ->default(false);

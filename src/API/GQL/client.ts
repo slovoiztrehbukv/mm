@@ -9,7 +9,8 @@ export default{
     get: async () => {
 
         if (!instance) {
-            const uri = (await axios.get('/service/hosts/gql')).data
+            const endpoint = process.env.REACT_APP_HOST + '/service/hosts/gql'
+            const uri = (await axios.get(endpoint)).data
            
             instance = new ApolloClient({
                 uri,

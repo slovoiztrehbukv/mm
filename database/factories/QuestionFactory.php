@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Answer;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestionFactory extends Factory
@@ -20,18 +22,15 @@ class QuestionFactory extends Factory
         ];
     }
 
-    public function answers(int $count = 4)
+    public function answers(int $count = 6)
     {
-        return $this->state(function() use ($count){
-            $answers = [];
-
+        return $this->afterCreating(function(Question $question) use ($count){
             for ($i = 0; $i < $count; $i++) {
-                $answers[] = $this->faker->word;
+                Answer::create([
+                    'question_id' => $question->id,
+                    'value' => $this->faker->word
+                ]);
             }
-            
-            return [
-                'answers' => $answers
-            ];
         });
     }
 }
