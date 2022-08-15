@@ -17,6 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('is_celebrity')->default(false);
+            $table->boolean('is_premium')->default(false);
 
             $table->foreignId('user_id')
                 ->nullable()
