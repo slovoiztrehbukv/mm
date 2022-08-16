@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'graphql', 'service/hosts/gql'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'graphql', 'service/*'],
 
     'allowed_methods' => ['*'],
 

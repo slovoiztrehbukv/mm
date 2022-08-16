@@ -8,6 +8,8 @@ Route::prefix('/service')->group(function() {
         Route::get('/api', [ServiceInformationController::class, 'getAPIHost']);
         Route::get('/gql', [ServiceInformationController::class, 'getGQLHost']);
     });
+
+    Route::get('/languages', [ServiceInformationController::class, 'getLocalizationStrings']);
 });
 
 Route::get('/{path?}', function () {

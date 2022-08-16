@@ -12,7 +12,6 @@ import { Home } from '../pages/Home';
 import { PreSurvey } from '../pages/PreSurvey';
 import { Survey } from '../pages/Survey';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
-import { Footer } from './Footer';
 
 export const Main : React.FC = () => {
 

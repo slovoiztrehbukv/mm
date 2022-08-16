@@ -15,4 +15,19 @@ class ServiceInformationController extends Controller
     {
         return env('REACT_APP_GQL_HOST');
     }
+
+    public function getLocalizationStrings()
+    {
+        $out = [];
+        $langs = [
+            'en',
+            'ru'
+        ];
+
+        foreach($langs as $lang) {
+            $out[$lang] = json_decode(\File::get(resource_path("lang/$lang.json")));
+        }
+        
+        return $out;
+    }
 }

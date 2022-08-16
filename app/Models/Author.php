@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     use HasFactory;
+
+
+
+    public function votes()
+    {
+        return $this->hasMany(UserVoteToAuthor::class);
+    }
 }

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setSettings } from "../../store/features/settings";
@@ -15,6 +16,7 @@ export const PreSurvey = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { t, i18n } = useTranslation();
 
     const questionsQuantityHandler = (e: any) => {
         if (!questionsQuantityRef.current) return
@@ -58,7 +60,7 @@ export const PreSurvey = () => {
                 </div>
 
                 <div className="w-10/12 flex justify-between flex-col">
-                    <h2 className="font-bold text-secondary-600">настроим точность</h2>
+                    <h2 className="font-bold text-secondary-600">{t('setting_accuracy')}</h2>
 
                     <section className="mt-16 flex justify-between w-1/2 mx-auto flex-col">
                     

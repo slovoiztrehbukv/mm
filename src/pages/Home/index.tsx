@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
+
 
 export const Home = () => {
+    const { t, i18n } = useTranslation();
 
+    setTimeout(() => {
+        i18n.changeLanguage('ru')
+    }, 3000)
     return (
         <>
             <div className="container text-center">
-                <h2>я ищу</h2>
+                <h2>{t('im_looking_for')}</h2>
 
                 <section className="mt-16 flex justify-between w-1/2 mx-auto">
                     <Link
