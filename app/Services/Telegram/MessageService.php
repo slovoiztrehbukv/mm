@@ -82,11 +82,15 @@ class MessageService
     {
         if (!isset($this->user)) $this->userCreate();
 
+        $keyboard = Keyboard::make()->inline();
+
         foreach (Enum::LANGUAGES as $code => $data) {
-            $btn = new \stdClass();
-            $btn->callback_data = "setLanguage_$code";
-            $btn->text = $data['icon'] . ' ' . $data['title'];
-            $btns[] = [$btn];
+            $keyboard->row(
+                Keyboard::inlineButton([
+                    'text' => $data['icon'] . ' ' . $data['title'],
+                    'callback_data' => "setLanguage_$code"
+                ])
+            );
         }
 
         Telegram::sendMessage([
@@ -94,11 +98,7 @@ class MessageService
             'parse_mode' => 'html',
             'text' => getMessageTpl('settings.languageSelect', ['user' => $this->user]),
             'one_time_keyboard' => true,
-            'reply_markup' => Keyboard::make([
-                'inline_keyboard' => $btns,
-                'resize_keyboard' => true, 
-                'one_time_keyboard' => true
-            ])->inline()
+            'reply_markup' => $keyboard
         ]);
     }
     

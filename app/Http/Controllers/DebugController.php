@@ -16,30 +16,21 @@ class DebugController extends Controller
     public function index()
     {
 
-        // dd(getMessageTpl('start', ['user' => User::find(1)]));
+        $keyboard = Keyboard::make()
+            ->inline();
 
-        // return;
-
-        $btns = [];
         foreach (Enum::LANGUAGES as $code => $data) {
-            $btn = new \stdClass();
-            $btn->callback_data = "setLanguage_$code";
-            $btn->text = $data['icon'] . ' ' . $data['title'];
-            $btns[] = [$btn];
+           
+            $keyboard->row(
+                Keyboard::inlineButton([
+                    'text' => $data['icon'] . ' ' . $data['title'],
+                    'callback_data' => "setLanguage_$code"
+                ])
+            );
         }
 
+        dd(321, $keyboard);
         
-        $reply_markup = Keyboard::make([
-            'keyboard' => $btns, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true
-        ])->inline(); 
-
-        dd($reply_markup);
-        return ;
-        
-
-        dd(321, $btns);
 
         return;
 
