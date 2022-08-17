@@ -4,5 +4,6 @@
 
     "bot__messages__hello_username": "hi :Name",
     "bot__messages__send_me_special_code": "if u have a <strong>special code</strong>, send it to me!",
+    "bot__messages__settings_language_select": "choose your language bellow",
     "bot__messages__settings_language_was_set": "english was successfully set. congratulations."
 }

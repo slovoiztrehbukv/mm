@@ -1,0 +1,1 @@
+{{ __('bot__messages__settings_language_select') }}

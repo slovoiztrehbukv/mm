@@ -92,7 +92,7 @@ class MessageService
         Telegram::sendMessage([
             'chat_id' => $this->message['from']['id'],
             'parse_mode' => 'html',
-            'text' => getMessageTpl('start', ['user' => $this->user]),
+            'text' => getMessageTpl('settings.languageSelect', ['user' => $this->user]),
             'one_time_keyboard' => true,
             'reply_markup' => Keyboard::make([
                 'keyboard' => $btns,
