@@ -95,7 +95,7 @@ class MessageService
             'text' => getMessageTpl('settings.languageSelect', ['user' => $this->user]),
             'one_time_keyboard' => true,
             'reply_markup' => Keyboard::make([
-                'keyboard' => $btns,
+                'inline_keyboard' => $btns,
                 'resize_keyboard' => true, 
                 'one_time_keyboard' => true
             ])->inline()
