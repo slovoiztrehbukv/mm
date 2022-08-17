@@ -6,6 +6,7 @@ use App\Services\Telegram\CallbackService;
 use App\Services\Telegram\MessageService;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Telegram\Bot\Objects;
 
 class TelegramController extends Controller
 {
@@ -18,17 +19,21 @@ class TelegramController extends Controller
     {
         $upd = Telegram::getWebhookUpdates();
         
-        if ($upd instanceof \Telegram\Bot\Objects\Update) {
+        if ($upd instanceof Objects\Update) {
             
-            $msg = $upd->getMessage();
-            
-            if ($msg !== null){
-                MessageService::process($msg);
-            } else {
-                $callback = $upd->getCallbackQuery();
-                // Log::info('callback is here');
-                if ($callback !== null) {
-                    CallbackService::process($callback);
+            switch($upd->objectType()) {
+                case 'message': {
+                    MessageService::process($msg);
+                    break;
+                }
+
+                case 'callback_query': {
+                    $callback = $upd->getCallbackQuery();
+                    
+                    if ($callback !== null) {
+                        CallbackService::process($callback);
+                    }
+                    break;
                 }
             }
             
