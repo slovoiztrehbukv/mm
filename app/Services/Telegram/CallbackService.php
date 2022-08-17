@@ -7,6 +7,7 @@ use App\Models\Celebrity;
 use App\Models\User;
 use App\Services\CelebrityService;
 use App\Services\QIWI\PaymentService;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Objects\Message;
@@ -28,7 +29,10 @@ class CallbackService
         $this->message = $msg;
         $this->api = new APIService();
         $user = User::where(['tlg_id' => $msg['chat']['id']])->first();
-        if ($user) $this->user = $user;
+        if ($user) {
+            $this->user = $user;
+            App::setLocale($user->locale);
+        }
     }
     
     public static function process($callback)
@@ -48,6 +52,28 @@ class CallbackService
         }else{
             Log::error('INCORRECT EXPLOSION@CALLBACKSERVICE::PROCESS', (array)$callback);
         }
+    }
+
+
+
+    private function setLanguage(string $lang = 'en')
+    {
+        App::setLocale($lang);
+
+        $this->user->locale = $lang;
+        $this->user->save();
+        
+       
+        $this->api->deleteMessage([
+            'chat_id' => $this->message['chat']['id'],
+            'message_id' => $this->message['message_id']
+        ]);
+        
+        $this->api->sendMessage([
+            'chat_id' => $this->message['chat']['id'],
+            'text' => getMessageTpl('settings.languageWasSet'),
+            'parse_mode' => 'html'
+        ]);
         
     }
 }

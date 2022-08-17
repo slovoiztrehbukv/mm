@@ -1,4 +1,8 @@
 {
-    "im_looking_for": "я ищу",
-    "setting_accuracy": "настроим точность"
+    "web__im_looking_for": "я ищу",
+    "web__setting_accuracy": "настроим точность",
+
+    "bot__messages__hello_username": "привет, :Name",
+    "bot__messages__send_me_special_code": "если у тебя есть <strong>специальный код</strong>, отправь его мне!",
+    "bot__messages__settings_language_was_set": "был выбран Русский язык. ура!"
 }

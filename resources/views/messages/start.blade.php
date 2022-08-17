@@ -1,3 +1,3 @@
-привет, {{ $user->name }}
+{{ __('bot__messages__hello_username', ['name' => $user->name]) }}
 
-если у тебя есть <strong>специальный код</strong>, отправь его мне!
+{{ __('bot__messages__send_me_special_code') }}

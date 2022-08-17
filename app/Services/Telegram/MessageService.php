@@ -4,6 +4,7 @@ namespace App\Services\Telegram;
 
 use App\Enum;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Objects\Message;
@@ -12,6 +13,7 @@ class MessageService
 {
     private static $msgToMethodSchema = [
         '/start' => 'start',
+        '/set_language' => 'setLanguage',
         '/balance' => 'balance',
     ];
 
@@ -23,7 +25,10 @@ class MessageService
     {
         $this->message = $msg;
         $user = User::where(['tlg_id' => $msg['from']['id']])->first();
-        if ($user) $this->userInit($user);
+        if ($user) {
+            $this->userInit($user);
+            App::setLocale($user->locale);
+        }
     }
 
     public static function process(Message $msg)
@@ -69,6 +74,30 @@ class MessageService
             'chat_id' => $this->message['from']['id'],
             'parse_mode' => 'html',
             'text' => getMessageTpl('start', ['user' => $this->user])
+        ]);
+    }
+
+    public function setLanguage()
+    {
+        if (!isset($this->user)) $this->userCreate();
+
+        foreach (Enum::LANGUAGES as $code => $data) {
+            $btn = new \stdClass();
+            $btn->callback_data = "setLanguage_$code";
+            $btn->text = $data['icon'] . ' ' . $data['title'];
+            $btns[] = [$btn];
+        }
+
+        Telegram::sendMessage([
+            'chat_id' => $this->message['from']['id'],
+            'parse_mode' => 'html',
+            'text' => getMessageTpl('start', ['user' => $this->user]),
+            'one_time_keyboard' => true,
+            'reply_markup' => Telegram::replyKeyboardMarkup([
+                'inline_keyboard' => $btns,
+                'resize_keyboard' => true, 
+                'one_time_keyboard' => true
+            ])
         ]);
     }
     
