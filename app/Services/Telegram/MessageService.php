@@ -98,7 +98,7 @@ class MessageService
                 'keyboard' => $btns,
                 'resize_keyboard' => true, 
                 'one_time_keyboard' => true
-            ])
+            ])->inline()
         ]);
     }
     

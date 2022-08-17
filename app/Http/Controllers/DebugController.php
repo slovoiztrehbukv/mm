@@ -16,6 +16,10 @@ class DebugController extends Controller
     public function index()
     {
 
+        // dd(getMessageTpl('start', ['user' => User::find(1)]));
+
+        // return;
+
         $btns = [];
         foreach (Enum::LANGUAGES as $code => $data) {
             $btn = new \stdClass();
@@ -29,7 +33,7 @@ class DebugController extends Controller
             'keyboard' => $btns, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true
-        ]); 
+        ])->inline(); 
 
         dd($reply_markup);
         return ;
