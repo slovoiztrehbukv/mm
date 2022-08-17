@@ -9,14 +9,13 @@ use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Telegram\Bot\Keyboard\Keyboard;
 
 class DebugController extends Controller
 {
     public function index()
     {
 
-
-        return ;
         $btns = [];
         foreach (Enum::LANGUAGES as $code => $data) {
             $btn = new \stdClass();
@@ -24,6 +23,17 @@ class DebugController extends Controller
             $btn->text = $data['icon'] . ' ' . $data['title'];
             $btns[] = [$btn];
         }
+
+        
+        $reply_markup = Keyboard::make([
+            'keyboard' => $btns, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true
+        ]); 
+
+        dd($reply_markup);
+        return ;
+        
 
         dd(321, $btns);
 

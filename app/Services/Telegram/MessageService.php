@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Objects\Message;
 
 class MessageService
@@ -93,8 +94,8 @@ class MessageService
             'parse_mode' => 'html',
             'text' => getMessageTpl('start', ['user' => $this->user]),
             'one_time_keyboard' => true,
-            'reply_markup' => Telegram::replyKeyboardMarkup([
-                'inline_keyboard' => $btns,
+            'reply_markup' => Keyboard::make([
+                'keyboard' => $btns,
                 'resize_keyboard' => true, 
                 'one_time_keyboard' => true
             ])
