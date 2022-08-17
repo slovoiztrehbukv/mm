@@ -23,16 +23,12 @@ class TelegramController extends Controller
             
             switch($upd->objectType()) {
                 case 'message': {
-                    MessageService::process($msg);
+                    MessageService::process($upd->getMessage());
                     break;
                 }
 
                 case 'callback_query': {
-                    $callback = $upd->getCallbackQuery();
-                    
-                    if ($callback !== null) {
-                        CallbackService::process($callback);
-                    }
+                    CallbackService::process($upd->getCallbackQuery());
                     break;
                 }
             }
