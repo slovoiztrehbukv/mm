@@ -62,13 +62,7 @@ class CallbackService
 
         $this->user->locale = $lang;
         $this->user->save();
-        
        
-        $this->api->deleteMessage([
-            'chat_id' => $this->message['chat']['id'],
-            'message_id' => $this->message['message_id']
-        ]);
-        
         $this->api->sendMessage([
             'chat_id' => $this->message['chat']['id'],
             'text' => getMessageTpl('settings.languageWasSet'),
