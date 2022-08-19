@@ -109,4 +109,15 @@ class CallbackService
             'reply_markup' => $keyboard
         ]);
     }
+
+    public function lookingFor(string $target)
+    {
+        $this->api->sendMessage([
+            'chat_id' => $this->message['chat']['id'],
+            'text' => $target,
+            'parse_mode' => 'html',
+            'one_time_keyboard' => true,
+            'reply_markup' => $keyboard
+        ]);
+    }
 }
