@@ -16,6 +16,31 @@ class DebugController extends Controller
     public function index()
     {
 
+        return;
+        App::setLocale('ru');
+
+        $targets = [ // ?TODO ENUM
+            'friend_genitive',
+            'soulmate',
+            // 'love',
+        ];
+
+        $keyboard = Keyboard::make()->inline();
+
+
+        foreach($targets as $target) {
+            $keyboard->row(
+                Keyboard::inlineButton([
+                    'text' => __($target),
+                    'callback_data' => "lookingFor_$target"
+                ])
+            );
+        }
+       
+        dd(321, $keyboard->toArray());
+
+        return;
+
         $keyboard = Keyboard::make()
             ->inline();
 

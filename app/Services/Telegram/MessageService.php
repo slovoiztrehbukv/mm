@@ -42,7 +42,7 @@ class MessageService
             $method = $methods[$method];
             $instance->$method();
         } else {
-            // $instance->searchByName();
+            $instance->listenForCode();
         }
         
     }
@@ -71,24 +71,13 @@ class MessageService
     {
         $this->userCreate();
         
-        Telegram::sendMessage([
-            'chat_id' => $this->message['from']['id'],
-            'parse_mode' => 'html',
-            'text' => getMessageTpl('start', ['user' => $this->user])
-        ]);
-    }
-
-    public function setLanguage()
-    {
-        if (!isset($this->user)) $this->userCreate();
-
         $keyboard = Keyboard::make()->inline();
 
         foreach (Enum::LANGUAGES as $code => $data) {
             $keyboard->row(
                 Keyboard::inlineButton([
                     'text' => $data['icon'] . ' ' . $data['title'],
-                    'callback_data' => "setLanguage_$code"
+                    'callback_data' => "initialSetLanguage_$code"
                 ])
             );
         }
@@ -96,18 +85,27 @@ class MessageService
         Telegram::sendMessage([
             'chat_id' => $this->message['from']['id'],
             'parse_mode' => 'html',
-            'text' => getMessageTpl('settings.languageSelect', ['user' => $this->user]),
+            'text' => getMessageTpl('start', ['user' => $this->user]),
             'one_time_keyboard' => true,
             'reply_markup' => $keyboard
         ]);
     }
-    
-    public function unknown()
+
+    public function listenForCode()
     {
+        if (!isset($this->user)) $this->userCreate();
+
+        $code = isset($this->message['text']) ? trim($this->message['text']) : null;
+
+        if (!$this->user->will_provide_answers_code || !$code) return;
+
+        // TODO add answers to users logic here...
+
         Telegram::sendMessage([
             'chat_id' => $this->message['from']['id'],
             'parse_mode' => 'html',
-            'text' => getMessageTpl('unknown', ['text' => 'oops... something went wrong...'])
+            'text' => "код $code мне неизвестен :("
         ]);
+
     }
 }

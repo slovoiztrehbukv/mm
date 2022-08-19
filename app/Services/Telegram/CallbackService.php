@@ -56,18 +56,56 @@ class CallbackService
 
 
 
-    private function setLanguage(string $lang = 'en')
+    private function initialSetLanguage(string $lang = 'en')
     {
         App::setLocale($lang);
 
         $this->user->locale = $lang;
         $this->user->save();
-       
+
         $this->api->sendMessage([
             'chat_id' => $this->message['chat']['id'],
-            'text' => getMessageTpl('settings.languageWasSet'),
+            'text' => getMessageTpl('initialLanguageWasSet'),
             'parse_mode' => 'html'
         ]);
+
+
+
+        $targets = [ // ?TODO ENUM
+            [
+                'title' => 'friend_genitive',
+                'value' => 'friend'
+            ],
+            [
+                'title' => 'soulmate_genitive',
+                'value' => 'soulmate'
+            ]
+            // [
+            //     'title' => 'love_genitive',
+            //     'value' => 'love'
+            // ],
+        ];
+
+        $keyboard = Keyboard::make()->inline();
+
+
+        foreach($targets as $target) {
+            $keyboard->row(
+                Keyboard::inlineButton([
+                    'text' => __($target['title']),
+                    'callback_data' => "lookingFor_{$target['value']}"
+                ])
+            );
+        }
+       
         
+
+        $this->api->sendMessage([
+            'chat_id' => $this->message['chat']['id'],
+            'text' => getMessageTpl('whoWillWeLookFor'),
+            'parse_mode' => 'html',
+            'one_time_keyboard' => true,
+            'reply_markup' => $keyboard
+        ]);
     }
 }
