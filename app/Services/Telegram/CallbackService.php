@@ -9,6 +9,7 @@ use App\Services\CelebrityService;
 use App\Services\QIWI\PaymentService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
+use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Objects\Message;
 
