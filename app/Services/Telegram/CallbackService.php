@@ -115,9 +115,7 @@ class CallbackService
         $this->api->sendMessage([
             'chat_id' => $this->message['chat']['id'],
             'text' => $target,
-            'parse_mode' => 'html',
-            'one_time_keyboard' => true,
-            'reply_markup' => $keyboard
+            'parse_mode' => 'html'
         ]);
     }
 }
