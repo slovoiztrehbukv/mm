@@ -15,10 +15,6 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            // SOULMATE
-            'soulmating',
-            
-            // INTEREST FRIEND
             'music',
             'politics',
             'art',

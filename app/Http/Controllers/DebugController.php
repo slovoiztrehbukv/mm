@@ -3,18 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Enum;
-use App\Http\Resources\QuestionResource;
-use App\Models\Author;
-use App\Models\Question;
 use App\Models\User;
+use App\Models\Batch;
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Telegram\Bot\Keyboard\Keyboard;
+use App\Http\Resources\QuestionResource;
 
 class DebugController extends Controller
 {
     public function index()
     {
+
+
+        $args = [
+            'questionsQuantity' => 3,
+            'answersQuantity' => 12,
+        ];
+
+
+        $batch = Batch::where('title', 'like', '%Soulmating%')
+            ->firstWhere('questions_quantity', $args['questionsQuantity']);
+
+        $batch = $batch ?? Batch::firstWhere('questions_quantity', 2);
+        $batch->questions->map(function(Question $question) use ($args){
+            $count = $question->answers->count();
+            $take = $args['answersQuantity'] <= $count ? $args['answersQuantity'] : $count;
+            $take = min($take, 6);
+
+            $question->answers = $question->answers->random($take);
+            return $question;
+        });
+        dd(321, $batch->questions->first()->answers);
+
+        dd(QuestionResource::collection($questions));
+        return QuestionResource::collection($batch->questions);
+
 
         return;
         App::setLocale('ru');

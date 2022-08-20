@@ -5,7 +5,6 @@ namespace App\Services\Telegram;
 use App\Enum;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Objects\Message;

@@ -2,23 +2,14 @@
 
 namespace App\Services\Telegram;
 
-use App\Enum;
-use App\Models\Celebrity;
 use App\Models\User;
-use App\Services\CelebrityService;
-use App\Services\QIWI\PaymentService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Keyboard\Keyboard;
-use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Objects\Message;
 
 class CallbackService
 {
-    private static $actToMethodSchema = [
-        '/pay' => 'pay',
-    ];
-    
     private APIService $api;
 
     private ?Message $message;
@@ -98,7 +89,6 @@ class CallbackService
                 ])
             );
         }
-       
         
 
         $this->api->sendMessage([

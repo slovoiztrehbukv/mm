@@ -12,7 +12,7 @@ export const Home = () => {
     return (
         <>
             <div className="container text-center">
-                <h2>{t('im_looking_for')}</h2>
+                <h2>{t('web__im_looking_for')}</h2>
 
                 <section className="mt-16 flex justify-between w-1/2 mx-auto">
                     <Link

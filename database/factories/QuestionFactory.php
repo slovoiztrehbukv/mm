@@ -3,8 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Answer;
+use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
 
 class QuestionFactory extends Factory
 {
@@ -31,6 +33,17 @@ class QuestionFactory extends Factory
                     'value' => $this->faker->word
                 ]);
             }
+        });
+    }
+
+    public function toCategories()
+    {
+        $categories = Category::all();
+
+        return $this->state(function() use ($categories){
+            return [
+                'category_id' => $categories->random()->id
+            ];
         });
     }
 }

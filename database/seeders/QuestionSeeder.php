@@ -17,6 +17,7 @@ class QuestionSeeder extends Seeder
         Question::factory()
             ->count(30)
             ->answers()
+            ->toCategories()
             ->create();
     }
 }

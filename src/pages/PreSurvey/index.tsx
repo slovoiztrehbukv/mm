@@ -60,7 +60,7 @@ export const PreSurvey = () => {
                 </div>
 
                 <div className="w-10/12 flex justify-between flex-col">
-                    <h2 className="font-bold text-secondary-600">{t('setting_accuracy')}</h2>
+                    <h2 className="font-bold text-secondary-600">{t('web__setting_accuracy')}</h2>
 
                     <section className="mt-16 flex justify-between w-1/2 mx-auto flex-col">
                     
