@@ -14,8 +14,24 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory()
-            ->count(5)
-            ->create();
+        $categories = [
+            // SOULMATE
+            'soulmating',
+            
+            // INTEREST FRIEND
+            'music',
+            'politics',
+            'art',
+            'books',
+            'sport',
+            'movies',
+        ];
+
+        foreach($categories as $category) {
+            Category::create([
+                'title' => $category,
+                'weight' => rand(1, 10)
+            ]);
+        }
     }
 }
