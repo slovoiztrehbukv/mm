@@ -1,8 +1,16 @@
-import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { SettingsState } from "../../../interfaces";
+import { RootState } from "../../../store";
 
 export const Vk = () => {
-    const [ queryParams ] = useSearchParams();
-    const code = queryParams.get('code');
+    const code = useSelector( (store: RootState) : SettingsState =>  store.settings).values.tempAnswersCode
+    const navigate = useNavigate()
+    
+    useEffect(() => { // TODO move this redirect to some global middleware 
+        if (!code) navigate('/')
+    }, [code])
     
     return (
         <>

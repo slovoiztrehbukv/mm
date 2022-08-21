@@ -37,6 +37,7 @@ export interface QuestionsInitialAction extends ReduxAction {
 export interface SettingsState {
   values: {
     questions: BatchInitialAction // ?TODO extend
+    tempAnswersCode?: string
   }
 }
 
