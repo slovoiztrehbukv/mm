@@ -12,7 +12,7 @@
     <meta name="msapplication-TileColor" content="#9f00a7">
     <meta name="theme-color" content="#ffffff">
     <title>мачмэч</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
     <div id="bg-overlay" class="body-bg"></div>
@@ -21,6 +21,6 @@
         window.API_HOST = '{{$API_HOST}}'
         window.GQL_HOST = '{{$GQL_HOST}}'
     </script>
-    <script src="/js/main.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>

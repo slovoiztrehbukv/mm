@@ -32,9 +32,9 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "react-scripts build && npm run build:clean",
-        "build:clean": "cd build && mv static/js/*.js main.js && mv static/css/*.css main.css && rm -r static && npm run build:move && rm -rf ../build",
-        "build:move": "cd build && mv main.js ../public/js/main.js && mv main.css ../public/css/main.css",
+        "build": "react-scripts build    &&    rm -rf public/static/*    &&    npm run build:move",
+        "build:move": "mv build/static/* public/static/    &&    npm run build:clear",
+        "build:clear": "cd public/static/css && rm *.map && mv * main.css      &&       cd ../js && rm *.txt *.map && mv * main.js",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
