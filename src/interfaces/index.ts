@@ -3,14 +3,15 @@ import { Action as ReduxAction } from "redux"
 
 
 export interface Question {
-    id: number
-    title: string
-    answers: Answer[]
-    userAnswer: number | null
+  id: number
+  title: string
+  answers: Answer[]
+  userAnswer: number | null
 }
 
-export interface Questions {
-  items: Question[]
+export interface Batch {
+  id: number
+  questions: Question[]
 }
 
 export interface Answer {
@@ -23,19 +24,19 @@ export interface Category {
   title: string
 }
 
-export interface QuestionsInitialActionPayload {
+export interface BatchInitialAction {
   questionsQuantity?: number
   answersQuantity?: number
   categoryId?: number
 }
 
 export interface QuestionsInitialAction extends ReduxAction {
-  payload: QuestionsInitialActionPayload
+  payload: BatchInitialAction
 }
 
 export interface SettingsState {
   values: {
-    questions: QuestionsInitialActionPayload // ?TODO extend
+    questions: BatchInitialAction // ?TODO extend
   }
 }
 

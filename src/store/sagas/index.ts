@@ -1,9 +1,9 @@
 import { all, takeEvery } from "redux-saga/effects";
-import { initQuestions } from "../features/questions";
-import { initQuestionsHandler } from "./handlers/initQuestions";
+import { initBatch } from "../features/batch";
+import { initBatchHandler } from "./handlers/initBatch";
 
 function* watchInitQuestions() {
-    yield takeEvery(initQuestions, initQuestionsHandler)
+    yield takeEvery(initBatch, initBatchHandler)
 }
 
 export function* watcherSaga() {

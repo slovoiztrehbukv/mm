@@ -28,7 +28,7 @@ export const Main : React.FC = () => {
         >
             <div className='opacity-0'>
                 <main
-                    className="bg-white text-secondary-600  max-w-4xl mx-auto p-8 md:p-12 my-16 rounded-lg shadow-3xl">
+                    className="bg-white text-secondary-600 w-full  lg:max-w-4xl mx-auto p-6 md:p-12 my-16 rounded-lg shadow-3xl">
                         <BrowserRouter>
                             <Routes>
                                 <Route path="/" element={<Home />}></Route>

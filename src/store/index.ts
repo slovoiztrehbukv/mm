@@ -1,11 +1,11 @@
 import createSagaMiddleware from 'redux-saga';
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import questionsReducer from './features/questions'
+import batchReducer from './features/batch'
 import settingsReducer from './features/settings'
 import { watcherSaga } from './sagas'
 
 const reducer = combineReducers({
-  questions: questionsReducer,
+  batch: batchReducer,
   settings: settingsReducer,
 })
 

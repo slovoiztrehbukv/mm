@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, store } from '../store';
-import { setQuestions } from '../store/features/questions';
+import { setBatch } from '../store/features/batch';
 import { PreLoader } from "./PreLoader";
-import { Answer, Question } from '../interfaces'
+import { Answer, Batch, Question, SettingsState } from '../interfaces'
 import { useTranslation } from 'react-i18next';
 
 
@@ -14,18 +14,36 @@ export const QuestionCard: React.FC = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
 
-    const questions = useSelector( (store: RootState) : Question[] =>  store.questions.items)
+    const batch = useSelector( (store: RootState) : Batch =>  store.batch)
+    const settings = useSelector( (store: RootState) : SettingsState =>  store.settings)
     const [answerSelected, setAnswerSelected] = useState<number|null>(null)
 
-    const activeQuestion = questions.find(q => !q.userAnswer && q.userAnswer !== 0)
+    const activeQuestion = batch.questions.find(q => !q.userAnswer && q.userAnswer !== 0)
 
     const processCard = () => {
-        const newQuestions = questions.map(q => ({
+        const newQuestions = batch.questions.map(q => ({
             ...q,
             userAnswer: activeQuestion!.id === q.id ? answerSelected : q.userAnswer
         }))
-        dispatch(setQuestions(newQuestions))
+        dispatch(setBatch({
+            id: batch.id,
+            questions: newQuestions
+        }))
         setAnswerSelected(null)
+    }
+
+    let gridClasses = ''
+
+    switch(settings.values.questions.answersQuantity) {
+        case 3:
+        case 6: {
+            gridClasses = 'md:grid-cols-3'
+            break
+        }
+
+        default: {
+            gridClasses = 'md:grid-cols-2'
+        }
     }
 
     return (
@@ -36,7 +54,7 @@ export const QuestionCard: React.FC = () => {
                     <div className='text-center p-8 mx-auto'>
                         <h2 className='mb-20'>{activeQuestion.title}</h2>
 
-                        <div className='grid grid-rows-2 grid-flow-col gap-8'>
+                        <div className={`grid grid-cols-1 gap-8 ${gridClasses}`}>
                             {activeQuestion.answers.map((answer: Answer) => (
                                 <button
                                     key={answer.id}

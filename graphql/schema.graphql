@@ -1,6 +1,6 @@
 "ROOT"
 type Query {
-  questions(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
+  batch(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : Batch! @field(resolver: "App\\GraphQL\\Queries\\GetBatchResolver")
   categories: [Category!] @all
 }
 
@@ -21,6 +21,11 @@ input StoreTempUserAnswersInput {
 type Category {
   id: ID!
   title: String
+}
+
+type Batch {
+  id: ID!
+  questions: [Question]
 }
 
 type Question {

@@ -101,7 +101,7 @@ export const PreSurvey = () => {
                             <label htmlFor="questions_category" className="space-y-2 p-2">{t('area_of_interests')}</label>
 
                             <div className="flex flex-col space-y-2 p-2 w-80">
-                                <select ref={questionsCategoryRef} id="questions_category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <select ref={questionsCategoryRef} id="questions_category" className="bg-gray-50 outline-none border border-primary-500 text-primary-100 text-sm rounded-lg focus:ring-primary-100 focus:border-primary-500 block w-full p-2.5">
                                     {categories.map(category => (
                                         <option key={category.id} value={category.id}>{t('category_' + category.title)}</option>
                                     ))}

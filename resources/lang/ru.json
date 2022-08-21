@@ -1,4 +1,6 @@
 {
+    "font_logo": "мачмэч",
+
     "category_music": "Музыка",
     "category_politics": "Политика",
     "category_art": "Искусство",
@@ -7,7 +9,7 @@
     "category_movies": "Кино",
     
     "menu__contacts": "связь",
-    "menu__politics": "политика",
+    "menu__policy": "политика",
 
     "contact_method__telegram": "телеграм",
     "contact_method__vk": "вконтакте",

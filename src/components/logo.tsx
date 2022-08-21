@@ -1,9 +1,13 @@
 import React from "react";
 
-export const LogoContainer: React.FC = () => {
+type LogoContainerProps = {
+  name: string
+}
+
+export const LogoContainer: React.FC<LogoContainerProps> = props => {
   return (
     <div className="m-auto text-center">
-      мачмэч
+      {props.name}
     </div>
   )
 }

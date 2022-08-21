@@ -4,9 +4,9 @@ namespace App\GraphQL\Queries;
 
 use App\Models\Batch;
 use App\Models\Question;
-use App\Http\Resources\QuestionResource;
+use App\Http\Resources\BatchResource;
 
-final class GetQuestionsResolver
+final class GetBatchResolver
 {
     /**
      * @param  null  $_
@@ -27,6 +27,6 @@ final class GetQuestionsResolver
             return $question;
         });
 
-        return QuestionResource::collection($batch->questions);
+        return new BatchResource($batch);
     }
 }

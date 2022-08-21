@@ -1,4 +1,5 @@
 {
+    "font_logo": "muchmatch",
     "category_music": "Music",
     "category_politics": "Politics",
     "category_art": "Art",
@@ -7,7 +8,7 @@
     "category_movies": "Movies",
     
     "menu__contacts": "contacts",
-    "menu__politics": "politics",
+    "menu__policy": "policy",
 
     "contact_method__telegram": "telegram",
     "contact_method__vk": "vk",

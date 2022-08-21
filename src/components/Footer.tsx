@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                 <span className="mx-3">•</span>
                 <a href="#" className="hover:underline">{t('menu__contacts')}</a>
                 <span className="mx-3">•</span>
-                <a href="#" className="hover:underline">{t('menu__politics')}</a>
+                <a href="#" className="hover:underline">{t('menu__policy')}</a>
             </footer>
         </CSSTransition>
     )

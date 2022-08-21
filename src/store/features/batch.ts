@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { Question, QuestionsInitialAction, Questions } from '../../interfaces'
+import { QuestionsInitialAction, Batch } from '../../interfaces'
 
 
 
-const SLICE_NAME = 'questions'
-const INITIAL_ACTION_NAME = 'initQuestions'
+const SLICE_NAME = 'batch'
+const INITIAL_ACTION_NAME = 'initBatch'
 
 const initialAction: QuestionsInitialAction = {
   payload: {
@@ -15,25 +15,27 @@ const initialAction: QuestionsInitialAction = {
   type: `${SLICE_NAME}/${INITIAL_ACTION_NAME}`
 }
 
-const initialState: Questions = {
-  items: []
+const initialState: Batch = {
+  id: 0,
+  questions: []
 }
 
-export const questionsSlice = createSlice({
+export const batchSlice = createSlice({
   name: SLICE_NAME,
   initialState,
   reducers: {
     [INITIAL_ACTION_NAME]: (state, action = initialAction) => {
       action.payload = {...initialAction.payload, ...action.payload}
-      state.items = []
+      state.questions = []
     },
-    setQuestions: (state, action: PayloadAction<Question[]>) => {
-      state.items = action.payload
+    setBatch: (state, action: PayloadAction<Batch>) => {
+      state.id = action.payload.id
+      state.questions = action.payload.questions
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { initQuestions, setQuestions } = questionsSlice.actions
+export const { initBatch, setBatch } = batchSlice.actions
 
-export default questionsSlice.reducer
+export default batchSlice.reducer

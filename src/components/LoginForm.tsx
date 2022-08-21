@@ -66,7 +66,7 @@ export const LoginForm : React.FC = () => {
                     <ul className="grid gap-6 w-full md:grid-cols-2">
                         {communicationMethods.map((m, index) => {
                             const renderIcon = (Icon: React.FC<IconProps>, disabled: boolean = false) => {
-                                return (<Icon fill={disabled ? '#ddd' : colors.primary[500]}/>)
+                                return (<Icon fill={disabled ? '#eee' : colors.primary[500]}/>)
                             }
 
                             return (
