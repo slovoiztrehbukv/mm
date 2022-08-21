@@ -17,6 +17,12 @@ class CreateBatchesTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('questions_quantity');
+
+            $table->foreignId('category_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ export const initialState: SettingsState = {
     questions: {
       questionsQuantity: 10,
       answersQuantity: 4,
+      categoryId: 0,
     }
   }
 }

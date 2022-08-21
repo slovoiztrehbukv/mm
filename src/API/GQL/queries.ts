@@ -5,7 +5,7 @@ export default {
 
         get: (params: QuestionsInitialActionPayload) => `
             query GetQuestions {
-                questions(questionsQuantity: ${params.questionsQuantity}, answersQuantity: ${params.answersQuantity}) {
+                questions(questionsQuantity: ${params.questionsQuantity}, answersQuantity: ${params.answersQuantity}, categoryId: ${params.categoryId}) {
                     id
                     title
                     answers {

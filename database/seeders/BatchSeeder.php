@@ -27,7 +27,8 @@ class BatchSeeder extends Seeder
 
                 Batch::create([
                     'title' => ucfirst("{$category->title} for $quantity questions"),
-                    'questions_quantity' => $quantity
+                    'questions_quantity' => $quantity,
+                    'category_id' => $category->id,
                 ])
                     ->questions()
                     ->sync(array_column($category->questions->random($quantityToSync)->all(), 'id'));

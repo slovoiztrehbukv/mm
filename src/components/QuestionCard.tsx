@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 export const QuestionCard: React.FC = () => {
 
-    const btnClasses = 'w-48 h-12 text-center disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-100 text-white font-light rounded shadow-lg hover:shadow-xl transition duration-200'
+    const btnClasses = 'w-48 h-12 text-center disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-600 text-white font-light rounded shadow-lg hover:shadow-xl transition duration-200'
 
     const dispatch = useDispatch()
     const { t } = useTranslation()
@@ -40,7 +40,7 @@ export const QuestionCard: React.FC = () => {
                             {activeQuestion.answers.map((answer: Answer) => (
                                 <button
                                     key={answer.id}
-                                    className={`${btnClasses} ${answerSelected && (answerSelected === answer.id ? 'bg-emerald-500' : 'bg-gray-300 ')}`}
+                                    className={`${btnClasses} ${answerSelected && (answerSelected === answer.id ? '!bg-emerald-400' : '!bg-gray-200 ')}`}
                                     onClick={() => answerSelected && answerSelected === answer.id ? setAnswerSelected(null) : setAnswerSelected(answer.id)}
                                 >
                                     {answer.value}
@@ -51,7 +51,7 @@ export const QuestionCard: React.FC = () => {
                         <div className='mt-24'>
                             <button
                                 disabled={answerSelected === null}
-                                className={`${btnClasses} w-48 bg-transparent rounded-xl text-emerald-500 disabled:text-gray-900 `}
+                                className={`${btnClasses} w-48 !bg-emerald-400 rounded-xl text-white font-normal  disabled:!bg-white disabled:!text-gray-300 disabled:!font-light`}
                                 onClick={() => processCard()}
                             >
                                 {t('next')}

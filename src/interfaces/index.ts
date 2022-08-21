@@ -26,6 +26,7 @@ export interface Category {
 export interface QuestionsInitialActionPayload {
   questionsQuantity?: number
   answersQuantity?: number
+  categoryId?: number
 }
 
 export interface QuestionsInitialAction extends ReduxAction {

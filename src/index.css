@@ -5,14 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400;500;600;700;800&display=swap');
 
 :root {
-    --primary-color: #da75ce;
+    --primary-color: #4766b3;
     --secondary-color: #d88bcf;
+    --anim-duration: 15s;
 }
 
 .body-bg {
     font-family: 'Raleway', sans-serif;
-    background-color: var(--primary-color);
-    background-image: linear-gradient(174deg, var(--primary-color) 0%, var(--secondary-color) 61%);
+    opacity: 0.8;
+    background: none;
 }
 
 /* TODO to external */
@@ -26,4 +27,27 @@
     clip: rect(0,0,0,0)!important;
     white-space: nowrap!important;
     border: 0!important;
+}
+
+.body-bg:after,
+.body-bg:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.body-bg:before {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    animation: OpacityAnim var(--anim-duration) ease-in-out 0s infinite alternate;
+}
+
+.body-bg:after {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    animation: OpacityAnim var(--anim-duration) ease-in-out calc(-1 * var(--anim-duration)) infinite alternate;
+}
+
+@keyframes OpacityAnim {
+    0%{opacity: 1.0}
+    100%{opacity: 0.0}
 }

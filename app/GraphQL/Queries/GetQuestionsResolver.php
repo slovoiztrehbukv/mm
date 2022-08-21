@@ -14,7 +14,7 @@ final class GetQuestionsResolver
      */
     public function __invoke($_, array $args)
     {
-        $batch = Batch::where('title', 'like', '%Soulmating%')
+        $batch = Batch::where('category_id', '=', $args['categoryId'] ?: null)
             ->firstWhere('questions_quantity', $args['questionsQuantity']);
 
         $batch = $batch ?? Batch::firstWhere('questions_quantity', 2);

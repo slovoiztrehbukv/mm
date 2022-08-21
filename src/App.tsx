@@ -4,8 +4,12 @@ import { Main } from './components/Main';
 import { Footer } from './components/Footer';
 
 const App: React.FC = () => {
-  'body-bg min-h-screen pt-6 md:pt-8 pb-6 px-2 md:px-0 text-main'.split(' ').forEach(c => {
+  'min-h-screen pb-6 px-2 md:px-0 text-main'.split(' ').forEach(c => {
     document.body.classList.add(c)
+  })
+
+  'w-full h-screen fixed'.split(' ').forEach(c => {
+    document.querySelector('#bg-overlay')?.classList.add(c)
   })
 
   return (

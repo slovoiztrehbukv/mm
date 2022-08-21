@@ -1,6 +1,6 @@
 "ROOT"
 type Query {
-  questions(questionsQuantity: Int!, answersQuantity: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
+  questions(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
   categories: [Category!] @all
 }
 
