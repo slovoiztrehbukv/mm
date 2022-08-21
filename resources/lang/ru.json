@@ -36,6 +36,9 @@
     "web__setting_accuracy": "настроим точность",
     "web__interesting_answers": "хм, интересные ответы 🤔",
     "web__choose_your_prefered_contact_method": "где хочешь общаться? выбирай",
+    "web__write_to_our_bot_telegram": "напиши <a href=\"https://t.me/MuchMatchBot\">нашему боту <strong>@MuchMatchBot</strong></a> в телеграме и сообщи ему код",
+    "web__write_to_our_bot_vk": "напиши нашему боту вконтакте <strong>[СКОРО БУДЕТ]</strong> и сообщи ему код",
+    "web__write_to_our_bot_top_secret": "(птсс. только тихо, только ему)",
 
     "bot__messages__hello_username": "привет, :Name",
     "bot__messages__need_to_select_language": "выбери язык, на котором будем общаться",

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SettingsState } from "../../../interfaces";
@@ -7,6 +8,7 @@ import { RootState } from "../../../store";
 export const Telegram = () => {
     const code = useSelector( (store: RootState) : SettingsState =>  store.settings).values.tempAnswersCode
     const navigate = useNavigate()
+    const { t } = useTranslation();
     
     useEffect(() => { // TODO move this redirect to some global middleware 
         if (!code) navigate('/')
@@ -15,16 +17,11 @@ export const Telegram = () => {
 
     return (
         <>
-            <div className="container p-12">
-                <ul className="list-disc">
-                    <li>
-                        напиши <a href="https://t.me/MuchMatchBot">нашему боту <strong>@MuchMatchBot</strong></a> в телеграме и сообщи ему код: <strong>{code}</strong> (птсс. только тихо, только ему)
-                    </li>
-
-                    <li className="mt-18">
-                        дальше он всё сделает
-                    </li>
-                </ul>
+            <div
+                className="container p-12"
+                dangerouslySetInnerHTML={{
+                    __html: t('web__write_to_our_bot_telegram') + ': <strong className="underline">' + code + '</strong>' + t('web__write_to_our_bot_top_secret')
+                }}>
             </div>
         </>
     )

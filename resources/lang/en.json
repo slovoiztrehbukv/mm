@@ -35,6 +35,9 @@
     "web__setting_accuracy": "let's set some accuracy",
     "web__interesting_answers": "mmm... interesting answers 🤔",
     "web__choose_your_prefered_contact_method": "where do u want to chat? choose one",
+    "web__write_to_our_bot_telegram": "write to <a href=\"https://t.me/MuchMatchBot\">out telegram bot <strong>@MuchMatchBot</strong></a> and tell him the code",
+    "web__write_to_our_bot_vk": "write to <strong>[COMING SOON]</strong> and tell him the code",
+    "web__write_to_our_bot_top_secret": "(top secret 🤫)",
 
     "bot__messages__hello_username": "hi :Name",
     "bot__messages__need_to_select_language": "now we need to choose language that we will speak",
