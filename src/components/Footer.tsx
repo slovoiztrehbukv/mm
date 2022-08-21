@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
 import { TelegramIcon } from '../images/icons/social/telegram';
+import { useTranslation } from 'react-i18next';
 
 export const Footer: React.FC = () => {
 
     const [ready, setReady] = useState(false);
+    const { t } = useTranslation();
+
     setTimeout(() => setReady(true), 700)
 
     return (
@@ -21,9 +24,9 @@ export const Footer: React.FC = () => {
                     <TelegramIcon />
                 </a>
                 <span className="mx-3">•</span>
-                <a href="#" className="hover:underline">связь</a>
+                <a href="#" className="hover:underline">{t('menu__contacts')}</a>
                 <span className="mx-3">•</span>
-                <a href="#" className="hover:underline">политика</a>
+                <a href="#" className="hover:underline">{t('menu__politics')}</a>
             </footer>
         </CSSTransition>
     )

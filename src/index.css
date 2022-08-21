@@ -12,7 +12,7 @@
 .body-bg {
     font-family: 'Raleway', sans-serif;
     background-color: var(--primary-color);
-    background-image: linear-gradient(228deg, var(--primary-color) 0%, var(--secondary-color) 53%);
+    background-image: linear-gradient(174deg, var(--primary-color) 0%, var(--secondary-color) 61%);
 }
 
 /* TODO to external */

@@ -11,6 +11,14 @@ export const GQL = {
         return client.query({
             query: gql(queries.questions.get(params))
         })
+    },
+
+    getCategories: async () => {
+        const client = await awaitedClient.get()
+
+        return client.query({
+            query: gql(queries.categories.get())
+        })
     }
 
 }

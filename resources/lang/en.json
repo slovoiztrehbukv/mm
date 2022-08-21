@@ -1,8 +1,39 @@
 {
-    "friend_genitive": "friend",
+    "category_music": "Music",
+    "category_politics": "Politics",
+    "category_art": "Art",
+    "category_books": "Books",
+    "category_sport": "Sport",
+    "category_movies": "Movies",
+    
+    "menu__contacts": "contacts",
+    "menu__politics": "politics",
+
+    "contact_method__telegram": "telegram",
+    "contact_method__vk": "vk",
+    "contact_method__instagram": "instagram",
+    "contact_method__fb": "facebook",
+    "contact_method__phone": "phone",
+    "contact_method__email": "email 🤦",
+
+    "friend_genitive": "soulmate",
+    "friend_by_interest_genitive": "friend by interest",
+    "love_genitive": "love",
+
+    "questions_quantity": "Questions quantity",
+    "answers_quantity": "Answers quantity",
+    "area_of_interests": "Area of interest",
+
+    "soon": "soon",
+    "back": "back",
+    "start": "go!",
+    "next": "next",
+    "yes": "yes!",
     
     "web__im_looking_for": "i'm looking for",
-    "web__setting_accuracy": "let's set some accuracy!",
+    "web__setting_accuracy": "let's set some accuracy",
+    "web__interesting_answers": "mmm... interesting answers 🤔",
+    "web__choose_your_prefered_contact_method": "where do u want to chat? choose one",
 
     "bot__messages__hello_username": "hi :Name",
     "bot__messages__need_to_select_language": "now we need to choose language that we will speak",

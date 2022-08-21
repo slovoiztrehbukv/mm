@@ -1,6 +1,7 @@
 "ROOT"
 type Query {
   questions(questionsQuantity: Int!, answersQuantity: Int!) : [Question!] @field(resolver: "App\\GraphQL\\Queries\\GetQuestionsResolver")
+  categories: [Category!] @all
 }
 
 # type Mutation {
@@ -17,13 +18,18 @@ input StoreTempUserAnswersInput {
 
 
 "ELOQUENT TYPES"
+type Category {
+  id: ID!
+  title: String
+}
+
 type Question {
-    id: ID!
-    title: String
-    answers: [Answer]
+  id: ID!
+  title: String
+  answers: [Answer]
 }
 
 type Answer {
-    id: ID!
-    value: String
+  id: ID!
+  value: String
 }

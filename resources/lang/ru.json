@@ -1,8 +1,39 @@
 {
+    "category_music": "Музыка",
+    "category_politics": "Политика",
+    "category_art": "Искусство",
+    "category_books": "Книги",
+    "category_sport": "Спорт",
+    "category_movies": "Кино",
+    
+    "menu__contacts": "связь",
+    "menu__politics": "политика",
+
+    "contact_method__telegram": "телеграм",
+    "contact_method__vk": "вконтакте",
+    "contact_method__instagram": "инстаграм",
+    "contact_method__fb": "фейсбук",
+    "contact_method__phone": "телефон",
+    "contact_method__email": "имейл 🤦",
+
     "friend_genitive": "друга",
+    "friend_by_interest_genitive": "товарища по интересам",
+    "love_genitive": "половинку",
+
+    "questions_quantity": "Количество вопросов",
+    "answers_quantity": "Количество ответов",
+    "area_of_interests": "Сфера интересов",
+
+    "soon": "скоро",
+    "back": "назад",
+    "start": "начали!",
+    "next": "следующий",
+    "yes": "да!",
 
     "web__im_looking_for": "я ищу",
     "web__setting_accuracy": "настроим точность",
+    "web__interesting_answers": "хм, интересные ответы 🤔",
+    "web__choose_your_prefered_contact_method": "где хочешь общаться? выбирай",
 
     "bot__messages__hello_username": "привет, :Name",
     "bot__messages__need_to_select_language": "выбери язык, на котором будем общаться",

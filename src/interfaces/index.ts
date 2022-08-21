@@ -18,6 +18,11 @@ export interface Answer {
   value: string
 }
 
+export interface Category {
+  id: number
+  title: string
+}
+
 export interface QuestionsInitialActionPayload {
   questionsQuantity?: number
   answersQuantity?: number

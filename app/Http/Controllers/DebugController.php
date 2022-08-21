@@ -37,9 +37,7 @@ class DebugController extends Controller
             $question->answers = $question->answers->random($take);
             return $question;
         });
-        dd(321, $batch->questions->first()->answers);
 
-        dd(QuestionResource::collection($questions));
         return QuestionResource::collection($batch->questions);
 
 

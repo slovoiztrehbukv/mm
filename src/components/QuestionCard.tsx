@@ -4,13 +4,15 @@ import { RootState, store } from '../store';
 import { setQuestions } from '../store/features/questions';
 import { PreLoader } from "./PreLoader";
 import { Answer, Question } from '../interfaces'
+import { useTranslation } from 'react-i18next';
 
 
 export const QuestionCard: React.FC = () => {
 
-    const btnClasses = 'px-12 py-4 mx-8 text-center disabled:bg-gray-600 disabled:cursor-not-allowed bg-primary-100 text-white font-light rounded shadow-lg hover:shadow-xl transition duration-200'
+    const btnClasses = 'w-48 h-12 text-center disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-100 text-white font-light rounded shadow-lg hover:shadow-xl transition duration-200'
 
     const dispatch = useDispatch()
+    const { t } = useTranslation()
 
     const questions = useSelector( (store: RootState) : Question[] =>  store.questions.items)
     const [answerSelected, setAnswerSelected] = useState<number|null>(null)
@@ -38,8 +40,8 @@ export const QuestionCard: React.FC = () => {
                             {activeQuestion.answers.map((answer: Answer) => (
                                 <button
                                     key={answer.id}
-                                    className={answerSelected === answer.id ? `${btnClasses} bg-emerald-500` : btnClasses}
-                                    onClick={() => setAnswerSelected(answer.id)}
+                                    className={`${btnClasses} ${answerSelected && (answerSelected === answer.id ? 'bg-emerald-500' : 'bg-gray-300 ')}`}
+                                    onClick={() => answerSelected && answerSelected === answer.id ? setAnswerSelected(null) : setAnswerSelected(answer.id)}
                                 >
                                     {answer.value}
                                 </button>
@@ -49,10 +51,10 @@ export const QuestionCard: React.FC = () => {
                         <div className='mt-24'>
                             <button
                                 disabled={answerSelected === null}
-                                className={`${btnClasses} py-2 px-14 bg-transparent rounded-xl text-emerald-500 disabled:text-slate-700 `}
+                                className={`${btnClasses} w-48 bg-transparent rounded-xl text-emerald-500 disabled:text-gray-900 `}
                                 onClick={() => processCard()}
                             >
-                                следующий
+                                {t('next')}
                             </button>
                         </div>
                     </div>
