@@ -22,12 +22,19 @@ class CreateUserAnswersTable extends Migration
                 ->cascadeOnDelete();
 
             $table->foreignId('user_id')
+                ->nullable()
+                ->comment('Null means: temporary answers')
                 ->constrained()
-                ->cascadeOnDelete();
+                ->nullOnDelete();
 
 
             $table->integer('answers_quantity');
-            $table->json('answer_ids');
+            $table->json('answers_ids');
+
+            $table->string('code', 16)
+                ->unique()
+                ->nullable()
+                ->comment('Code for user\'s answers ownership check');
 
             $table->timestamps();
         });

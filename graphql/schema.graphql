@@ -4,15 +4,17 @@ type Query {
   categories: [Category!] @all
 }
 
-# type Mutation {
-#     storeTempUserAnswers(input: StoreTempUserAnswersInput! @spread): TempUserAnswers! @create
-# }
+type Mutation {
+  storeTempUserAnswers(input: StoreUserAnswersInput! @spread): UserAnswer! @create
+}
 
 
 
 "INPUTS"
-input StoreTempUserAnswersInput {
-  test: Int
+input StoreUserAnswersInput {
+  batch_id: Int
+  answers_quantity: Int
+  answers_ids: [Int]
 }
 
 
@@ -37,4 +39,13 @@ type Question {
 type Answer {
   id: ID!
   value: String
+}
+
+type UserAnswer {
+  id: ID!
+  batch_id: Int
+  user_id: Int
+  answers_quantity: Int
+  answers_ids: [Int]
+  code: String
 }

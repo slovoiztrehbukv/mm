@@ -1,5 +1,8 @@
+import { useSearchParams } from "react-router-dom";
+
 export const Vk = () => {
-    const code = Math.round(Math.random() * 100) + '' + Math.round(Math.random() * 100);
+    const [ queryParams ] = useSearchParams();
+    const code = queryParams.get('code');
     
     return (
         <>

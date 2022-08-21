@@ -48,3 +48,11 @@ export interface IconProps {
   fill?: string
   px?: number
 }
+
+
+// GQL types TODO move to external file
+export interface userAnswersStoreData {
+  batch_id: number
+  answers_quantity: number
+  answers_ids: number[]
+}

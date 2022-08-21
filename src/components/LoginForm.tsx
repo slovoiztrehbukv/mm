@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { IconProps } from '../interfaces'
+import { Batch, IconProps, SettingsState } from '../interfaces'
 import { 
     TelegramIcon,
     InstagramIcon,
@@ -11,6 +11,10 @@ import {
 import { colors } from '../config/colors';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { GQL } from '../API/GQL';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import notie from 'notie'
 
 export const LoginForm : React.FC = () => {
 
@@ -52,7 +56,37 @@ export const LoginForm : React.FC = () => {
     ]
 
     const [methodSelected, setMethodSelected] = useState('')
+    const answersQuantity = useSelector( (store: RootState) : number =>  store.settings.values.questions.answersQuantity!)
+    const batch = useSelector( (store: RootState) : Batch =>  store.batch)
     const navigate = useNavigate()
+
+
+    const confirmContactMethod = () => {
+
+
+        GQL.storeUserAnswer({
+            batch_id: batch.id,
+            answers_quantity: answersQuantity,
+            answers_ids: batch.questions.map(q => q.userAnswer!),
+        })
+            .then(({data}) => {
+                const code = data.storeTempUserAnswers.code
+                if (typeof code === 'undefined') {
+                    notie.alert({
+                        text: 'oops. something went wrong :('
+                    })
+                    return
+                }
+
+                navigate("/survey/contact-method/" + methodSelected + `?code=${code}`)
+            })
+
+    }
+
+    useEffect(() => { // TODO move this redirect to some global middleware 
+        if (!batch.id) navigate('/')
+    }, [batch])
+
 
     return (
         <div className='text-center mx-auto'>
@@ -104,7 +138,7 @@ export const LoginForm : React.FC = () => {
                     <button
                         disabled={methodSelected === ''}
                         className={`${btnClasses} w-48 rounded-xl text-main !bg-primary-100 hover:!bg-primary-500`}
-                        onClick={() => navigate("/survey/contact-method/" + methodSelected)}
+                        onClick={confirmContactMethod}
                     >
                         {t('yes')}
                     </button>

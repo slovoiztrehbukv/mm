@@ -1,4 +1,4 @@
-import { BatchInitialAction } from "../../interfaces";
+import { BatchInitialAction, userAnswersStoreData } from "../../interfaces";
 
 export default {
     questions: {
@@ -33,4 +33,16 @@ export default {
         `
         
     },
+
+    userAnswers: {
+
+        store: () => `
+            mutation StoreUserAnswer($input: StoreUserAnswersInput!) {
+                storeTempUserAnswers(input: $input) {
+                    code
+                }
+            }
+        `
+
+    }
 }
