@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+    <div id="bg-overlay" class="body-bg"></div>
     <div id="root"></div>
     <script>
         window.API_HOST = '{{$API_HOST}}'
