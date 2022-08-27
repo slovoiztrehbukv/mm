@@ -51,3 +51,23 @@
     0%{opacity: 1.0}
     100%{opacity: 0.0}
 }
+
+.slick-slide {
+    @apply scale-75 ease-in-out flex justify-center
+}
+
+.slick-slide img {
+    @apply w-1/2 mx-auto
+}
+
+.slick-center img {
+    @apply w-full
+}
+
+.slick-center .img-wrapper {
+    @apply flex justify-center scale-150 ease-in-out z-30 relative before:top-2 before:right-2 before:content-[url("./images/icons/check-mark.svg")] before:absolute before:z-10 before:h-4 before:w-4
+}
+
+.slick-track {
+    @apply !flex justify-center items-center
+}

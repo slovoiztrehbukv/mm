@@ -30,8 +30,14 @@ type Batch {
   questions: [Question]
 }
 
+type Image {
+  id: ID!
+  url: String
+}
+
 type Question {
   id: ID!
+  type: String
   title: String
   answers: [Answer]
 }
@@ -39,6 +45,7 @@ type Question {
 type Answer {
   id: ID!
   value: String
+  image: Image
 }
 
 type UserAnswer {

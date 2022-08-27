@@ -9,10 +9,14 @@ export default {
                     id
                     questions {
                         id
+                        type
                         title
                         answers {
                             id
                             value
+                            image {
+                                url
+                            }
                         }
                     }
                 }

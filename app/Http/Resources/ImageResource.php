@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Question;
+use App\Models\Image;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class QuestionResource extends JsonResource
+class ImageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,11 @@ class QuestionResource extends JsonResource
     public function toArray($request)
     {
         /**
-         * @var Question $this
+         * @var Image $this
          */
         return [
             "id" => $this->id,
-            "type" => $this->type,
-            "title" => $this->title,
-            "answers" => AnswerResource::collection($this->answers)
+            "url" => $this->url(),
         ];
     }
 }

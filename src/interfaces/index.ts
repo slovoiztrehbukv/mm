@@ -1,9 +1,13 @@
 import { Action as ReduxAction } from "redux"
 
-
+enum QuestionType {
+  Text = "TEXT",
+  Image = "IMAGE"
+}
 
 export interface Question {
   id: number
+  type: QuestionType
   title: string
   answers: Answer[]
   userAnswer: number | null
@@ -14,9 +18,15 @@ export interface Batch {
   questions: Question[]
 }
 
+export interface Image {
+  id: number
+  url: string
+}
+
 export interface Answer {
   id: number
   value: string
+  image?: Image
 }
 
 export interface Category {

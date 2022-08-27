@@ -5,6 +5,7 @@ namespace App\GraphQL\Queries;
 use App\Models\Batch;
 use App\Models\Question;
 use App\Http\Resources\BatchResource;
+use App\Models\Answer;
 
 final class GetBatchResolver
 {
@@ -24,6 +25,15 @@ final class GetBatchResolver
             $take = min($take, 6);
 
             $question->answers = $question->answers->random($take);
+
+            $question->answers->map(function(Answer $answer){
+                if (!$answer->image) return;
+
+                $answer->image->url = $answer->image->url();
+
+                return $answer;
+            });
+
             return $question;
         });
 

@@ -30,6 +30,9 @@
     "start": "go!",
     "next": "next",
     "yes": "yes!",
+
+    "login": "sign in",
+    "to_business": "b2b",
     
     "web__im_looking_for": "i'm looking for",
     "web__setting_accuracy": "let's set some accuracy",

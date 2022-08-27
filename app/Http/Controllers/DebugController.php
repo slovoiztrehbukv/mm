@@ -5,18 +5,28 @@ namespace App\Http\Controllers;
 use App\Enum;
 use App\Models\User;
 use App\Models\Batch;
+use App\Models\Image;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Telegram\Bot\Keyboard\Keyboard;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\QuestionResource;
+use App\Models\Answer;
 
 class DebugController extends Controller
 {
     public function index()
     {
+
+        $img = Image::find(7);
+        $answer = Answer::find(7);
+
+        dd(
+            $answer->image->url(),
+        );
 
 
         $args = [

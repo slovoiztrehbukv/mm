@@ -44,10 +44,19 @@ export const Header: React.FC = () => {
             }}
         >
             <header className="pt-8 font-light scale-[12] translate-y-72 w-full lg:max-w-4xl mx-auto">
-                <div className='mb-8 w-fit ml-auto gap-8 justify-center text-white font-light align-items'>
-                    {languages.map(language => (
-                        <button key={language.code} className={`mx-2 transition duration-300 opacity-20 hover:opacity-100 fi fi-${language.flagCode}`} onClick={() => setLanguage(language.code)}></button>
-                    ))}
+                
+
+                <div className='flex justify-between'>
+                    <div className="flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
+                        <a href="#">{t('login')}</a>
+                        <a href="#">{t('to_business')}</a>
+                    </div>
+                    
+                    <div className='w-fit ml-auto gap-8 text-white font-light align-items'>
+                        {languages.map(language => (
+                            <button key={language.code} className={`mx-2 transition duration-300 opacity-20 hover:opacity-100 fi fi-${language.flagCode}`} onClick={() => setLanguage(language.code)}></button>
+                        ))}
+                    </div>
                 </div>
                 
                 <div className='w-fit mx-auto'>

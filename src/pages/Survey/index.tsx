@@ -24,7 +24,7 @@ export const Survey = () => {
 
     return (
         <>
-            <div className="container text-center flex justify-between">
+            <div className="container text-center flex justify-between w-full">
                 <QuestionCard />
             </div>
         </>
