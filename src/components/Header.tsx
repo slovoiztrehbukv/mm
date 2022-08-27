@@ -44,7 +44,7 @@ export const Header: React.FC = () => {
                 ...transitionClasses,
             }}
         >
-            <header className="pt-8 font-light scale-[12] translate-y-72 w-full lg:max-w-4xl mx-auto">
+            <header className="pt-8 font-light tracking-tight scale-[12] translate-y-72 w-full lg:max-w-4xl mx-auto">
                 
 
                 <div className='flex justify-between'>
