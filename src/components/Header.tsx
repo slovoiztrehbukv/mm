@@ -5,6 +5,7 @@ import transitionClasses from '../transitions/presets/bigToNormal';
 import i18n from '../i18n';
 import '/node_modules/flag-icons/css/flag-icons.min.css'
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
 
@@ -48,8 +49,8 @@ export const Header: React.FC = () => {
 
                 <div className='flex justify-between'>
                     <div className="flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
-                        <a href="#">{t('login')}</a>
-                        <a href="#">{t('to_business')}</a>
+                        <Link to="/sign-in"> {t('login')} </Link>
+                        <Link to="/info/b2b"> {t('to_business')} </Link>
                     </div>
                     
                     <div className='w-fit ml-auto gap-8 text-white font-light align-items'>
