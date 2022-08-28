@@ -1,1 +1,1 @@
-php artisan cache:clear && php artisan config:clear && php artisan lighthouse:clear-cache
+php74 artisan cache:clear && php74 artisan config:clear && php74 artisan lighthouse:clear-cache
