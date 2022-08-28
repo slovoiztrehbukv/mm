@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
 import { TelegramIcon } from '../images/icons/social/telegram';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
 
@@ -24,9 +25,9 @@ export const Footer: React.FC = () => {
                     <TelegramIcon />
                 </a>
                 <span className="mx-3">•</span>
-                <a href="#" className="hover:underline">{t('menu__contacts')}</a>
+                <Link className="hover:underline" to="/info/contact-us">{t('menu__contacts')}</Link>    
                 <span className="mx-3">•</span>
-                <a href="#" className="hover:underline">{t('menu__policy')}</a>
+                <Link className="hover:underline" to="/info/policy">{t('menu__policy')}</Link>    
             </footer>
         </CSSTransition>
     )

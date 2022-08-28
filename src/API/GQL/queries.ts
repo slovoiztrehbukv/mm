@@ -1,6 +1,18 @@
-import { BatchInitialAction, userAnswersStoreData } from "../../interfaces";
+import { BatchInitialAction, SignInParams } from "../../interfaces";
 
 export default {
+    auth: {
+
+        signIn: (params: SignInParams) => `
+            query SignIn {
+                auth(login: "${params.login}", password: "${params.password}") {
+                    jwt
+                }
+            }
+        `
+        
+    },
+
     questions: {
 
         get: (params: BatchInitialAction) => `

@@ -10,6 +10,8 @@ import { Telegram } from "./pages/ContactMethod/Telegram"
 import { Vk } from "./pages/ContactMethod/Vk"
 import { Home } from "./pages/Home"
 import { B2B } from "./pages/Info/B2B"
+import { ContactUs } from "./pages/Info/ContactUs"
+import { Policy } from "./pages/Info/Policy"
 import { PreSurvey } from "./pages/PreSurvey"
 import { Survey } from "./pages/Survey"
 
@@ -22,6 +24,8 @@ export const RoutesList = () => {
             <Route path="/sign-up" element={<SignUp />}></Route>
 
             <Route path="/info/b2b" element={<B2B />}></Route>
+            <Route path="/info/contact-us" element={<ContactUs />}></Route>
+            <Route path="/info/policy" element={<Policy />}></Route>
 
             <Route path="/pre-survey" element={<PreSurvey />}></Route>
 

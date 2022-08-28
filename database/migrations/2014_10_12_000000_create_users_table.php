@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('locale', 16)->default('ru');
             $table->string('name')->nullable();
+            $table->string('login')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('vk_id', 255)->unique()->nullable();

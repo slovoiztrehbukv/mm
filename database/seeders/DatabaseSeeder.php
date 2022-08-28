@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             QuestionSeeder::class,
             BatchSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

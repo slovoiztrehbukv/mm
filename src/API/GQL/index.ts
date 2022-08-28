@@ -1,9 +1,19 @@
-import { BatchInitialAction, userAnswersStoreData } from '../../interfaces';
+import { BatchInitialAction, SignInParams, userAnswersStoreData } from '../../interfaces';
 import queries from './queries';
 import awaitedClient from './client';
 import { gql, useMutation } from '@apollo/client';
+import AxiosClient from '../axios/client';
 
 export const GQL = {
+
+    signIn: async (params: SignInParams) => {
+        await AxiosClient.get().get('/sanctum/csrf-cookie') // TODO .get.get TO SINGLETON FC 
+        const client = await awaitedClient.get()
+
+        return client.query({
+            query: gql(queries.auth.signIn(params))
+        })
+    },
 
     getQuestions: async (params:BatchInitialAction = {questionsQuantity: 10}) => {
         const client = await awaitedClient.get()

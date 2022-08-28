@@ -36,7 +36,7 @@ const App: React.FC = () => {
           >
             <div className='opacity-0'>
               <main
-                  className={`text-secondary-600 w-full tracking-tight lg:max-w-4xl mx-auto p-6 md:p-12 my-16 rounded-lg shadow-3xl duration-500 ease-in-out ${activeQuestion?.type === 'IMAGE' ? 'bg-transparent' : 'bg-white'}`}
+                  className={`text-secondary-600 w-11/12 tracking-tight lg:max-w-4xl mx-auto p-6 md:p-12 my-16 rounded-lg shadow-3xl duration-500 ease-in-out ${activeQuestion?.type === 'IMAGE' ? 'bg-transparent' : 'bg-white'}`}
               >
 
                 <RoutesList />

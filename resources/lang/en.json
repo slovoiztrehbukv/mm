@@ -33,6 +33,12 @@
 
     "login": "sign in",
     "to_business": "b2b",
+
+    "unique_tooling": "a unique networking tool for <span class=\"underline\">effective</span> team segmentation",
+    "tell_us_about_your_project": "tell us about your project",
+
+    "our_contacts": "our contacts",
+    "our_policy": "our policy",
     
     "web__im_looking_for": "i'm looking for",
     "web__setting_accuracy": "let's set some accuracy",

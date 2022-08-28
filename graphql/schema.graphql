@@ -2,6 +2,8 @@
 type Query {
   batch(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : Batch! @field(resolver: "App\\GraphQL\\Queries\\GetBatchResolver")
   categories: [Category!] @all
+
+  auth(login: String!, password: String!) : AuthResponse @field(resolver: "App\\GraphQL\\Queries\\AuthResolver")
 }
 
 type Mutation {
@@ -55,4 +57,9 @@ type UserAnswer {
   answers_quantity: Int
   answers_ids: [Int]
   code: String
+}
+
+"RESPONSES"
+type AuthResponse {
+  jwt: String
 }

@@ -67,3 +67,8 @@ export interface userAnswersStoreData {
   answers_quantity: number
   answers_ids: number[]
 }
+
+export interface SignInParams {
+  login: string
+  password: string
+}

@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ServiceInformationController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
+
+Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 
 Route::prefix('/service')->group(function() {
     Route::prefix('/hosts')->group(function() {

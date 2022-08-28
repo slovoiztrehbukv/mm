@@ -1,16 +1,14 @@
 import { ApolloClient, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
-import axios from "axios";
+import AxiosClient from "../axios/client";
 
-
-
+const axiosClient = AxiosClient.get()
 let instance: ApolloClient<NormalizedCacheObject> | null = null
 
 export default{
     get: async () => {
 
         if (!instance) {
-            const endpoint = process.env.REACT_APP_HOST + '/service/hosts/gql'
-            const uri = (await axios.get(endpoint)).data
+            const uri = (await axiosClient.get('/service/hosts/gql')).data
 
             instance = new ApolloClient({
                 uri,

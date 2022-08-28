@@ -48,7 +48,7 @@ export const Header: React.FC = () => {
                 
 
                 <div className='flex justify-between'>
-                    <div className="flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
+                    <div className="ml-12 flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
                         <Link to="/sign-in"> {t('login')} </Link>
                         <Link to="/info/b2b"> {t('to_business')} </Link>
                     </div>
