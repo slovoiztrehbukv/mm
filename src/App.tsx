@@ -26,23 +26,27 @@ const App: React.FC = () => {
   setTimeout(() => setReady(true), 500)
 
   return (
-    <BrowserRouter>
-      <Header />
-      <CSSTransition
-            in={ready}
-            timeout={300}
-            classNames={{...transitionClasses}}
-        >
-          <div className='opacity-0'>
-            <main
-                className={`text-secondary-600 w-full tracking-tight lg:max-w-4xl mx-auto p-6 md:p-12 my-16 rounded-lg shadow-3xl duration-500 ease-in-out ${activeQuestion?.type === 'IMAGE' ? 'bg-transparent' : 'bg-white'}`}
-            >
-              <RoutesList />
-            </main>
-          </div>
+      <>
+        <Header />
+      
+        <CSSTransition
+              in={ready}
+              timeout={300}
+              classNames={{...transitionClasses}}
+          >
+            <div className='opacity-0'>
+              <main
+                  className={`text-secondary-600 w-full tracking-tight lg:max-w-4xl mx-auto p-6 md:p-12 my-16 rounded-lg shadow-3xl duration-500 ease-in-out ${activeQuestion?.type === 'IMAGE' ? 'bg-transparent' : 'bg-white'}`}
+              >
+
+                <RoutesList />
+                
+              </main>
+            </div>
           </CSSTransition>
-      <Footer />
-    </BrowserRouter>
+
+          <Footer />
+      </>
   );
 }
 

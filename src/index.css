@@ -53,21 +53,25 @@
 }
 
 .slick-slide {
-    @apply scale-75 ease-in-out duration-500 flex justify-center
+    @apply scale-75 ease-in-out duration-500 !flex justify-center items-center
 }
 
 .slick-slide img {
-    @apply w-1/2 mx-auto grayscale
+    @apply w-1/2 mx-auto grayscale rounded-md
+}
+
+.slick-center {
+    @apply scale-100
 }
 
 .slick-center img {
-    @apply w-full grayscale-0
+    @apply w-full grayscale-0 rounded-xl bg-emerald-400 p-[0.15rem] /*max-w-[30vh]*/
 }
 
 .slick-center .img-wrapper {
-    @apply flex justify-center scale-150 duration-500 ease-in-out z-30 relative before:top-2 before:right-2 before:content-[url("./images/icons/check-mark.svg")] before:absolute before:z-10 before:h-4 before:w-4
+    @apply flex justify-center scale-150 duration-500 ease-in-out z-30 relative before:top-3 before:right-3 before:content-[url("./images/icons/check-mark.svg")] before:absolute before:z-10 before:h-4 before:w-4
 }
 
 .slick-track {
-    @apply !flex justify-center items-center h-[calc(100%+4rem)]
+    @apply !flex justify-center items-center h-[calc(100%+4rem)] min-h-[260px]
 }
