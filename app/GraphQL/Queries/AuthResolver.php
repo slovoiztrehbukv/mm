@@ -18,13 +18,13 @@ final class AuthResolver
         $user = User::where('login', $args['login'])->first();
 
         if (! $user || ! Hash::check($args['password'], $user->password)) {
-            throw ValidationException::withMessages([
-                'login' => ['The provided credentials are incorrect.'],
-            ]);
+            $jwt = false;
+        } else {
+            $jwt = $user->createToken('web')->plainTextToken;
         }
 
         return [
-            'jwt' => $user->createToken('web')->plainTextToken
+            'jwt' => $jwt
         ];
     }
 }

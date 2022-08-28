@@ -1,17 +1,31 @@
+import notie from "notie"
+import '../../notie.min.css';
 import { useRef } from "react"
 import { GQL } from "../../API/GQL"
+import { useNavigate } from "react-router-dom";
 
 
 export const SignIn = () => {
 
     const loginRef = useRef<HTMLInputElement|null>(null)
     const passwordRef = useRef<HTMLInputElement|null>(null)
+    const navigate = useNavigate()
 
-    const signIn = () => {
-        GQL.signIn({
+    const signIn = async () => {
+        const result = await GQL.signIn({
             login: loginRef.current?.value!,
             password: passwordRef.current?.value!
         })
+
+        if (!result.data.auth.jwt!)  {
+            notie.alert({
+                text: 'неа'
+            })
+
+            return
+        }
+
+        navigate('/')
     }
 
     return (
