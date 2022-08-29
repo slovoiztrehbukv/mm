@@ -6,7 +6,7 @@ export default {
         signIn: (params: SignInParams) => `
             query SignIn {
                 auth(login: "${params.login}", password: "${params.password}") {
-                    jwt
+                    success
                 }
             }
         `

@@ -1,13 +1,15 @@
 "ROOT"
 type Query {
   batch(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : Batch! @field(resolver: "App\\GraphQL\\Queries\\GetBatchResolver")
-  categories: [Category!] @all
+  categories: [Category!] @all @guard
 
   auth(login: String!, password: String!) : AuthResponse @field(resolver: "App\\GraphQL\\Queries\\AuthResolver")
 }
 
 type Mutation {
   storeTempUserAnswers(input: StoreUserAnswersInput! @spread): UserAnswer! @create
+  # login(login: String!, password: String!): User!
+  # logout: User @guard
 }
 
 
@@ -61,5 +63,5 @@ type UserAnswer {
 
 "RESPONSES"
 type AuthResponse {
-  jwt: String
+  success: Boolean
 }

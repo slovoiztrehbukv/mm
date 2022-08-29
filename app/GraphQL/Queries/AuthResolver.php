@@ -3,6 +3,7 @@
 namespace App\GraphQL\Queries;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -15,16 +16,15 @@ final class AuthResolver
      */
     public function __invoke($_, array $args)
     {
-        $user = User::where('login', $args['login'])->first();
-
-        if (! $user || ! Hash::check($args['password'], $user->password)) {
-            $jwt = false;
-        } else {
-            $jwt = $user->createToken('web')->plainTextToken;
+        if (Auth::attempt([
+            'login' => $args['login'],
+            'password' => $args['password'],
+        ])) {
+            request()->session()->regenerate();
+    
+            return ['success' => true];
         }
 
-        return [
-            'jwt' => $jwt
-        ];
+        return ['success' => false];
     }
 }

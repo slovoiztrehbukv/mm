@@ -17,7 +17,7 @@ export const SignIn = () => {
             password: passwordRef.current?.value!
         })
 
-        if (!result.data.auth.jwt!)  {
+        if (!result.data.auth.success!)  {
             notie.alert({
                 text: 'неа'
             })

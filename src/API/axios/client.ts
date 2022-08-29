@@ -1,8 +1,8 @@
-import { Axios } from "axios"
+import axios, { Axios } from "axios"
 
 
 type AxiosSettings = {
-    baseURL?: string
+    baseURL?: string,
 }
 
 let instance: Axios

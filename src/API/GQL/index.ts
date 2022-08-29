@@ -7,7 +7,13 @@ import AxiosClient from '../axios/client';
 export const GQL = {
 
     signIn: async (params: SignInParams) => {
-        await AxiosClient.get().get('/sanctum/csrf-cookie') // TODO .get.get TO SINGLETON FC 
+        const res = await AxiosClient.get().head('/sanctum/csrf-cookie', {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }) // TODO .get.get TO SINGLETON FC 
+        console.log(321, res)
         const client = await awaitedClient.get()
 
         return client.query({
