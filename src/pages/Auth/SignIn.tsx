@@ -3,6 +3,8 @@ import '../../notie.min.css';
 import { useRef } from "react"
 import { GQL } from "../../API/GQL"
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../store/features/auth";
 
 
 export const SignIn = () => {
@@ -10,20 +12,27 @@ export const SignIn = () => {
     const loginRef = useRef<HTMLInputElement|null>(null)
     const passwordRef = useRef<HTMLInputElement|null>(null)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const signIn = async () => {
-        const result = await GQL.signIn({
+    const logIn = async () => {
+        const result = await GQL.logIn({
             login: loginRef.current?.value!,
             password: passwordRef.current?.value!
         })
 
-        if (!result.data.auth.success!)  {
+        if (!result.data.logIn.success!)  {
             notie.alert({
                 text: 'неа'
             })
 
             return
         }
+
+        const user = await GQL.getCurrentUser()
+        dispatch(setAuth({
+            user: user.data.me,
+            isAuthenticated: true,
+        }))
 
         navigate('/')
     }
@@ -67,7 +76,7 @@ export const SignIn = () => {
                 <div className="md:w-2/3">
                     <button
                         className="shadow bg-secondary-500 hover:bg-secondary-400 focus:shadow-outline focus:outline-none text-white font-light py-2 px-4 rounded" type="button"
-                        onClick={() => signIn()}
+                        onClick={() => logIn()}
                     >
                         зайти
                     </button>

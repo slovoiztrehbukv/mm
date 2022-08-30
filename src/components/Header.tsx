@@ -6,12 +6,17 @@ import i18n from '../i18n';
 import '/node_modules/flag-icons/css/flag-icons.min.css'
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { AuthState } from '../interfaces';
+import AxiosMethods from "../API/axios/methods";
 
 export const Header: React.FC = () => {
 
     const [ready, setReady] = useState(false);
     const [language, setLanguage] = useState('ru');
     const { t } = useTranslation();
+    const user = useSelector( (store: RootState) : AuthState =>  store.auth)
 
     setTimeout(() => setReady(true), 700)
 
@@ -30,6 +35,11 @@ export const Header: React.FC = () => {
         },
     ]
 
+    const logOut = async () => {
+        await AxiosMethods.logOut()
+
+        alert(555)
+    }
 
 
     useEffect(() => {
@@ -49,7 +59,14 @@ export const Header: React.FC = () => {
 
                 <div className='flex justify-between'>
                     <div className="ml-12 flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
-                        <Link to="/sign-in"> {t('login')} </Link>
+                        {
+                            !user.isAuthenticated
+                                ?
+                            (<Link to="/sign-in"> {t('login')} </Link>)
+                                :
+                            (<a onClick={() => logOut()} className="cursor-pointer">выйти</a>)
+                        }
+                        
                         <Link to="/info/b2b"> {t('to_business')} </Link>
                     </div>
                     

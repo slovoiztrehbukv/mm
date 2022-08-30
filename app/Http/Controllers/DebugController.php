@@ -6,21 +6,41 @@ use App\Enum;
 use App\Models\User;
 use App\Models\Batch;
 use App\Models\Image;
+use App\Models\Answer;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Telegram\Bot\Keyboard\Keyboard;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\QuestionResource;
-use App\Models\Answer;
 
 class DebugController extends Controller
 {
     public function index()
     {
 
+
+        $response = response()->json([true]);
+
+        foreach(request()->cookies as $cookieKey => $cookieValue) {
+            $response->withCookie(Cookie::forget($cookieKey));
+        }
+
+        return $response;
+        dd(222);
+        // $guard = Auth::guard('sanctum');
+        // dd(555, $guard->user(), Auth::user());
+
+        $response = redirect()->back();
+        foreach(request()->cookies as $cookieKey => $cookieValue) {
+            $response->withCookie(Cookie::forget($cookieKey));
+        }
+        return $response;
+        dd(222, get_class_methods(Cookie::class));
         $img = Image::find(7);
         $answer = Answer::find(7);
 

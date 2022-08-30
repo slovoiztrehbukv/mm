@@ -1,12 +1,27 @@
-import { BatchInitialAction, SignInParams } from "../../interfaces";
+import { BatchInitialAction, LogInParams } from "../../interfaces";
 
 export default {
     auth: {
 
-        signIn: (params: SignInParams) => `
-            query SignIn {
-                auth(login: "${params.login}", password: "${params.password}") {
+        logIn: (params: LogInParams) => `
+            query LogIn {
+                logIn(login: "${params.login}", password: "${params.password}") {
                     success
+                }
+            }
+        `,
+
+        getCurrentUser: () => `
+            query GetCurrentUser {
+                me {
+                    id
+                    name
+                    login
+                    email
+                    phone
+                    vk_id
+                    instagram_id
+                    tlg_id
                 }
             }
         `

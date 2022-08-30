@@ -2,9 +2,11 @@ import createSagaMiddleware from 'redux-saga';
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import batchReducer from './features/batch'
 import settingsReducer from './features/settings'
+import authReducer from './features/auth'
 import { watcherSaga } from './sagas'
 
 const reducer = combineReducers({
+  auth: authReducer,
   batch: batchReducer,
   settings: settingsReducer,
 })

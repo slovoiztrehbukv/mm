@@ -44,6 +44,14 @@ class Kernel extends HttpKernel
             'throttle:240', // throttle:api
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'lighthouse' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            'throttle:240', // throttle:api
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
     ];
 
     /**

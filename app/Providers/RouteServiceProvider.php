@@ -50,9 +50,14 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/tlg.php'));
 
             Route::prefix('debug')
-                ->middleware('devOnly')
+                ->middleware(['lighthouse', 'devOnly'])
                 ->namespace($this->namespace)
                 ->group(base_path('routes/debug.php'));
+
+            Route::prefix('auth')
+                ->middleware(['lighthouse'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/auth.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)

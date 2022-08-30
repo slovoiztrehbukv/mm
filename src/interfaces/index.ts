@@ -5,6 +5,23 @@ enum QuestionType {
   Image = "IMAGE"
 }
 
+export interface User {
+  isAuthenticated: boolean
+  id?: number
+  name?: string
+  login?: string
+  email?: string
+  phone?: string
+  vk_id?: string
+  instagram_id?: string
+  tlg_id?: string
+}
+
+export interface AuthState {
+  isAuthenticated: boolean
+  user?: User
+}
+
 export interface Question {
   id: number
   type: QuestionType
@@ -68,7 +85,7 @@ export interface userAnswersStoreData {
   answers_ids: number[]
 }
 
-export interface SignInParams {
+export interface LogInParams {
   login: string
   password: string
 }

@@ -1,23 +1,25 @@
-import { BatchInitialAction, SignInParams, userAnswersStoreData } from '../../interfaces';
+import { BatchInitialAction, LogInParams, userAnswersStoreData } from '../../interfaces';
 import queries from './queries';
 import awaitedClient from './client';
-import { gql, useMutation } from '@apollo/client';
-import AxiosClient from '../axios/client';
+import { gql } from '@apollo/client';
+import AxiosMethods from '../axios/methods';
 
 export const GQL = {
 
-    signIn: async (params: SignInParams) => {
-        const res = await AxiosClient.get().get('/sanctum/csrf-cookie', {
-            withCredentials: true,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }) // TODO .get.get TO SINGLETON FC 
-        console.log(321, res)
+    logIn: async (params: LogInParams) => {
+        await AxiosMethods.logIn()
         const client = await awaitedClient.get()
 
         return client.query({
-            query: gql(queries.auth.signIn(params))
+            query: gql(queries.auth.logIn(params))
+        })
+    },
+
+    getCurrentUser: async () => {
+        const client = await awaitedClient.get()
+
+        return client.query({
+            query: gql(queries.auth.getCurrentUser())
         })
     },
 

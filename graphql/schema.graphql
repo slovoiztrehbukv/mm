@@ -3,13 +3,13 @@ type Query {
   batch(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : Batch! @field(resolver: "App\\GraphQL\\Queries\\GetBatchResolver")
   categories: [Category!] @all @guard
 
-  auth(login: String!, password: String!) : AuthResponse @field(resolver: "App\\GraphQL\\Queries\\AuthResolver")
+  # AUTH (?TODO to mutations?)
+  logIn(login: String!, password: String!) : LogInResponse @field(resolver: "App\\GraphQL\\Queries\\LogInResolver")
+  me: User! @auth @guard
 }
 
 type Mutation {
   storeTempUserAnswers(input: StoreUserAnswersInput! @spread): UserAnswer! @create
-  # login(login: String!, password: String!): User!
-  # logout: User @guard
 }
 
 
@@ -24,6 +24,17 @@ input StoreUserAnswersInput {
 
 
 "ELOQUENT TYPES"
+type User {
+  id: ID!
+  name: String
+  login: String
+  email: String
+  phone: String
+  vk_id: String
+  instagram_id: String
+  tlg_id: String
+}
+
 type Category {
   id: ID!
   title: String
@@ -62,6 +73,6 @@ type UserAnswer {
 }
 
 "RESPONSES"
-type AuthResponse {
+type LogInResponse {
   success: Boolean
 }
