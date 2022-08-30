@@ -7,7 +7,7 @@ import AxiosClient from '../axios/client';
 export const GQL = {
 
     signIn: async (params: SignInParams) => {
-        const res = await AxiosClient.get().head('/sanctum/csrf-cookie', {
+        const res = await AxiosClient.get().get('/sanctum/csrf-cookie', {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json"

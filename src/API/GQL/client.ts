@@ -11,7 +11,7 @@ export default{
         if (!instance) {
             const httpLink = createHttpLink({
                 uri: (await axiosClient.get('/service/hosts/gql')).data,
-                credentials: 'same-origin'
+                credentials: 'include' // same-origin
             });
 
             const [tokenHeaderKey, tokenHeaderKeyValue] = document.cookie.split('=')
