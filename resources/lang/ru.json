@@ -33,7 +33,13 @@
     "yes": "да!",
 
     "login": "войти",
+    "logout": "выйти",
+    "user_profile": "профиль",
     "to_business": "бизнесу",
+    
+    "my_profile": "профиль",
+    "my_matches": "мэтчи",
+    "my_questions": "вопросы",
 
     "unique_tooling": "уникальный нетворкинг-инструмент для <span class=\"underline\">эффективного</span> сегментирования команд",
     "tell_us_about_your_project": "расскажите нам о своем проекте",

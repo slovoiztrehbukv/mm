@@ -1,7 +1,7 @@
 "ROOT"
 type Query {
   batch(questionsQuantity: Int!, answersQuantity: Int!, categoryId: Int!) : Batch! @field(resolver: "App\\GraphQL\\Queries\\GetBatchResolver")
-  categories: [Category!] @all @guard
+  categories: [Category!] @all
 
   # AUTH (?TODO to mutations?)
   logIn(login: String!, password: String!) : LogInResponse @field(resolver: "App\\GraphQL\\Queries\\LogInResolver")

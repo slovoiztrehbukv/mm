@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom"
 import { SignIn } from "./pages/Auth/SignIn"
+import { SignOut } from "./pages/Auth/SignOut"
 import { SignUp } from "./pages/Auth/SignUp"
+import { Profile } from "./pages/User/Profile"
 import { ContactMethod } from "./pages/ContactMethod"
 import { Email } from "./pages/ContactMethod/Email"
 import { Fb } from "./pages/ContactMethod/Fb"
@@ -14,6 +16,8 @@ import { ContactUs } from "./pages/Info/ContactUs"
 import { Policy } from "./pages/Info/Policy"
 import { PreSurvey } from "./pages/PreSurvey"
 import { Survey } from "./pages/Survey"
+import { Matches } from "./pages/User/Matches"
+import { Questions } from "./pages/User/Questions"
 
 export const RoutesList = () => {
     return (
@@ -21,7 +25,12 @@ export const RoutesList = () => {
             <Route path="/" element={<Home />}></Route>
 
             <Route path="/sign-in" element={<SignIn />}></Route>
+            <Route path="/sign-out" element={<SignOut />}></Route>
             <Route path="/sign-up" element={<SignUp />}></Route>
+            
+            <Route path="/my/profile" element={<Profile />}></Route>
+            <Route path="/my/matches" element={<Matches />}></Route>
+            <Route path="/my/questions" element={<Questions />}></Route>
 
             <Route path="/info/b2b" element={<B2B />}></Route>
             <Route path="/info/contact-us" element={<ContactUs />}></Route>

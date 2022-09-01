@@ -6,7 +6,6 @@ enum QuestionType {
 }
 
 export interface User {
-  isAuthenticated: boolean
   id?: number
   name?: string
   login?: string

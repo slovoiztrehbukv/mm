@@ -17,6 +17,31 @@
 }
 
 /* TODO to external */
+
+.header-menu a {
+    @apply mx-4
+}
+
+.header-menu a.active {
+    @apply underline
+}
+
+.footer-menu a {
+    @apply mx-4
+}
+
+.footer-menu a.active {
+    @apply underline
+}
+
+.sidebar-menu a.active {
+    @apply underline
+}
+
+.content h2 {
+    @apply text-2xl mb-8
+}
+
 .visually-hidden {
     position: absolute!important;
     width: 1px!important;

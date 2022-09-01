@@ -32,7 +32,13 @@
     "yes": "yes!",
 
     "login": "sign in",
+    "logout": "sign out",
+    "user_profile": "profile",
     "to_business": "b2b",
+
+    "my_profile": "profile",
+    "my_matches": "matches",
+    "my_questions": "questions",
 
     "unique_tooling": "a unique networking tool for <span class=\"underline\">effective</span> team segmentation",
     "tell_us_about_your_project": "tell us about your project",

@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import transitionClasses from '../transitions/presets/fadeFromLeft';
 import { TelegramIcon } from '../images/icons/social/telegram';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
 
@@ -20,14 +20,16 @@ export const Footer: React.FC = () => {
                 ...transitionClasses,
             }}
         >
-            <footer className="opacity-0 max-w-lg mx-auto flex justify-center text-white font-light align-items">
-                <a href="https://t.me/MuchMatchBot" target="_blank">
-                    <TelegramIcon />
-                </a>
-                <span className="mx-3">•</span>
-                <Link className="hover:underline" to="/info/contact-us">{t('menu__contacts')}</Link>    
-                <span className="mx-3">•</span>
-                <Link className="hover:underline" to="/info/policy">{t('menu__policy')}</Link>    
+            <footer className="opacity-0">
+                <nav className='footer-menu max-w-lg mx-auto flex justify-center text-white font-light align-items'>
+                    <a href="https://t.me/MuchMatchBot" target="_blank" rel="noreferrer">
+                        <TelegramIcon />
+                    </a>
+                    <span className="mx-3">•</span>
+                    <NavLink to="/info/contact-us"> <>{t('menu__contacts')}</> </NavLink>
+                    <span className="mx-3">•</span>
+                    <NavLink to="/info/policy"> <>{t('menu__policy')}</> </NavLink>  
+                </nav>
             </footer>
         </CSSTransition>
     )

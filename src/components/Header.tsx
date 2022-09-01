@@ -5,11 +5,10 @@ import transitionClasses from '../transitions/presets/bigToNormal';
 import i18n from '../i18n';
 import '/node_modules/flag-icons/css/flag-icons.min.css'
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { AuthState } from '../interfaces';
-import AxiosMethods from "../API/axios/methods";
 
 export const Header: React.FC = () => {
 
@@ -35,10 +34,23 @@ export const Header: React.FC = () => {
         },
     ]
 
-    const logOut = async () => {
-        await AxiosMethods.logOut()
-
-        alert(555)
+    const TargetMenu = () => {
+        return !user.isAuthenticated
+            ?
+        (
+            <>
+                <NavLink to="/sign-in"> <>{t('login')}</> </NavLink>
+                <NavLink to="/info/b2b"> <>{t('to_business')}</> </NavLink>
+            </>
+        )
+            :
+        (
+            <>
+                <NavLink to="/info/b2b"> <>{t('to_business')}</> </NavLink>
+                <Link to="/my/profile"> <>{t('user_profile')}</> </Link>
+                <NavLink to="/sign-out"> <>{t('logout')}</> </NavLink>
+            </>
+        )
     }
 
 
@@ -59,15 +71,9 @@ export const Header: React.FC = () => {
 
                 <div className='flex justify-between'>
                     <div className="ml-12 flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
-                        {
-                            !user.isAuthenticated
-                                ?
-                            (<Link to="/sign-in"> {t('login')} </Link>)
-                                :
-                            (<a onClick={() => logOut()} className="cursor-pointer">выйти</a>)
-                        }
-                        
-                        <Link to="/info/b2b"> {t('to_business')} </Link>
+                        <nav className='header-menu'>
+                            <TargetMenu />
+                        </nav>
                     </div>
                     
                     <div className='w-fit ml-auto gap-8 text-white font-light align-items'>
