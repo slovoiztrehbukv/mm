@@ -15,6 +15,9 @@ Route::group(['middleware' => 'web'], function(){
         });
 
         Route::get('/languages', [ServiceInformationController::class, 'getLocalizationStrings']);
+
+        // ADMIN ONLY (TODO ! add middleware)
+        Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
     });
 
     Route::get('/{path?}', function () {
