@@ -21,7 +21,7 @@ class CreateAnswersTable extends Migration
                 ->cascadeOnDelete();
 
             $table->string('value')
-                ->comment('Answer number');
+                ->comment('Text value or foreign id in media (e.g. images)');
 
             $table->timestamps();
         });

@@ -24,12 +24,12 @@ final class GetBatchResolver
             $take = $args['answersQuantity'] <= $count ? $args['answersQuantity'] : $count;
             $take = min($take, 6);
 
-            $question->answers = $question->answers->random($take);
+            $question->answers = $question->answers->take($take)->shuffle();
 
-            $question->answers->map(function(Answer $answer){
+            $question->answers->map(function(Answer $answer) use ($question){
                 if (!$answer->image) return;
 
-                $answer->image->url = $answer->image->url();
+                $answer->image->url = $question->type === 'IMAGE' ? $answer->image->url() : null;
 
                 return $answer;
             });

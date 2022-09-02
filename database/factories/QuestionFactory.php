@@ -37,7 +37,7 @@ class QuestionFactory extends Factory
                 for ($i = 0; $i < $count; $i++) {
                     Answer::create([
                         'question_id' => $question->id,
-                        'value' => $this->faker->word
+                        'value' => $i + 1
                     ]);
                 }
             } elseif ($question->type === 'IMAGE') {
