@@ -17,12 +17,42 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\QuestionResource;
+use App\Models\UserAnswer;
 
 class DebugController extends Controller
 {
     public function index()
     {
 
+        // ALGORITHM DRAFT
+
+        $answersMatches = [];
+
+        $srcUA = UserAnswer::find(1);
+
+        $targetUAS = UserAnswer::query()
+            ->where('answers_quantity', '=', $srcUA->answers_quantity)
+            ->where('batch_id', '=', $srcUA->batch_id)
+            ->where('id', '!=', $srcUA->id)
+            ->whereNotNull('user_id')
+            ->get();
+
+        $srcAnswers = $srcUA->answers_ids;
+        $targetAnswers = $targetUAS
+            ->mapWithKeys(function($targetUA){
+                return [$targetUA->id => $targetUA->answers_ids];
+            })
+            ->toArray();
+
+
+        foreach($targetAnswers as $id => $answers) {
+            $answersMatches[$id] = count(array_intersect($answers, $srcAnswers));
+        }
+
+        arsort($answersMatches);
+
+        $matchedUserAnswerId = array_keys($answersMatches)[0];
+        return $matchedUserAnswerId;
 
         $response = response()->json([true]);
 
