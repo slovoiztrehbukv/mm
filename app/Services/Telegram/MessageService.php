@@ -9,6 +9,9 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Objects\Message;
 
+/**
+ * MessageService means ReceivedMessageService
+ */
 class MessageService
 {
     private static $msgToMethodSchema = [

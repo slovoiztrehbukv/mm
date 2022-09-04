@@ -16,25 +16,16 @@ class CreateUserAnswersTable extends Migration
         Schema::create('user_answers', function (Blueprint $table) {
             $table->id();
 
-
             $table->foreignId('batch_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
             $table->foreignId('user_id')
-                ->nullable()
-                ->comment('Null means: temporary answers')
                 ->constrained()
                 ->nullOnDelete();
 
-
             $table->integer('answers_quantity');
             $table->json('answers_ids');
-
-            $table->string('code', 16)
-                ->unique()
-                ->nullable()
-                ->comment('Code for user\'s answers ownership check');
 
             $table->timestamps();
         });

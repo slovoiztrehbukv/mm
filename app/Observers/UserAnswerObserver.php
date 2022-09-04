@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\UserPassedSurvey;
 use App\Models\UserAnswer;
 use Illuminate\Support\Str;
 
@@ -28,7 +29,7 @@ class UserAnswerObserver
      */
     public function created(UserAnswer $userAnswer)
     {
-        //
+        event(new UserPassedSurvey($userAnswer));
     }
 
     /**

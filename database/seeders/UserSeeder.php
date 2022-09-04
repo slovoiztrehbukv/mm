@@ -15,12 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)
-            ->create();
-
         User::create([
             'login' => 'admin',
             'password' => Hash::make('password')
         ]);
+
+        for ($i = 1; $i <= 5; $i++) {
+            User::create([
+                'login' => "user$i",
+                'password' => Hash::make("password$i")
+            ]);
+        }
     }
 }

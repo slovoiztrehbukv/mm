@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->bigInteger('tlg_id')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default('password');
-            $table->boolean('will_provide_answers_code')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

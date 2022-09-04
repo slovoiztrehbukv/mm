@@ -15,4 +15,11 @@ class Enum {
             'icon' => '🇬🇧'
         ]
     ];
+
+    public const CONTACT_METHODS = [
+        'tlg' => 'TELEGRAM',
+        'vk' => 'VK',
+        'fb' => 'FACEBOOK',
+        'email' => 'EMAIL',
+    ];
 }
