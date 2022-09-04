@@ -22,7 +22,7 @@ class CreateUserAnswersTable extends Migration
 
             $table->foreignId('user_id')
                 ->constrained()
-                ->nullOnDelete();
+                ->cascadeOnDelete();
 
             $table->integer('answers_quantity');
             $table->json('answers_ids');
