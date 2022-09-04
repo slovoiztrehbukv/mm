@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CSSTransition } from 'react-transition-group';
 import transitionClasses from './transitions/presets/fadeFromLeft';
-import { RoutesList } from './RoutesList';
+import { RoutesList } from './routes/List';
 import { useDispatch, useSelector } from 'react-redux';
 import { Batch } from './interfaces';
 import { RootState } from './store';
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
       dispatch(initUser(undefined))
-  }, [])
+  }, [dispatch])
 
   const [ready, setReady] = useState(false)
     

@@ -5,6 +5,7 @@ import { AuthState } from '../../interfaces'
 
 
 const initialState: AuthState = {
+  wasUserFetched: false,
   isAuthenticated: false,
   user: undefined
 }
@@ -15,13 +16,12 @@ export const authSlice = createSlice({
   reducers: {
     initUser: (state, action) => {
       action.payload = {initialState, ...action.payload}
-      state.isAuthenticated = false
-      state.user = undefined
     },
     
     setAuth: (state, action: PayloadAction<AuthState>) => {
       state.user = action.payload.user
       state.isAuthenticated = action.payload.isAuthenticated
+      state.wasUserFetched = action.payload.wasUserFetched
     },
   },
 })

@@ -17,7 +17,8 @@ export interface User {
 }
 
 export interface AuthState {
-  isAuthenticated: boolean
+  wasUserFetched: boolean // `getCurrentUser` attempt (flag for correct redirects handling)
+  isAuthenticated: boolean // user data actually was (not empty) in `getCurrentUser` response 
   user?: User
 }
 

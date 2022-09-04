@@ -18,6 +18,7 @@ export const SignOut = () => {
                 dispatch(setAuth({
                     user: undefined,
                     isAuthenticated: false,
+                    wasUserFetched: true,
                 }))
             })
     }, [dispatch, navigate])

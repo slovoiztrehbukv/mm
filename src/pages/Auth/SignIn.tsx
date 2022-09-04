@@ -32,6 +32,7 @@ export const SignIn = () => {
         dispatch(setAuth({
             user: user.data.me,
             isAuthenticated: true,
+            wasUserFetched: true,
         }))
 
         navigate('/')

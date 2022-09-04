@@ -1,6 +1,6 @@
-import { call, put, select } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { setAuth } from "../../features/auth";
-import { Question, QuestionsInitialAction, SettingsState, User } from "../../../interfaces";
+import { QuestionsInitialAction, User } from "../../../interfaces";
 import { GQL } from "../../../API/GQL";
 
 export interface initUserHandlerResponse {
@@ -22,6 +22,7 @@ export function* initUserHandler(action: QuestionsInitialAction) {
             payload: {
                 user: payload.me,
                 isAuthenticated: true,
+                wasUserFetched: true,
             },
             type: setAuth.type,
         })
@@ -30,6 +31,7 @@ export function* initUserHandler(action: QuestionsInitialAction) {
             payload: {
                 user: undefined,
                 isAuthenticated: false,
+                wasUserFetched: true,
             },
             type: setAuth.type,
         })
