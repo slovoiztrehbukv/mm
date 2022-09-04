@@ -70,7 +70,7 @@ export default {
         store: () => `
             mutation StoreUserAnswer($input: StoreUserAnswersInput!) {
                 storeTempUserAnswers(input: $input) {
-                    code
+                    id
                 }
             }
         `
