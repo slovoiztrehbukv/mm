@@ -18,6 +18,8 @@ export const AuthMiddleware = (props: any) => {
         }
     }, [auth, navigate])
     return (
-        React.createElement('div', null, ...props.children)
+        <>
+            {props.children}
+        </>
     )
 }
