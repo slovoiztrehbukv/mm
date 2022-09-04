@@ -11,11 +11,13 @@
         "irazasyed/telegram-bot-sdk": "^3.4.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "mll-lab/laravel-graphql-playground": "^2.6",
         "nuwave/lighthouse": "^5.57",
-        "rap2hpoutre/laravel-log-viewer": "^2.2"
+        "rap2hpoutre/laravel-log-viewer": "^2.2",
+        "socialiteproviders/vkontakte": "^5.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
