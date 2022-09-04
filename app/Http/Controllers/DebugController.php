@@ -10,6 +10,7 @@ use App\Models\Answer;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Question;
+use App\Models\UserAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Telegram\Bot\Keyboard\Keyboard;
@@ -17,12 +18,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\QuestionResource;
-use App\Models\UserAnswer;
+use Laravel\Socialite\Facades\Socialite;
 
 class DebugController extends Controller
 {
     public function index()
     {
+
+        dd(22, Socialite::driver('telegram')->redirect());
+        // return Socialite::driver('telegram')->redirect();
 
         // ALGORITHM DRAFT
 

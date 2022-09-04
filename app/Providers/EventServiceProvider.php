@@ -2,21 +2,21 @@
 
 namespace App\Providers;
 
-use App\Events\MatchFound;
 use Throwable;
+use App\Jobs\FindMatch;
+use App\Events\MatchFound;
 use App\Models\UserAnswer;
 use App\Events\UserPassedSurvey;
-use App\Jobs\FindMatch;
-use App\Listeners\NotifyAnsweredUser;
 use App\Listeners\NotifyWaitingUser;
-use Illuminate\Support\Facades\Log;
+use App\Listeners\NotifyAnsweredUser;
 use App\Observers\UserAnswerObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use function Illuminate\Events\queueable;
 use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\VKontakte\VKontakteExtendSocialite;
+use SocialiteProviders\Telegram\TelegramExtendSocialite;
 
+use SocialiteProviders\VKontakte\VKontakteExtendSocialite;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -34,6 +34,7 @@ class EventServiceProvider extends ServiceProvider
         
         SocialiteWasCalled::class => [
             VKontakteExtendSocialite::class.'@handle',
+            TelegramExtendSocialite::class.'@handle',
         ],
 
         MatchFound::class => [
