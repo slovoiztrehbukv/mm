@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-
+import { ContentLayout } from "../../layouts/Content";
 
 
 export const Home = () => {
@@ -11,7 +11,8 @@ export const Home = () => {
         navigate(`/pre-survey?looking_for=${lookingFor}`)
     }
     return (
-        <>
+        <ContentLayout>
+
             <div className="container text-center">
                 <h2 className="text-gray-700 font-light">{t('web__im_looking_for')}</h2>
 
@@ -40,6 +41,7 @@ export const Home = () => {
 
                 </section>
             </div>
-        </>
+
+        </ContentLayout>
     )
 }

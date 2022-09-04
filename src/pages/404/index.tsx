@@ -1,12 +1,16 @@
-import { useTranslation } from "react-i18next";
+import { ContentLayout } from "../../layouts/Content";
 
 
 
 export const Page404 = () => {
     
     return (
-        <div className="p-4">
-            oops :( 
-        </div>
+        <ContentLayout>
+
+            <div className="p-4">
+                oops :( 
+            </div>
+
+        </ContentLayout>
     )
 }

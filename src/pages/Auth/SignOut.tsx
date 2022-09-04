@@ -13,7 +13,10 @@ export const SignOut = () => {
         AxiosMethods
             .logOut()
             .then(() => {
-                navigate('/')
+                navigate({
+                    pathname: '/sign-in',
+                    search: '?welcome=false',
+                })
 
                 dispatch(setAuth({
                     user: undefined,

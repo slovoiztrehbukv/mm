@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom"
+import { ContentLayout } from "../../layouts/Content";
 
 export const Layout = (props: any) => {
 
@@ -21,24 +22,28 @@ export const Layout = (props: any) => {
     ]
 
     return (
-        <div className="flex py-4">
-            <aside className="w-64 sidebar-menu bg-primary-600 text-white rounded-md py-4">
-                <div className="overflow-y-auto px-3">
-                    <ul className="space-y-2">
-                        {
-                            menuItems.map(item => (
-                                <li key={item.title}>
-                                    <NavLink to={item.to}>{item.title}</NavLink>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </aside>
+        <ContentLayout>
 
-            <div className="p-4 content">
-                {props.content}
+            <div className="flex py-4">
+                <aside className="w-64 sidebar-menu bg-primary-600 text-white rounded-md py-4">
+                    <div className="overflow-y-auto px-3">
+                        <ul className="space-y-2">
+                            {
+                                menuItems.map(item => (
+                                    <li key={item.title}>
+                                        <NavLink to={item.to}>{item.title}</NavLink>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </aside>
+
+                <div className="p-4 content">
+                    {props.content}
+                </div>
             </div>
-        </div>
+
+        </ContentLayout>
     )
 }

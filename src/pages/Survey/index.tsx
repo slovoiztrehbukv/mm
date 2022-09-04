@@ -5,6 +5,7 @@ import { Batch, Question } from "../../interfaces";
 import { RootState } from "../../store";
 import { initBatch } from "../../store/features/batch";
 import { useNavigate } from "react-router-dom";
+import { SurveyLayout } from "../../layouts/Survey";
 
 export const Survey = () => {
 
@@ -23,10 +24,12 @@ export const Survey = () => {
     }, [allQuestionsAnswered])
 
     return (
-        <>
+        <SurveyLayout>
+
             <div className="container text-center flex justify-between w-full">
                 <QuestionCard />
             </div>
-        </>
+            
+        </SurveyLayout>
     )
 }

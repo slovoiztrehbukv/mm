@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { SignIn } from "../pages/Auth/SignIn"
 import { SignOut } from "../pages/Auth/SignOut"
 import { SignUp } from "../pages/Auth/SignUp"
@@ -19,37 +19,25 @@ import { Survey } from "../pages/Survey"
 import { Matches } from "../pages/User/Matches"
 import { Questions } from "../pages/User/Questions"
 import { Page404 } from "../pages/404"
-import { useSelector } from "react-redux"
-import { RootState } from "../store"
-import { AuthState } from "../interfaces"
-import { useEffect } from "react"
 import { AuthMiddleware } from "../middlewares/Auth"
 
 export const RoutesList = () => {
-    const auth = useSelector( (store: RootState) : AuthState =>  store.auth)
-    const navigate = useNavigate()
 
-    useEffect(() => {
-        if (!auth.wasUserFetched) return
-        if (!auth.isAuthenticated) {
-            navigate('/sign-in')
-        }
-    }, [auth])
     return (
         <Routes>
             <Route path="/" element={<AuthMiddleware> <Home /> </AuthMiddleware>}></Route>
 
             <Route path="/sign-in" element={<SignIn />}></Route>
             <Route path="/sign-out" element={<AuthMiddleware> <SignOut /> </AuthMiddleware>}></Route>
-            <Route path="/sign-up" element={<AuthMiddleware> <SignUp /> </AuthMiddleware>}></Route>
+            <Route path="/sign-up" element={<SignUp />}></Route>
             
             <Route path="/my/profile" element={<AuthMiddleware> <Profile /> </AuthMiddleware>}></Route>
             <Route path="/my/matches" element={<AuthMiddleware> <Matches /> </AuthMiddleware>}></Route>
             <Route path="/my/questions" element={<AuthMiddleware> <Questions /> </AuthMiddleware>}></Route>
 
-            <Route path="/info/b2b" element={<AuthMiddleware> <B2B /> </AuthMiddleware>}></Route>
-            <Route path="/info/contact-us" element={<AuthMiddleware> <ContactUs /> </AuthMiddleware>}></Route>
-            <Route path="/info/policy" element={<AuthMiddleware> <Policy /> </AuthMiddleware>}></Route>
+            <Route path="/info/b2b" element={<B2B />}></Route>
+            <Route path="/info/contact-us" element={<ContactUs />}></Route>
+            <Route path="/info/policy" element={<Policy />}></Route>
 
             <Route path="/pre-survey" element={<AuthMiddleware> <PreSurvey /> </AuthMiddleware>}></Route>
 

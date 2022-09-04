@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { GQL } from "../../API/GQL";
 import { Category } from "../../interfaces";
+import { ContentLayout } from "../../layouts/Content";
 import { setSettings } from "../../store/features/settings";
 
 export const PreSurvey = () => {
@@ -55,7 +56,8 @@ export const PreSurvey = () => {
         .then(response => setCategories(response.data.categories))
 
     return (
-        <>
+        <ContentLayout>
+            
             <div className="container text-center flex justify-between">
                 <div className="w-2/12 p-4 flex items-center text-primary-200 border-r border-gray-100">
                     <Link
@@ -123,6 +125,7 @@ export const PreSurvey = () => {
                     </section>
                 </div>
             </div>
-        </>
+
+        </ContentLayout>
     )
 }

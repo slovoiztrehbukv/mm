@@ -30,6 +30,7 @@
     "start": "go!",
     "next": "next",
     "yes": "yes!",
+    "or": "or",
 
     "login": "sign in",
     "logout": "sign out",

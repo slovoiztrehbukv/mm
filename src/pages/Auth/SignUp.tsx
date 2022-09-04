@@ -1,10 +1,13 @@
+import { ContentLayout } from "../../layouts/Content"
 
 
 export const SignUp = () => {
 
     return (
-        <div>
-            Зарегаться
-        </div>
+        <ContentLayout>
+            <div>
+                Зарегаться
+            </div>
+        </ContentLayout>
     )
 }
