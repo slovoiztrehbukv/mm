@@ -69,7 +69,6 @@ type UserAnswer {
   user_id: Int
   answers_quantity: Int
   answers_ids: [Int]
-  code: String
 }
 
 "RESPONSES"
