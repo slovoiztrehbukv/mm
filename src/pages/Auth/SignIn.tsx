@@ -26,17 +26,17 @@ export const SignIn = () => {
         {
             code: 'vk',
             icon: VKIcon,
-            cb: () => alert('vk'),
+            linkTo: '/auth/redirect/vk',
         },
         {
             code: 'tlg',
             icon: TelegramIcon,
-            cb: () => alert('tlg'),
+            linkTo: '/auth/redirect/telegram',
         },
         {
             code: 'inst',
             icon: InstagramIcon,
-            cb: () => alert('inst'),
+            linkTo: '/auth/redirect/instagram',
         },
     ]
 
@@ -84,7 +84,7 @@ export const SignIn = () => {
         <div
             className="bg-white text-secondary-600  max-w-lg mx-auto p-8 md:p-12 mt-16 rounded-lg shadow-2xl">
             <section>
-                <a className="text-gray-300" href="#">я только спросить</a>
+                <a className="text-gray-300" href="/">я только спросить</a>
                 <h3 className="font-normal text-xl">надо залогиниться. без этого не получится</h3>
             </section>
 
@@ -101,9 +101,7 @@ export const SignIn = () => {
                             }
                             
                             return (
-                                <button key={m.code} type="button" onClick={() => m.cb()}>
-                                        {renderIcon(m.icon)}
-                                </button>
+                                <Link key={m.code} to={m.linkTo} target="_blank">{renderIcon(m.icon)}</Link>
                             )
                         })}
                     </div>
@@ -130,7 +128,7 @@ export const SignIn = () => {
                     </div>
                     <div className="flex justify-end mt-8">
                         <a
-                            href="#"
+                            href="/"
                             className="text-sm text-secondary-100 hover:text-secondary-700 hover:underline mb-6 font-light">а я пароль забыл</a>
                     </div>
                     <button

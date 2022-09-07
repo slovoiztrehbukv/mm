@@ -25,6 +25,9 @@ class DebugController extends Controller
     public function index()
     {
 
+        dd(321);
+
+        
         dd(22, Socialite::driver('telegram')->redirect());
         // return Socialite::driver('telegram')->redirect();
 

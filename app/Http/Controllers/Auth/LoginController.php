@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Providers\RouteServiceProvider;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -52,5 +54,25 @@ class LoginController extends Controller
         }
 
         return $response;
+    }
+
+    public function redirectVK()
+    {
+        return Socialite::driver('vkontakte')->redirect();
+    }
+
+    public function redirectTelegram()
+    {
+        return Socialite::driver('telegram')->redirect();
+    }
+
+    public function callbackVK()
+    {
+        Log::info("VK callback response ", (array)request());
+    }
+
+    public function callbackTelegram()
+    {
+        Log::info("TELEGRAM callback response ", (array)request());
     }
 }

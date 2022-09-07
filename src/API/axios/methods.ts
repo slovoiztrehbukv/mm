@@ -2,7 +2,7 @@ import client from "./client"
 
 
 
-export default {
+const methods = {
     logIn: async () => {
         return await client.get().get('/sanctum/csrf-cookie', {
             withCredentials: true,
@@ -19,5 +19,7 @@ export default {
                 "Content-Type": "application/json"
             }
         })
-    }
+    },
 }
+
+export default methods
