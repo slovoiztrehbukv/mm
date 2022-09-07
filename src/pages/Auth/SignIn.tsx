@@ -1,6 +1,7 @@
 import notie from "notie"
 import '../../notie.min.css';
 import { useRef } from "react"
+import AxiosMethods from '../../API/axios/methods';
 import { GQL } from "../../API/GQL"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -66,7 +67,9 @@ export const SignIn = () => {
         navigate('/')
     }
 
-
+    const initCookie = async () => {
+        await AxiosMethods.logIn()
+    }
 
     const $_GET = stringQueryParamsToObject(useLocation().search)
 
@@ -101,7 +104,7 @@ export const SignIn = () => {
                             }
                             
                             return (
-                                <Link key={m.code} to={m.linkTo} target="_blank">{renderIcon(m.icon)}</Link>
+                                <Link key={m.code} to={m.linkTo} target="_blank" onClick={initCookie}>{renderIcon(m.icon)}</Link>
                             )
                         })}
                     </div>
