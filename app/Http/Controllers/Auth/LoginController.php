@@ -73,6 +73,13 @@ class LoginController extends Controller
 
     public function callbackTelegram()
     {
-        Log::info("TELEGRAM callback response ", (array)request());
+        $GET = request()->query();
+        
+        try {
+            $data = checkTelegramAuthorization($GET);
+            Log::info("Telegram callback response success", $data);
+        } catch(\Throwable $e) {
+            Log::waring("Telegram callback response error: {$e->getMessage()} ", $GET);
+        }
     }
 }

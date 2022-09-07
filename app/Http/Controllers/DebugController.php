@@ -25,7 +25,12 @@ class DebugController extends Controller
     public function index()
     {
 
-        dd(321);
+        try {
+            $data = checkTelegramAuthorization(request()->query());
+            dd($data);
+        } catch(\Throwable $e) {
+            dd(222, $e->getMessage());
+        }
 
         
         dd(22, Socialite::driver('telegram')->redirect());
