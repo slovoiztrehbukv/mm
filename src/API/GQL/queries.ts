@@ -28,6 +28,16 @@ export default {
         
     },
 
+    user: {
+        update: () => `
+            mutation UserProfileUpdate($input: UserProfileUpdateInput!) {
+                userProfileUpdate(input: $input) {
+                    success
+                }
+            }
+        `
+    },
+
     questions: {
 
         get: (params: BatchInitialAction) => `

@@ -4,12 +4,13 @@ type Query {
   categories: [Category!] @all
 
   # AUTH (?TODO to mutations?)
-  logIn(login: String!, password: String!) : LogInResponse @field(resolver: "App\\GraphQL\\Queries\\LogInResolver")
+  logIn(login: String!, password: String!) : SuccessFlagOnlyResponse @field(resolver: "App\\GraphQL\\Queries\\LogInResolver")
   me: User! @auth @guard
 }
 
 type Mutation {
-  storeTempUserAnswers(input: StoreUserAnswersInput! @spread): UserAnswer! @create
+  storeTempUserAnswers(input: StoreUserAnswersInput! @spread): UserAnswer! @create @auth
+  userProfileUpdate(input: UserProfileUpdateInput! @spread): SuccessFlagOnlyResponse @field(resolver: "App\\GraphQL\\Mutations\\UpdateUserProfileResolver")
 }
 
 
@@ -19,6 +20,11 @@ input StoreUserAnswersInput {
   batch_id: Int
   answers_quantity: Int
   answers_ids: [Int]
+}
+
+input UserProfileUpdateInput {
+  login: String
+  name: String
 }
 
 
@@ -72,6 +78,6 @@ type UserAnswer {
 }
 
 "RESPONSES"
-type LogInResponse {
+type SuccessFlagOnlyResponse {
   success: Boolean
 }

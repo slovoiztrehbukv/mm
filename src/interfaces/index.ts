@@ -5,8 +5,7 @@ enum QuestionType {
   Image = "IMAGE"
 }
 
-export interface User {
-  id?: number
+export interface UserProfile{
   name?: string
   login?: string
   email?: string
@@ -14,6 +13,10 @@ export interface User {
   vk_id?: string
   instagram_id?: string
   tlg_id?: string
+}
+
+export interface User extends UserProfile {
+  id?: number
 }
 
 export interface AuthState {

@@ -31,6 +31,11 @@ class DebugController extends Controller
 
     public function index()
     {
+        $user = User::find(2);
+        // $user->update(
+        //     ['name' => 'testttt222']
+        // );
+        dd(2222, $user);
         // Auth::logout();
 
         dd(222, Auth::user()->id);

@@ -1,4 +1,4 @@
-import { BatchInitialAction, LogInParams, userAnswersStoreData } from '../../interfaces';
+import { BatchInitialAction, LogInParams, userAnswersStoreData, UserProfile } from '../../interfaces';
 import queries from './queries';
 import awaitedClient from './client';
 import { gql } from '@apollo/client';
@@ -20,6 +20,19 @@ export const GQL = {
 
         return client.query({
             query: gql(queries.auth.getCurrentUser())
+        })
+    },
+
+    userProfileSave: async (params:UserProfile) => {
+        const client = await awaitedClient.get()
+
+        return client.mutate({
+            mutation: gql(queries.user.update()),
+            variables: {
+                input: {
+                    ...params
+                }
+            }
         })
     },
 
