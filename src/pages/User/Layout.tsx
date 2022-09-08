@@ -39,7 +39,7 @@ export const Layout = (props: any) => {
                     </div>
                 </aside>
 
-                <div className="p-4 content">
+                <div className="w-full p-4 content">
                     {props.content}
                 </div>
             </div>

@@ -47,14 +47,8 @@ class LoginController extends Controller
 
     public function logout()
     {
-        // $user = Auth::guard('sanctum')->user();
-        $response = response()->json([true]);
-
-        foreach(request()->cookies as $cookieKey => $cookieValue) {
-            $response->withCookie(Cookie::forget($cookieKey));
-        }
-
-        return $response;
+        Auth::logout();
+        return true;
     }
 
     public function redirectVK()

@@ -16,15 +16,58 @@ use Illuminate\Support\Facades\App;
 use Telegram\Bot\Keyboard\Keyboard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\QuestionResource;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 class DebugController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     public function index()
     {
+        // Auth::logout();
 
+        dd(222, Auth::user()->id);
+        if (Auth::attempt([
+            'login' => 'admin',
+            'password' => 'password',
+            'login' => 'user2',
+            'password' => 'password2',
+        ])) {
+    
+            return ['success' => true];
+        }
+        // dd(333, Auth::user()->id);
+
+
+        // return 777;
+        dd(321, response()->json([])->withCookie(cookie('TESZZ!!!', '321312312')));
+        // return ;
+
+        // Auth::loginUsingId(2, true);
+        // Session::save();
+
+        // Auth::logout();
+        // Session::flush();
+        // request()->session()->invalidate();
+        // request()->session()->regenerate();
+
+        // session()->flush();
+        // $response = response()->json([]);
+
+        // foreach(request()->cookies as $cookieKey => $cookieValue) {
+        //     $response->withCookie(Cookie::forget($cookieKey));
+        // }
+
+        // return $response;
+        dd(321,  session()->all(), Auth::user());
+        // dd(11, $res);
         try {
             $data = checkTelegramAuthorization(request()->query());
             dd($data);

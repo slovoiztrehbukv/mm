@@ -19,7 +19,7 @@
 /* TODO to external */
 
 .header-menu a {
-    @apply mx-4
+    @apply mr-4
 }
 
 .header-menu a.active {

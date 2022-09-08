@@ -9,6 +9,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { AuthState } from '../interfaces';
+import { UserIcon } from '../images/icons/user';
 
 export const Header = (props: any) => {
 
@@ -43,7 +44,7 @@ export const Header = (props: any) => {
             :
         (
             <>
-                <Link to="/my/profile"> <>{t('user_profile')}</> </Link>
+                <Link to="/my/profile" className='flex items-end gap-2'> <UserIcon /> {user.user?.login} </Link>
                 <NavLink to="/sign-out"> <>{t('logout')}</> </NavLink>
             </>
         )
@@ -74,14 +75,14 @@ export const Header = (props: any) => {
                 <header className="pt-8 font-light tracking-tight scale-[12] translate-y-72 w-full lg:max-w-4xl mx-auto">
                     
 
-                    <div className='flex justify-between'>
-                        <div className="ml-12 flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
-                            <nav className='header-menu'>
+                    <div className='flex justify-between items-end'>
+                        <div className="flex w-fit mr-auto gap-8 justify-end text-white font-light align-items">
+                            <nav className='header-menu flex items-end gap-4'>
                                 <TargetMenu />
                             </nav>
                         </div>
                         
-                        <div className='w-fit ml-auto gap-8 text-white font-light align-items'>
+                        <div className='mr-2 w-fit ml-auto gap-8 text-white font-light align-items'>
                             {languages.map(lang => (
                                 <button key={lang.code} className={`mx-2 transition duration-300 ${lang.code === language ? 'opacity-70' : 'opacity-20'} hover:opacity-100 fi fi-${lang.flagCode}`} onClick={() => setLanguage(lang.code)}></button>
                             ))}
@@ -102,14 +103,14 @@ export const Header = (props: any) => {
         (
             <header className="pt-8 font-light tracking-tight w-full lg:max-w-4xl mx-auto">
 
-                    <div className='flex justify-between'>
-                        <div className="ml-12 flex w-fit mr-auto gap-8 justify-center text-white font-light align-items">
-                            <nav className='header-menu'>
+                    <div className='flex justify-between items-end'>
+                        <div className="ml-2 flex w-fit mr-auto gap-8 justify-end text-white font-light align-items">
+                            <nav className='header-menu flex items-end gap-4'>
                                 <TargetMenu />
                             </nav>
                         </div>
                         
-                        <div className='w-fit ml-auto gap-8 text-white font-light align-items'>
+                        <div className='mr-2 w-fit ml-auto gap-8 text-white font-light align-items'>
                             {languages.map(lang => (
                                 <button key={lang.code} className={`mx-2 transition duration-300 ${lang.code === language ? 'opacity-70' : 'opacity-20'} hover:opacity-100 fi fi-${lang.flagCode}`} onClick={() => setLanguage(lang.code)}></button>
                             ))}
