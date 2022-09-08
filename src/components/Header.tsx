@@ -44,7 +44,7 @@ export const Header = (props: any) => {
             :
         (
             <>
-                <Link to="/my/profile" className='flex items-end gap-2'> <UserIcon /> {user.user?.login} </Link>
+                <Link to="/my/profile" className='flex items-end gap-4'> <UserIcon /> {user.user?.name} </Link>
                 <NavLink to="/sign-out"> <>{t('logout')}</> </NavLink>
             </>
         )
@@ -53,6 +53,7 @@ export const Header = (props: any) => {
     useEffect(() => {
         i18n.changeLanguage(language)
         localStorage.setItem('locale', language)
+        document.title = t('site_title')
     }, [language])
 
     setTimeout(() => setReady(true), 700)

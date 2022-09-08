@@ -31,11 +31,17 @@ export const Profile = () => {
 
         if (!result.data.userProfileUpdate.success!)  {
             notie.alert({
-                text: 'неа, не сохранилось'
+                text: 'неа, не сохранилось',
+                type: 'error'
             })
 
             return
         }
+
+        notie.alert({
+            text: 'успех',
+            type: 'success'
+        })
 
         dispatch(setAuth({
             ...auth,
@@ -58,22 +64,22 @@ export const Profile = () => {
                             <div className="md:flex mb-6">
                                 <div className="md:w-1/3">
                                     <label className="block text-gray-600 font-lighter md:text-left mb-3 md:mb-0 pr-4" htmlFor="profile-login">
-                                        логин
+                                        {t('input__login')}
                                     </label>
                                 </div>
                                 <div className="md:w-2/3">
-                                    <input className="form-input block w-full focus:bg-white p-2" id="profile-login" type="text" ref={loginRef} defaultValue={auth.user?.login}/>
+                                    <input className="form-input block w-full bg-gray-100 focus:bg-white p-2" id="profile-login" type="text" ref={loginRef} defaultValue={auth.user?.login}/>
                                 </div>
                             </div>
 
                             <div className="md:flex mb-6">
                                 <div className="md:w-1/3">
                                     <label className="block text-gray-600 font-lighter md:text-left mb-3 md:mb-0 pr-4" htmlFor="profile-name">
-                                        имя
+                                        {t('input__name')}
                                     </label>
                                 </div>
                                 <div className="md:w-2/3">
-                                    <input className="form-input block w-full focus:bg-white p-2" id="profile-name" type="text" ref={nameRef} defaultValue={auth.user?.name} />
+                                    <input className="form-input block w-full bg-gray-100 focus:bg-white p-2" id="profile-name" type="text" ref={nameRef} defaultValue={auth.user?.name} />
                                 </div>
                             </div>
 
@@ -81,7 +87,7 @@ export const Profile = () => {
                                 <div className="md:w-1/3"></div>
                                 <div className="md:w-2/3">
                                     <button className="shadow bg-primary-200 hover:bg-primary-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-                                        сохранить
+                                        {t('btn__save')}
                                     </button>
                                 </div>
                             </div>

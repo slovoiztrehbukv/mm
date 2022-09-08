@@ -1,4 +1,5 @@
 {
+    "site_title": "muchmatch - if this is fate, then why not help her?",
     "font_logo": "muchmatch",
     "category_music": "Music",
     "category_politics": "Politics",
@@ -36,6 +37,10 @@
     "logout": "sign out",
     "user_profile": "profile",
     "to_business": "b2b",
+
+    "input__login": "login",
+    "input__name": "name",
+    "btn__save": "save",
 
     "my_profile": "profile",
     "my_matches": "matches",

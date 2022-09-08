@@ -51,7 +51,8 @@ export const SignIn = () => {
 
         if (!result.data.logIn.success!)  {
             notie.alert({
-                text: 'неа'
+                text: 'неа',
+                type: 'error',
             })
 
             return

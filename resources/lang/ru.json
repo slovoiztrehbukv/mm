@@ -1,4 +1,5 @@
 {
+    "site_title": "мачмэч - нетрадиционный дейтинг",
     "font_logo": "мачмэч",
 
     "category_music": "Музыка",
@@ -37,6 +38,10 @@
     "logout": "выйти",
     "user_profile": "профиль",
     "to_business": "бизнесу",
+
+    "input__login": "логин",
+    "input__name": "имя",
+    "btn__save": "сохранить",
     
     "my_profile": "профиль",
     "my_matches": "мэтчи",
