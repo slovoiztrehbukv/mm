@@ -5,9 +5,9 @@ use App\Http\Controllers\ServiceInformationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
-Route::group(['middleware' => 'web'], function(){
-    Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
+Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 
+Route::group(['middleware' => 'web'], function(){
     Route::prefix('/service')->group(function() {
         Route::prefix('/hosts')->group(function() {
             Route::get('/api', [ServiceInformationController::class, 'getAPIHost']);
