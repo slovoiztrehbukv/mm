@@ -20,10 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('login')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
-            $table->string('vk_id', 255)->unique()->nullable();
+            $table->bigInteger('vk_id')->unique()->nullable();
             $table->string('instagram_id', 255)->unique()->nullable();
             $table->bigInteger('tlg_id')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('avatar', 512)->nullable();
             $table->string('password')->default('password');
             $table->rememberToken();
             $table->timestamps();

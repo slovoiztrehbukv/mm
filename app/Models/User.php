@@ -22,7 +22,9 @@ class User extends Authenticatable
         'login',
         'email',
         'password',
-        'tlg_id'
+        'tlg_id',
+        'vk_id',
+        'avatar',
     ];
 
     /**
