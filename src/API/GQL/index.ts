@@ -22,6 +22,14 @@ export const GQL = {
         })
     },
 
+    getMyMatches: async() => {
+        const client = await awaitedClient.get()
+
+        return client.query({
+            query: gql(queries.matches.get())
+        })
+    },
+
     userProfileSave: async (params:UserProfile) => {
         const client = await awaitedClient.get()
 
@@ -53,12 +61,13 @@ export const GQL = {
 
     storeUserAnswer: async (params:userAnswersStoreData) => {
         const client = await awaitedClient.get()
-        const {batch_id, answers_quantity, answers_ids} = params
+        const {user_id, batch_id, answers_quantity, answers_ids} = params
 
         return client.mutate({
             mutation: gql(queries.userAnswers.store()),
             variables: {
                 input: {
+                    user_id: Number(user_id),
                     batch_id: Number(batch_id),
                     answers_quantity: Number(answers_quantity),
                     answers_ids: answers_ids.map(id => Number(id)),

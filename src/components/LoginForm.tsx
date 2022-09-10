@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Batch, IconProps, SettingsState } from '../interfaces'
+import { Batch, IconProps, SettingsState, User } from '../interfaces'
 import { 
     TelegramIcon,
     InstagramIcon,
@@ -12,10 +12,9 @@ import { colors } from '../config/colors';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { GQL } from '../API/GQL';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import notie from 'notie'
-import { setSettings } from '../store/features/settings';
 
 export const LoginForm : React.FC = () => {
 
@@ -59,40 +58,24 @@ export const LoginForm : React.FC = () => {
     const [methodSelected, setMethodSelected] = useState('')
     const settingsState = useSelector( (store: RootState) : SettingsState =>  store.settings)
     const batch = useSelector( (store: RootState) : Batch =>  store.batch)
+    const user = useSelector( (store: RootState) : User =>  store.auth.user!)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
 
     const confirmContactMethod = () => {
 
 
         GQL.storeUserAnswer({
+            user_id: user.id!, 
             batch_id: batch.id,
             answers_quantity: settingsState.values.questions.answersQuantity!,
             answers_ids: batch.questions.map(q => q.userAnswer!),
         })
             .then(({data}) => {
-                const code = data.storeTempUserAnswers.code
-                if (typeof code === 'undefined') {
-                    notie.alert({
-                        text: 'oops. something went wrong :('
-                    })
-                    return
-                }
-
-                console.log(321, {
-                    values: {
-                        ...settingsState.values,
-                        tempAnswersCode: code
-                    }
+                notie.alert({
+                    text: 'мы сообщим',
+                    type: 'success',
                 })
 
-                dispatch(setSettings({
-                    values: {
-                        ...settingsState.values,
-                        tempAnswersCode: code
-                    }
-                }))
-                
 
                 navigate("/survey/contact-method/" + methodSelected)
             })

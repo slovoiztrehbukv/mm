@@ -39,6 +39,13 @@ export interface Batch {
   questions: Question[]
 }
 
+export interface Match {
+  id: number
+  user_1_id: number
+  user_2_id: number
+  accuracy: number
+}
+
 export interface Image {
   id: number
   url: string
@@ -89,6 +96,7 @@ export interface UserAvatarProps {
 
 // GQL types TODO move to external file
 export interface userAnswersStoreData {
+  user_id: number,
   batch_id: number
   answers_quantity: number
   answers_ids: number[]

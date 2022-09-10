@@ -2,13 +2,15 @@
 
 namespace App\Jobs;
 
+use App\Models\Match;
 use App\Events\MatchFound;
 use App\Models\UserAnswer;
+use App\Models\UsersMatch;
 use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class FindMatch implements ShouldQueue
 {
@@ -72,17 +74,22 @@ class FindMatch implements ShouldQueue
 
         $bestPotentialMatchId = array_key_first($answersMatches);
 
-        $accuracy = ((int) $answersMatches[$bestPotentialMatchId]) / ((int) $this->userAnswer->answers_quantity);
-        $accuracy = round(100 * $accuracy);
+        
 
 
 
         if ($bestPotentialMatchId) {
-            MatchFound::dispatch([
-                'answerLatest' => $this->userAnswer,
-                'answerWaited' => UserAnswer::find((int)$bestPotentialMatchId),
+            $accuracy = ((int) $answersMatches[$bestPotentialMatchId]) / ((int) $this->userAnswer->answers_quantity);
+            $accuracy = round(100 * $accuracy);
+
+            if (!$accuracy) return;
+            
+            UsersMatch::create([
+                'user_1_id' => $this->userAnswer->user->id,
+                'user_2_id' => UserAnswer::find((int)$bestPotentialMatchId)->user->id,
                 'accuracy' => $accuracy
             ]);
         }
     }
 }
+

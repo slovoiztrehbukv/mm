@@ -10,13 +10,7 @@ class UserAnswerObserver
 {
     public function creating(UserAnswer $userAnswer)
     {
-        $code = Str::random(5);
-
-        while(UserAnswer::whereCode($code)->first()) {
-            $code = Str::random(5);
-        }
-
-        $userAnswer->code = $code;
+        //
     }
 
 

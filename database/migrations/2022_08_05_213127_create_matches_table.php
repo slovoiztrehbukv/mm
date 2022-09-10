@@ -13,7 +13,7 @@ class CreateMatchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('matches', function (Blueprint $table) {
+        Schema::create('users_matches', function (Blueprint $table) {
             $table->id();
 
             // TODO
@@ -26,6 +26,8 @@ class CreateMatchesTable extends Migration
                 ->cascadeOnDelete();
             // ^ TODO 
             
+
+            $table->unique(['user_1_id', 'user_2_id']);
 
             $table->integer('accuracy')
                 ->comment('Matching percentage');
@@ -41,6 +43,6 @@ class CreateMatchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matches');
+        Schema::dropIfExists('users_matches');
     }
 }
