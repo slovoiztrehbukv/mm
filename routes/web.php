@@ -2,16 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\CallbackController;
 use App\Http\Controllers\Auth\RedirectController;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 use App\Http\Controllers\ServiceInformationController;
-use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 
 
 Route::group(['middleware' => 'web'], function(){
-
-    // Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 
     Route::prefix('/auth')
         ->group(function() {
