@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Middleware\TelegramMiddleware;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
 
     /**
      * The controller namespace for the application.
@@ -39,25 +38,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
-
             Route::prefix('tlg')
                 ->middleware('tlg')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/tlg.php'));
-
-            Route::prefix('debug')
-                ->middleware(['lighthouse', 'devOnly'])
-                ->namespace($this->namespace)
-                ->group(base_path('routes/debug.php'));
-
-            Route::prefix('auth')
-                ->middleware(['lighthouse'])
-                ->namespace($this->namespace)
-                ->group(base_path('routes/auth.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
@@ -72,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        RateLimiter::for('api', function (Request $request) {
+        RateLimiter::for('web', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
     }

@@ -1,13 +1,43 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\ServiceInformationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RedirectController;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
+use App\Http\Controllers\ServiceInformationController;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
-Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
+
 
 Route::group(['middleware' => 'web'], function(){
+
+    // Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
+
+    Route::prefix('/auth')
+        ->group(function() {
+            Route::get('/logout', [LoginController::class, 'logout']);
+                // ->middleware('auth');
+
+            Route::prefix('/redirect')->group(function() {
+                Route::get('/vk', [RedirectController::class, 'VK']);
+                Route::get('/telegram', [RedirectController::class, 'telegram']);
+            });
+    
+            Route::prefix('/callback')->group(function() {
+                Route::get('/vk', [CallbackController::class, 'VK']);
+                Route::get('/telegram', [CallbackController::class, 'telegram']);
+            });
+        });
+
+
+    Route::middleware(['admin'])
+        ->prefix('/admin')
+        ->group(function() {
+            Route::get('/logs', [LogViewerController::class, 'index']);
+        });
+
+
+
     Route::prefix('/service')->group(function() {
         Route::prefix('/hosts')->group(function() {
             Route::get('/api', [ServiceInformationController::class, 'getAPIHost']);
@@ -15,15 +45,23 @@ Route::group(['middleware' => 'web'], function(){
         });
 
         Route::get('/languages', [ServiceInformationController::class, 'getLocalizationStrings']);
-
-        // ADMIN ONLY (TODO ! add middleware)
-        Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
     });
+
+
+
+    // PASSING CONTROL TO JS ROUTER:
+    Route::get('/login', function () {
+        return redirect('/sign-in');
+    })
+        ->name('login');
 
     Route::get('/{path?}', function () {
         return view(env('APP_ENV') === 'production' ? 'app_PROD' : 'app', [
             'API_HOST' => env('REACT_APP_API_HOST'),
             'GQL_HOST' => env('REACT_APP_GQL_HOST'),
         ]);
-    })->where('path', '.*');
+    })
+        ->name('home')
+        ->where('path', '.*');
+
 });

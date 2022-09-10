@@ -13,15 +13,17 @@ final class LogInResolver
      */
     public function __invoke($_, array $args)
     {
+        $user = null;
+
         if (Auth::attempt([
             'login' => $args['login'],
             'password' => $args['password'],
         ])) {
             request()->session()->regenerate();
     
-            return ['success' => true];
+            $user = auth()->user();
         }
 
-        return ['success' => false];
+        return ['user' => $user];
     }
 }

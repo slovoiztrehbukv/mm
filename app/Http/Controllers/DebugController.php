@@ -31,12 +31,21 @@ class DebugController extends Controller
 
     public function index()
     {
-        $user = User::find(2);
-        // $user->update(
-        //     ['name' => 'testttt222']
-        // );
-        dd(2222, $user);
-        // Auth::logout();
+        // $args = [
+        //     'login' => 'admin',
+        //     'password' => 'password',
+        //     'login' => 'user2',
+        //     'password' => 'password2',
+        // ];
+
+        // if (Auth::attempt([
+        //     'login' => $args['login'],
+        //     'password' => $args['password'],
+        // ])) {
+        //     request()->session()->regenerate();
+    
+        //     return ['success' => true];
+        // }
 
         dd(222, Auth::user()->id);
         if (Auth::attempt([

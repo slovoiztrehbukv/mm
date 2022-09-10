@@ -49,7 +49,9 @@ export const SignIn = () => {
             password: passwordRef.current?.value!
         })
 
-        if (!result.data.logIn.success!)  {
+        const logedInUser = result.data.logIn.user
+
+        if (!logedInUser)  {
             notie.alert({
                 text: 'неа',
                 type: 'error',
@@ -58,9 +60,8 @@ export const SignIn = () => {
             return
         }
 
-        const user = await GQL.getCurrentUser()
         dispatch(setAuth({
-            user: user.data.me,
+            user: logedInUser,
             isAuthenticated: true,
             wasUserFetched: true,
         }))

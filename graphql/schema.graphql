@@ -4,8 +4,8 @@ type Query {
   categories: [Category!] @all
 
   # AUTH (?TODO to mutations?)
-  logIn(login: String!, password: String!) : SuccessFlagOnlyResponse @field(resolver: "App\\GraphQL\\Queries\\LogInResolver")
-  me: User! @auth @guard
+  logIn(login: String!, password: String!) : LoginResponse @field(resolver: "App\\GraphQL\\Queries\\LogInResolver")
+  me: User @field(resolver: "App\\GraphQL\\Queries\\CurrentUserResolver")
 }
 
 type Mutation {
@@ -78,6 +78,10 @@ type UserAnswer {
 }
 
 "RESPONSES"
+type LoginResponse {
+  user: User
+}
+
 type SuccessFlagOnlyResponse {
   success: Boolean
 }

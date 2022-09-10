@@ -50,4 +50,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserVoteToAuthor::class);
     }
+
+
+
+    public function isAdmin()
+    {
+        return in_array($this->login, ['admin']);
+    }
 }

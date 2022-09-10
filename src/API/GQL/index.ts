@@ -7,7 +7,6 @@ import AxiosMethods from '../axios/methods';
 export const GQL = {
 
     logIn: async (params: LogInParams) => {
-        await AxiosMethods.logIn()
         const client = await awaitedClient.get()
 
         return client.query({

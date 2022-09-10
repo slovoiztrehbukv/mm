@@ -6,7 +6,16 @@ export default {
         logIn: (params: LogInParams) => `
             query LogIn {
                 logIn(login: "${params.login}", password: "${params.password}") {
-                    success
+                    user {
+                        id
+                        name
+                        login
+                        email
+                        phone
+                        vk_id
+                        instagram_id
+                        tlg_id
+                    }
                 }
             }
         `,
