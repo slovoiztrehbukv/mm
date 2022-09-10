@@ -15,6 +15,7 @@ export default {
                         vk_id
                         instagram_id
                         tlg_id
+                        avatar
                     }
                 }
             }
@@ -31,6 +32,7 @@ export default {
                     vk_id
                     instagram_id
                     tlg_id
+                    avatar
                 }
             }
         `

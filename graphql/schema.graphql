@@ -39,6 +39,7 @@ type User {
   vk_id: String
   instagram_id: String
   tlg_id: String
+  avatar: String
 }
 
 type Category {

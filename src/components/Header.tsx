@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { AuthState } from '../interfaces';
 import { UserIcon } from '../images/icons/user';
+import { UserAvatar } from './UserAvatar';
 
 export const Header = (props: any) => {
 
@@ -44,7 +45,14 @@ export const Header = (props: any) => {
             :
         (
             <>
-                <Link to="/my/profile" className='flex items-end gap-4'> <UserIcon /> {user.user?.name} </Link>
+                <Link to="/my/profile" className='flex items-end gap-4'> {
+                    user.user?.avatar
+                        ?
+                    <UserAvatar src={user.user?.avatar!} alt={user.user?.name!} />
+                        :
+                    <UserIcon /> }
+                        {user.user?.name}
+                </Link>
                 <NavLink to="/sign-out"> <>{t('logout')}</> </NavLink>
             </>
         )

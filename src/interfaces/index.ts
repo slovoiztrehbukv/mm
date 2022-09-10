@@ -13,6 +13,7 @@ export interface UserProfile{
   vk_id?: string
   instagram_id?: string
   tlg_id?: string
+  avatar?: string
 }
 
 export interface User extends UserProfile {
@@ -78,6 +79,11 @@ export interface UpdateSettingsAction extends ReduxAction {
 export interface IconProps {
   fill?: string
   px?: number
+}
+
+export interface UserAvatarProps {
+  src: string
+  alt: string
 }
 
 
