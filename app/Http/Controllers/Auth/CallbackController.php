@@ -42,13 +42,22 @@ class CallbackController extends Controller
     public function telegram()
     {
         $GET = request()->query();
-        
+
         try {
-            $data = checkTelegramAuthorization($GET);
-            
-            $user = User::firstOrCreate([
-                'tlg_id' => $data['id']
-            ]);
+            checkTelegramAuthorization($GET);
+
+            $userData = Socialite::driver('telegram')->user();
+            $user = User::firstWhere('tlg_id', '=', (int)$userData->getId());
+
+            if (!$user) {
+                $user = User::create([
+                    // 'login' => $userData->getNickname(), // unique check
+                    'tlg_id' => $userData->getId(),
+                    'name' => $userData->getName(),
+                    'email' => $userData->getEmail(), // unique check
+                    'avatar' => $userData->getAvatar(),
+                ]);
+            }
 
             if (Auth::loginUsingId($user->id)) {
                 request()->session()->regenerate();
@@ -58,7 +67,7 @@ class CallbackController extends Controller
                 throw new \Exception("tlg auth atempt failed", $user->toArray());
             }
         } catch(\Throwable $e) {
-            Log::waring("Telegram callback response error: {$e->getMessage()} ", $GET);
+            Log::warning("Telegram callback response error: {$e->getMessage()} ", $GET);
         }
     }
 }
