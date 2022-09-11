@@ -16,6 +16,13 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+
+            $table->foreignId('parent_id')
+                ->comment('null means `root`')
+                ->nullable()
+                ->constrained('categories')
+                ->nullOnDelete();
+
             $table->integer('weight'); // TODO dynamic value determined by user
             $table->timestamps();
         });

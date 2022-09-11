@@ -7,10 +7,12 @@ import { useTranslation } from 'react-i18next';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { faThumbsDown, faStar, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ImagesCard: React.FC<Question> = (question: Question) => {
 
-    const btnClasses = 'w-48 h-12 text-center disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-600 text-white font-light rounded shadow-lg hover:shadow-xl transition duration-200'
+    const btnClasses = 'w-48 h-12 mx-auto text-center disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-600 text-white font-light rounded shadow-lg hover:shadow-xl transition duration-200'
 
     const dispatch = useDispatch()
     const { t } = useTranslation()
@@ -66,7 +68,13 @@ export const ImagesCard: React.FC<Question> = (question: Question) => {
     }
 
     return (
-            <div className='text-center py-8 mx-auto w-full'>
+            <div className='text-center pb-8 mx-auto w-full'>
+                <div className='text-gray-200 w-fit ml-auto mb-8'>
+                    <FontAwesomeIcon icon={faThumbsDown} className="cursor-pointer hover:text-red-400"/>
+                    <span className='mx-4'>Имя Автора (<FontAwesomeIcon icon={faStar} className="text-yellow-600"/> 4.9)</span> 
+                    <FontAwesomeIcon icon={faThumbsUp} className="cursor-pointer hover:text-emerald-400"/>
+                </div>
+                
                 <h2 className='mb-20'>{question.title}</h2>
 
                 <div className='w-full'>
