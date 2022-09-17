@@ -81,7 +81,7 @@ class FindMatch implements ShouldQueue
 
 
         if ($bestPotentialMatchId) {
-            $accuracy = ((int) $answersMatches[$bestPotentialMatchId]) / ((int) $this->userAnswer->answers_quantity);
+            $accuracy = ((int) $answersMatches[$bestPotentialMatchId]) / ((int) $this->userAnswer->answers_quantity); // ??? TODO FIXME
             $accuracy = round(100 * $accuracy);
 
             if (!$accuracy) return;
