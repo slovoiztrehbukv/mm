@@ -14,14 +14,14 @@ export const Matches = () => {
     })
 
     return (
-        <Layout 
+        <Layout
             content={(
                 <div>
                     <h2>my matches here:</h2>
 
                     <ul>
                         {matches!.map((m: Match) => (
-                            <li>{m.user_1_id} {m.user_2_id} {m.accuracy}</li>
+                            <li>{m.user_was_found_id} {m.user_did_found_id} {m.accuracy}</li>
                         ))}
                     </ul>
                 </div>

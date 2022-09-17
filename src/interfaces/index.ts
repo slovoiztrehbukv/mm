@@ -22,7 +22,7 @@ export interface User extends UserProfile {
 
 export interface AuthState {
   wasUserFetched: boolean // `getCurrentUser` attempt (flag for correct redirects handling)
-  isAuthenticated: boolean // user data actually was (not empty) in `getCurrentUser` response 
+  isAuthenticated: boolean // user data actually was (not empty) in `getCurrentUser` response
   user?: User
 }
 
@@ -41,8 +41,8 @@ export interface Batch {
 
 export interface Match {
   id: number
-  user_1_id: number
-  user_2_id: number
+  user_was_found_id: number
+  user_did_found_id: number
   accuracy: number
 }
 

@@ -36,7 +36,7 @@ export default {
                 }
             }
         `
-        
+
     },
 
     user: {
@@ -83,7 +83,7 @@ export default {
                 }
             }
         `
-        
+
     },
 
     userAnswers: {
@@ -104,8 +104,8 @@ export default {
             query GetMyMatches {
                 usersMatches{
                     id
-                    user_1_id
-                    user_2_id
+                    user_was_found_id
+                    user_did_found_id
                     accuracy
                 }
             }

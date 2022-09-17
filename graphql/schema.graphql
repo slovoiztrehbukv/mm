@@ -82,8 +82,8 @@ type UserAnswer {
 
 type UsersMatch {
   id: ID!
-  user_1_id: Int!
-  user_2_id: Int!
+  user_was_found_id: Int!
+  user_did_found_id: Int!
   accuracy: Int!
 }
 
