@@ -52,8 +52,9 @@ class FindMatch implements ShouldQueue
             ->where('answers_quantity', '=', $this->userAnswer->answers_quantity)
             ->where('batch_id', '=', $this->userAnswer->batch_id)
             ->where('id', '!=', $this->userAnswer->id)
-            ->whereNotIn('id', $this->userAnswer->user->usersWereFound->pluck('id')->toArray())
-            ->whereNotIn('id', $this->userAnswer->user->usersDidFound->pluck('id')->toArray())
+            ->where('user_id', '!=', $this->userAnswer->user->id)
+            ->whereNotIn('user_id', $this->userAnswer->user->usersWereFound->pluck('id')->toArray())
+            ->whereNotIn('user_id', $this->userAnswer->user->usersDidFound->pluck('id')->toArray())
             ->get();
 
         $currentAnswers = $this->userAnswer->answers_ids;

@@ -27,6 +27,21 @@ class DebugController extends Controller
     public function index()
     {
 
+
+		$user = UserAnswer::find(7)->user;
+
+		$potentialUserAnswers = UserAnswer::query()
+            ->where('answers_quantity', '=', 4)
+            ->where('batch_id', '=', 49)
+            ->where('id', '!=', 7)
+            ->where('user_id', '!=', 4)
+            ->whereNotIn('user_id', $user->usersWereFound->pluck('id')->toArray())
+            ->whereNotIn('user_id', $user->usersDidFound->pluck('id')->toArray())
+            ->get();
+
+		dd(22, $potentialUserAnswers);
+
+		dd(321, $user->usersDidFound->pluck('id')->toArray());
         $user = auth()->user();
         dd(321, $user->id, $user->usersWereFound);
         // $args = [
