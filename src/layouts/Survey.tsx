@@ -23,7 +23,7 @@ export const SurveyLayout = (props: any) => {
             >
 
                 {props.children}
-            
+
             </main>
 
             <Footer />

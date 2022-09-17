@@ -16,18 +16,17 @@ class CreateMatchesTable extends Migration
         Schema::create('users_matches', function (Blueprint $table) {
             $table->id();
 
-            // TODO
-            $table->foreignId('user_1_id')
+            $table->foreignId('user_was_found_id')
+				->comment('ID of desired (waiting) user')
                 ->constrained('users')
                 ->cascadeOnDelete();
 
-            $table->foreignId('user_2_id')
+            $table->foreignId('user_did_found_id')
+				->comment('ID of latest user')
                 ->constrained('users')
                 ->cascadeOnDelete();
-            // ^ TODO 
-            
 
-            $table->unique(['user_1_id', 'user_2_id']);
+            $table->unique(['user_was_found_id', 'user_did_found_id']);
 
             $table->integer('accuracy')
                 ->comment('Matching percentage');

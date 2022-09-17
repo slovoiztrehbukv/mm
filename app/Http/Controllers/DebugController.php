@@ -24,13 +24,11 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 class DebugController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('web');
-    }
-
     public function index()
     {
+
+        $user = auth()->user();
+        dd(321, $user->id, $user->usersWereFound);
         // $args = [
         //     'login' => 'admin',
         //     'password' => 'password',
@@ -43,7 +41,7 @@ class DebugController extends Controller
         //     'password' => $args['password'],
         // ])) {
         //     request()->session()->regenerate();
-    
+
         //     return ['success' => true];
         // }
 
@@ -54,7 +52,7 @@ class DebugController extends Controller
             'login' => 'user2',
             'password' => 'password2',
         ])) {
-    
+
             return ['success' => true];
         }
         // dd(333, Auth::user()->id);
@@ -89,7 +87,7 @@ class DebugController extends Controller
             dd(222, $e->getMessage());
         }
 
-        
+
         dd(22, Socialite::driver('telegram')->redirect());
         // return Socialite::driver('telegram')->redirect();
 
@@ -190,7 +188,7 @@ class DebugController extends Controller
                 ])
             );
         }
-       
+
         dd(321, $keyboard->toArray());
 
         return;
@@ -199,7 +197,7 @@ class DebugController extends Controller
             ->inline();
 
         foreach (Enum::LANGUAGES as $code => $data) {
-           
+
             $keyboard->row(
                 Keyboard::inlineButton([
                     'text' => $data['icon'] . ' ' . $data['title'],
@@ -209,7 +207,7 @@ class DebugController extends Controller
         }
 
         dd(321, $keyboard);
-        
+
 
         return;
 

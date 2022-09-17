@@ -35,7 +35,7 @@ export const Footer = (props: any) => {
                         <span className="mx-3">•</span>
                         <NavLink to="/info/contact-us"> <>{t('menu__contacts')}</> </NavLink>
                         <span className="mx-3">•</span>
-                        <NavLink to="/info/policy"> <>{t('menu__policy')}</> </NavLink>  
+                        <NavLink to="/info/policy"> <>{t('menu__policy')}</> </NavLink>
                     </nav>
                 </footer>
             </CSSTransition>
@@ -54,7 +54,9 @@ export const Footer = (props: any) => {
                     <span className="mx-3">•</span>
                     <NavLink to="/info/contact-us"> <>{t('menu__contacts')}</> </NavLink>
                     <span className="mx-3">•</span>
-                    <NavLink to="/info/policy"> <>{t('menu__policy')}</> </NavLink>  
+                    <NavLink to="/info/policy"> <>{t('menu__policy')}</> </NavLink>
+                    <span className="mx-3">•</span>
+                    <NavLink to="/info/thanks">спасибо</NavLink>
                 </nav>
             </footer>
         )

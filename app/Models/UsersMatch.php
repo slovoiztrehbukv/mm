@@ -12,8 +12,8 @@ class UsersMatch extends Model
 
 
     protected $fillable = [
-        'user_1_id',
-        'user_2_id',
+        'user_was_found_id',
+        'user_did_found_id',
         'accuracy',
     ];
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DebugController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\CallbackController;
 use App\Http\Controllers\Auth\RedirectController;
@@ -20,7 +21,7 @@ Route::group(['middleware' => 'web'], function(){
                 Route::get('/vk', [RedirectController::class, 'VK']);
                 Route::get('/telegram', [RedirectController::class, 'telegram']);
             });
-    
+
             Route::prefix('/callback')->group(function() {
                 Route::get('/vk', [CallbackController::class, 'VK']);
                 Route::get('/telegram', [CallbackController::class, 'telegram']);
@@ -28,10 +29,20 @@ Route::group(['middleware' => 'web'], function(){
         });
 
 
+
     Route::middleware(['admin'])
         ->prefix('/admin')
         ->group(function() {
             Route::get('/logs', [LogViewerController::class, 'index']);
+        });
+
+
+
+    Route::controller(DebugController::class)
+        ->middleware(['admin'])
+        ->prefix('/debug')
+        ->group(function() {
+            Route::get('/', 'index');
         });
 
 

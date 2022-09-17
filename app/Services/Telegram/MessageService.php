@@ -21,7 +21,7 @@ class MessageService
     ];
 
     private ?Message $message;
-    
+
     private ?User $user;
 
     public function __construct(Message $msg)
@@ -39,28 +39,28 @@ class MessageService
         $instance = new static($msg);
         $methods = self::$msgToMethodSchema;
         $method = isset($msg['text']) ? trim($msg['text']) : 'unknown';
-        
+
         if (isset($methods[$method])){
             $method = $methods[$method];
             $instance->$method();
         } else {
             $instance->listenForCode();
         }
-        
+
     }
-    
+
     private function userCreate()
     {
         $user = User::firstOrCreate([
             'tlg_id' => $this->message['from']['id']
         ]);
-        
+
         $user->name = trim($this->message['from']['first_name']);
         $user->save();
-        
+
         $this->userInit($user);
     }
-    
+
     private function userInit(User $user)
     {
         $this->user = $user;
@@ -72,7 +72,7 @@ class MessageService
     public function start()
     {
         $this->userCreate();
-        
+
         $keyboard = Keyboard::make()->inline();
 
         foreach (Enum::LANGUAGES as $code => $data) {

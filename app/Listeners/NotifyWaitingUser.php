@@ -31,7 +31,7 @@ class NotifyWaitingUser
         $waitingUser = $event->answerWaiting->user;
 
 
-        
+
         switch(UserService::getPreferedContactMethod($waitingUser)) {
 
             case ENUM::CONTACT_METHODS['tlg']: {
@@ -42,7 +42,7 @@ class NotifyWaitingUser
                 );
 
                 break;
-                
+
             }
 
             case ENUM::CONTACT_METHODS['vk']: {

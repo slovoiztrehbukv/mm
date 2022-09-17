@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 class FindMatch implements ShouldQueue
 {
@@ -46,11 +47,13 @@ class FindMatch implements ShouldQueue
         $answersMatches = [];
 
 
-        
+
         $potentialUserAnswers = UserAnswer::query()
             ->where('answers_quantity', '=', $this->userAnswer->answers_quantity)
             ->where('batch_id', '=', $this->userAnswer->batch_id)
             ->where('id', '!=', $this->userAnswer->id)
+            ->whereNotIn('id', $this->userAnswer->user->usersWereFound->pluck('id')->toArray())
+            ->whereNotIn('id', $this->userAnswer->user->usersDidFound->pluck('id')->toArray())
             ->get();
 
         $currentAnswers = $this->userAnswer->answers_ids;
@@ -74,8 +77,6 @@ class FindMatch implements ShouldQueue
 
         $bestPotentialMatchId = array_key_first($answersMatches);
 
-        
-
 
 
         if ($bestPotentialMatchId) {
@@ -83,12 +84,16 @@ class FindMatch implements ShouldQueue
             $accuracy = round(100 * $accuracy);
 
             if (!$accuracy) return;
-            
-            UsersMatch::create([
-                'user_1_id' => $this->userAnswer->user->id,
-                'user_2_id' => UserAnswer::find((int)$bestPotentialMatchId)->user->id,
-                'accuracy' => $accuracy
-            ]);
+
+            try {
+                UsersMatch::create([
+                    'user_was_found_id' => $this->userAnswer->user->id,
+                    'user_did_found_id' => UserAnswer::find((int)$bestPotentialMatchId)->user->id,
+                    'accuracy' => $accuracy
+                ]);
+            } catch (\Throwable $e) {
+                Log::warning("mm.app.Jobs.FindMatch.handle.warning > cannot create UsersMatch: " . $e->getMessage(), (array)$this);
+            }
         }
     }
 }
