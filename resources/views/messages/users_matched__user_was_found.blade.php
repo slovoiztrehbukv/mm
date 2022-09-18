@@ -1,1 +1,1 @@
-есть совпадение : {{$event->userWasFound->id}} и {{$event->userDidFound->id}}
+есть совпадение : {{$event->userWasFound->id}} и {{$event->userDidFound->id}} | процент совпадения: {{$event->accuracy}}%
