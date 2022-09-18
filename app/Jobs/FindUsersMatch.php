@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Match;
 use App\Events\UsersMatched;
 use App\Models\UserAnswer;
 use App\Models\UsersMatch;
@@ -13,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Log;
 
-class FindMatch implements ShouldQueue
+class FindUsersMatch implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -82,26 +81,36 @@ class FindMatch implements ShouldQueue
         if ($bestPotentialMatchId) {
             $accuracy =
                 ((int) $answersMatches[$bestPotentialMatchId]) /
-                ((int) $this->userAnswer->answers_quantity); // ??? TODO FIXME
+                ((int) count($this->userAnswer->answers_ids)); // ??? TODO FIXME
             $accuracy = round(100 * $accuracy);
 
             if (!$accuracy) {
-                return;
+                return; // ZERO-CASE > potentially interesting
             }
 
             try {
+                $userWasFound = $this->userAnswer->user;
+                $userDidFound = UserAnswer::find((int) $bestPotentialMatchId)
+                    ->user;
+
                 UsersMatch::create([
-                    'user_was_found_id' => $this->userAnswer->user->id,
-                    'user_did_found_id' => UserAnswer::find(
-                        (int) $bestPotentialMatchId
-                    )->user->id,
+                    'user_was_found_id' => $userWasFound->id,
+                    'user_did_found_id' => $userDidFound->id,
                     'accuracy' => $accuracy,
                 ]);
+
+                event(
+                    new UsersMatched([
+                        'userWasFound' => $userWasFound,
+                        'userDidFound' => $userDidFound,
+                        'accuracy' => $accuracy,
+                    ])
+                );
             } catch (\Throwable $e) {
                 Log::warning(
-                    'mm.app.Jobs.FindMatch.handle.warning > cannot create UsersMatch: ' .
+                    'mm.app.Jobs.FindUsersMatch.handle.warning > cannot create UsersMatch: ' .
                         $e->getMessage(),
-                    (array) $this
+                    (array) $e
                 );
             }
         }

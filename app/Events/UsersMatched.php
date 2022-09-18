@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\UserAnswer;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -16,14 +16,14 @@ class UsersMatched
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var UserAnswer
+     * @var User
      */
-    public UserAnswer $answerLatest;
+    public User $userDidFound;
 
     /**
-     * @var UserAnswer
+     * @var User
      */
-    public UserAnswer $answerWaiting;
+    public User $userWasFound;
 
     /**
      * @var integer
@@ -38,8 +38,8 @@ class UsersMatched
     public function __construct(array $data)
     {
         // TODO DATA TO DTO
-        $this->answerLatest = $data['answerLatest'];
-        $this->answerWaiting = $data['answerWaiting'];
+        $this->userWasFound = $data['userWasFound'];
+        $this->userDidFound = $data['userDidFound'];
         $this->accuracy = $data['accuracy'];
     }
 

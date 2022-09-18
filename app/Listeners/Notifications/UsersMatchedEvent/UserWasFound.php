@@ -4,10 +4,14 @@ namespace App\Listeners\Notifications\UsersMatchedEvent;
 
 use App\Enum;
 use App\Events\UsersMatched;
-use App\Mail\UsersMatched as MailUsersMatched;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Log;
 use App\Services\NotificationService;
+use App\Mail\UsersMatched as MailUsersMatched;
 
+/**
+ * Notify User that was found
+ */
 class UserWasFound
 {
     /**
@@ -28,20 +32,20 @@ class UserWasFound
      */
     public function handle(UsersMatched $event)
     {
-        $waitingUser = $event->answerWaiting->user;
-
-        switch (UserService::getPreferedContactMethod($waitingUser)) {
+        switch (UserService::getPreferedContactMethod($event->userWasFound)) {
             case ENUM::CONTACT_METHODS['tlg']:
                 NotificationService::sendTelegramMessage(
-                    $waitingUser->tlg_id,
-                    getMessageTpl('match_found__waiting', $event)
+                    $event->userWasFound->tlg_id,
+                    getMessageTpl('users_matched__user_was_found', [
+                        'event' => $event,
+                    ])
                 );
 
                 break;
 
             case ENUM::CONTACT_METHODS['vk']:
                 NotificationService::sendVKMessage(
-                    $waitingUser->vk_id,
+                    $event->userWasFound->vk_id,
                     'VK MESSAGE TEXT HERE'
                 );
 
@@ -49,7 +53,7 @@ class UserWasFound
 
             case ENUM::CONTACT_METHODS['email']:
                 NotificationService::sendEmail(
-                    $waitingUser->email,
+                    $event->userWasFound->email,
                     new MailUsersMatched($event)
                 );
 

@@ -1,0 +1,1 @@
+есть совпадение : {{$event->userWasFound->id}} и {{$event->userDidFound->id}}

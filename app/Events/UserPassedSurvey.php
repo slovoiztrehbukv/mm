@@ -15,14 +15,10 @@ class UserPassedSurvey
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    
-
     /**
      * @var UserAnswer
      */
     private UserAnswer $userAnswer;
-
-
 
     /**
      * Create a new event instance.

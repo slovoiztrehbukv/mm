@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Throwable;
-use App\Jobs\FindMatch;
+use App\Jobs\FindUsersMatch;
 use App\Events\UsersMatched;
 use App\Models\UserAnswer;
 use App\Events\UserPassedSurvey;
@@ -34,8 +34,8 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         UsersMatched::class => [
-            UsersMatchedEventNotify\UserDidFound::class,
             UsersMatchedEventNotify\UserWasFound::class,
+            UsersMatchedEventNotify\UserDidFound::class,
         ],
     ];
 
@@ -50,7 +50,7 @@ class EventServiceProvider extends ServiceProvider
 
         Event::listen(
             queueable(function (UserPassedSurvey $event) {
-                FindMatch::dispatch($event->getUserAnswer());
+                FindUsersMatch::dispatch($event->getUserAnswer());
             })->catch(function (UserPassedSurvey $event, Throwable $e) {
                 //
             })
