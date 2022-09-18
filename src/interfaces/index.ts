@@ -1,109 +1,107 @@
-import { Action as ReduxAction } from "redux"
-
+import { Action as ReduxAction } from 'redux'
 
 enum QuestionType {
-	Text = "TEXT",
-	Image = "IMAGE"
+    Text = 'TEXT',
+    Image = 'IMAGE',
 }
 
 export interface UserProfile {
-	name?: string
-	login?: string
-	email?: string
-	phone?: string
-	vk_id?: string
-	instagram_id?: string
-	tlg_id?: string
-	avatar?: string
+    name?: string
+    login?: string
+    email?: string
+    phone?: string
+    vk_id?: string
+    instagram_id?: string
+    tlg_id?: string
+    avatar?: string
 }
 
 export interface User extends UserProfile {
-	id?: number
+    id?: number
 }
 
 export interface AuthState {
-	wasUserFetched: boolean // `getCurrentUser` attempt (flag for correct redirects handling)
-	isAuthenticated: boolean // user data actually was (not empty) in `getCurrentUser` response
-	user?: User
+    wasUserFetched: boolean // `getCurrentUser` attempt (flag for correct redirects handling)
+    isAuthenticated: boolean // user data actually was (not empty) in `getCurrentUser` response
+    user?: User
 }
 
 export interface Question {
-	id: number
-	type: QuestionType
-	title: string
-	answers: Answer[]
-	userAnswer: number | null
+    id: number
+    type: QuestionType
+    title: string
+    answers: Answer[]
+    userAnswer: number | null
 }
 
 export interface Batch {
-	id: number
-	questions: Question[]
+    id: number
+    questions: Question[]
 }
 
 export interface Match {
-	id: number
-	user_was_found_id: number
-	user_did_found_id: number
-	accuracy: number
+    id: number
+    user_was_found_id: number
+    user_did_found_id: number
+    accuracy: number
 }
 
 export interface Image {
-	id: number
-	url: string
+    id: number
+    url: string
 }
 
 export interface Answer {
-	id: number
-	value: string
-	image?: Image
+    id: number
+    value: string
+    image?: Image
 }
 
 export interface Category {
-	id: number
-	title: string
+    id: number
+    title: string
 }
 
 export interface BatchInitialAction {
-	questionsQuantity?: number
-	answersQuantity?: number
-	categoryId?: number
+    questionsQuantity?: number
+    answersQuantity?: number
+    categoryId?: number
 }
 
 export interface QuestionsInitialAction extends ReduxAction {
-	payload: BatchInitialAction
+    payload: BatchInitialAction
 }
 
 export interface SettingsState {
-	values: {
-		questions: BatchInitialAction // ?TODO extend
-		tempAnswersCode?: string
-	}
+    values: {
+        questions: BatchInitialAction // ?TODO extend
+        tempAnswersCode?: string
+    }
 }
 
 export interface UpdateSettingsAction extends ReduxAction {
-	payload: SettingsState
+    payload: SettingsState
 }
 
 export interface IconProps {
-	fill?: string
-	px?: number
+    fill?: string
+    px?: number
 }
 
 export interface UserAvatarProps {
-	src: string
-	alt: string
+    src: string
+    alt: string
 }
-
 
 // GQL types TODO move to external file
 export interface userAnswersStoreData {
-	user_id: number,
-	batch_id: number
-	answers_quantity: number
-	answers_ids: number[]
+    user_id: number
+    batch_id: number
+    answers_quantity: number
+    answers_ids: number[]
 }
 
 export interface LogInParams {
-	login: string
-	password: string
+    login: string
+    password: string
 }

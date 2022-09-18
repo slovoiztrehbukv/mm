@@ -39,7 +39,8 @@ class FindMatch implements ShouldQueue
      */
     public function handle()
     {
-        // TODO ALGORITHM TO SERVICE
+        // TODO: ALGORITHM TO SERVICE
+        // TODO: PLAN COMMUNICATION SERVICE
         $answersMatches = [];
 
         $potentialUserAnswers = UserAnswer::query()
