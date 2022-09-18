@@ -11,14 +11,10 @@ class MatchFound extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-
     /**
      * @var MatchFound
      */
     private MatchFound $event;
-
-
 
     /**
      * Create a new message instance.
