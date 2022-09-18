@@ -7,21 +7,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MatchFound extends Mailable
+class UsersMatched extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * @var MatchFound
+     * @var UsersMatched
      */
-    private MatchFound $event;
+    private UsersMatched $event;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(MatchFound $event)
+    public function __construct(UsersMatched $event)
     {
         $this->event = $event;
     }

@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Notifications\UsersMatchedEvent;
 
 use App\Enum;
-use App\Events\MatchFound;
-use App\Mail\MatchFound as MailMatchFound;
+use App\Events\UsersMatched;
+use App\Mail\UsersMatched as MailUsersMatched;
 use App\Services\UserService;
 use App\Services\NotificationService;
 
-class NotifyAnsweredUser
+/**
+ * Notify User that did found
+ */
+class UserDidFound
 {
     /**
      * Create the event listener.
@@ -26,47 +29,34 @@ class NotifyAnsweredUser
      * @param  object  $event
      * @return void
      */
-    public function handle(MatchFound $event)
+    public function handle(UsersMatched $event)
     {
         $answeredUser = $event->answerLatest->user;
 
-
-
-        switch(UserService::getPreferedContactMethod($answeredUser)) {
-
-            case ENUM::CONTACT_METHODS['tlg']: {
-
+        switch (UserService::getPreferedContactMethod($answeredUser)) {
+            case ENUM::CONTACT_METHODS['tlg']:
                 NotificationService::sendTelegramMessage(
                     $answeredUser->tlg_id,
                     getMessageTpl('match_found__answered', $event)
                 );
 
                 break;
-                
-            }
 
-            case ENUM::CONTACT_METHODS['vk']: {
-
+            case ENUM::CONTACT_METHODS['vk']:
                 NotificationService::sendVKMessage(
                     $answeredUser->vk_id,
-                    "VK MESSAGE TEXT HERE"
+                    'VK MESSAGE TEXT HERE'
                 );
 
                 break;
 
-            }
-
-            case ENUM::CONTACT_METHODS['email']: {
-
+            case ENUM::CONTACT_METHODS['email']:
                 NotificationService::sendEmail(
                     $answeredUser->email,
-                    new MailMatchFound($event)
+                    new MailUsersMatched($event)
                 );
 
                 break;
-
-            }
-
         }
     }
 }

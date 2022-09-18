@@ -4,18 +4,16 @@ namespace App\Providers;
 
 use Throwable;
 use App\Jobs\FindMatch;
-use App\Events\MatchFound;
+use App\Events\UsersMatched;
 use App\Models\UserAnswer;
 use App\Events\UserPassedSurvey;
-use App\Listeners\NotifyWaitingUser;
-use App\Listeners\NotifyAnsweredUser;
+use App\Listeners\Notifications\UsersMatchedEvent as UsersMatchedEventNotify;
 use App\Observers\UserAnswerObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use function Illuminate\Events\queueable;
 use SocialiteProviders\Manager\SocialiteWasCalled;
 use SocialiteProviders\Telegram\TelegramExtendSocialite;
-
 use SocialiteProviders\VKontakte\VKontakteExtendSocialite;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,18 +26,16 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-        
+        Registered::class => [SendEmailVerificationNotification::class],
+
         SocialiteWasCalled::class => [
-            VKontakteExtendSocialite::class.'@handle',
-            TelegramExtendSocialite::class.'@handle',
+            VKontakteExtendSocialite::class . '@handle',
+            TelegramExtendSocialite::class . '@handle',
         ],
 
-        MatchFound::class => [
-            NotifyWaitingUser::class,
-            NotifyAnsweredUser::class,
+        UsersMatched::class => [
+            UsersMatchedEventNotify\UserDidFound::class,
+            UsersMatchedEventNotify\UserWasFound::class,
         ],
     ];
 
@@ -52,11 +48,12 @@ class EventServiceProvider extends ServiceProvider
     {
         UserAnswer::observe(UserAnswerObserver::class);
 
-        Event::listen(queueable(function(UserPassedSurvey $event){
-            FindMatch::dispatch($event->getUserAnswer());
-        })
-            ->catch(function(UserPassedSurvey $event, Throwable $e){
+        Event::listen(
+            queueable(function (UserPassedSurvey $event) {
+                FindMatch::dispatch($event->getUserAnswer());
+            })->catch(function (UserPassedSurvey $event, Throwable $e) {
                 //
-            }));
+            })
+        );
     }
 }

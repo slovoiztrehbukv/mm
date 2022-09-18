@@ -11,11 +11,9 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MatchFound
+class UsersMatched
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-
 
     /**
      * @var UserAnswer
@@ -32,16 +30,14 @@ class MatchFound
      */
     public int $accuracy;
 
-
-
-
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(array $data) // TODO DATA TO DTO
+    public function __construct(array $data)
     {
+        // TODO DATA TO DTO
         $this->answerLatest = $data['answerLatest'];
         $this->answerWaiting = $data['answerWaiting'];
         $this->accuracy = $data['accuracy'];

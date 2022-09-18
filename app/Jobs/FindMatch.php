@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Match;
-use App\Events\MatchFound;
+use App\Events\UsersMatched;
 use App\Models\UserAnswer;
 use App\Models\UsersMatch;
 use Illuminate\Bus\Queueable;
